@@ -1,0 +1,57 @@
+.card-header--box {
+  position: relative;
+  // background: linear-gradient(to right, $bacgroundColor7, $bacgroundColor8);
+  background-color: $bacgroundColor2;
+
+  &_icon__box {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width: 56px;
+    height: 56px;
+    background-color: $bacgroundColor3;
+    border-radius: 50%;
+
+    &__icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      color: $textColor3;
+      transform: translate(-50%, -50%);
+      font-size: 28px !important;
+      text-align: center;
+    }
+  }
+
+  &_text {
+    font-size: 24px;
+    font-weight: 700;
+    position: absolute;
+    vertical-align: middle;
+    top: 30%;
+    left: 25%;
+    color: $textColor2;
+    &_account {
+      font-size: 24px;
+      font-weight: 700;
+      position: absolute;
+      vertical-align: middle;
+      top: 30%;
+      left: 12%;
+      color: $textColor2;
+    }
+  }
+}
+
+.card {
+  &-duration {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  &-result {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+}

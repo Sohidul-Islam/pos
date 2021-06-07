@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta cha&#2547;et="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Short Items</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/style/main.css" />
+    <link rel="stylesheet" href="/style/font-awesome.css" />
+    <link rel="stylesheet" href="/js-calendar-main/js-calendar-main/app.css" />
+    <link
+      rel="stylesheet"
+      href="/node_modules/@fortawesome/fontawesome-free/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="content-box">
+      <div class="sidebarbox d-inline-block">
+        <div class="sidebarbox--menu-container">
+          <div class="logo">
+            <img
+              class="d-md-block d-sm-none d-none"
+              src="/assets/pos logo.png"
+              alt=""
+            />
+            <img class="d-md-none" src="/assets/post logo 2.png" alt="" />
+          </div>
+          <ul class="sidebar navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link sidebar-link" href="index.html">
+                <i class="fa fa-fw fa-home"></i>
+                <span>Home</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link sidebar-link" href="retail-dashboard.html">
+                <i class="fa fa-fw fa-line-chart"></i>
+                <span>Retail Dashboard</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link sidebar-link" href="sales-reports.html">
+                <i class="fa fa-fw fa-bar-chart"></i>
+                <span>Sales Reports</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link sidebar-link" href="inventory-reports.html">
+                <i class="fa fa-fw fa-tags"></i>
+                <span>Inventory Reports</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link sidebar-link" href="payment-reports.html">
+                <i class="fa fa-fw fa-money"></i>
+                <span>Payment Reports</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link sidebar-link" href="sales.html">
+                <i class="fa fa-fw fa-table"></i>
+                <span>Check Sales</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link sidebar-link"
+                href=""
+                data-toggle="modal"
+                data-target="#addSaleModal"
+              >
+                <i class="fa fa-fw fa-plus"></i>
+                <span>Record New Sale</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link sidebar-link"
+                href=""
+                data-toggle="modal"
+                data-target="#addProductModal"
+              >
+                <i class="fa fa-fw fa-tags"></i>
+                <span>Add New Product</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link sidebar-link" href="product-brands.html">
+                <i class="fa fa-fw fa-industry"></i>
+                <span>Product Brands</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link sidebar-link" href="product-vendo&#2547;.html">
+                <i class="fa fa-fw fa-users"></i>
+                <span>Product Vendor</span></a
+              >
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="dropdown-toggle nav-link sidebar-link"
+                href="#"
+                role="button"
+                id="dropdownMenuLink"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="fa fa-fw fa-folder"></i> Manage Products
+              </a>
+
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <h6 class="dropdown-header">Inventory</h6>
+                <a
+                  class="dropdown-item"
+                  href="#"
+                  data-toggle="modal"
+                  data-target="#addProductModal"
+                >
+                  <i class="fa fa-plus"></i> Add Product</a
+                >
+                <a class="dropdown-item" href="products.html">
+                  <i class="fa fa-tags"></i> All Products</a
+                >
+                <div class="dropdown-divider"></div>
+                <h6 class="dropdown-header">Product Types</h6>
+                <a
+                  class="dropdown-item"
+                  href="#"
+                  data-toggle="modal"
+                  data-target="#addProductTypeModal"
+                >
+                  <i class="fa fa-plus"></i> Add New Type</a
+                >
+                <a class="dropdown-item" href="product-types.html">
+                  <i class="fa fa-tags"></i> Product Types</a
+                >
+                <div class="dropdown-divider"></div>
+                <h6 class="dropdown-header">Deale&#2547; &amp; Brands</h6>
+                <a
+                  class="dropdown-item"
+                  href="#"
+                  data-toggle="modal"
+                  data-target="#addProductVendorModal"
+                >
+                  <i class="fa fa-user"></i> Add New Vendor</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="#"
+                  data-toggle="modal"
+                  data-target="#addProductBrandModal"
+                >
+                  <i class="fa fa-industry"></i> Add New Brand</a
+                >
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link sidebar-link" href="history.html">
+                <i class="fa fa-fw fa-calendar"></i>
+                <span>History</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link sidebar-link" href="export-record.html">
+                <i class="fas fa-external-link-alt"></i>
+                <span>Export Record</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link sidebar-link" href="general-settings.html">
+                <i class="fa fa-fw fa-cogs"></i>
+                <span>General Settings</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link sidebar-link" href="help.html">
+                <i class="fa fa-fw fa-life-ring"></i>
+                <span>About</span></a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="maincontentbox d-inline-block mx-auto">
+        <div class="card my-3">
+          <div class="card-header bg-warning text-dark">
+            <h2 class="">Short Items</h2>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table
+                class="table table-bordered"
+                id="dataTable"
+                width="100%"
+                cellspacing="0"
+              >
+                <thead>
+                  <tr>
+                    <th>Product Type</th>
+                    <th>Product</th>
+                    <th>Qty</th>
+                    <th>Cost/item</th>
+                    <th>Stock Worth</th>
+                  </tr>
+                </thead>
+                <tfoot>
+                  <tr>
+                    <th>Product Type</th>
+                    <th>Product</th>
+                    <th>Qty</th>
+                    <th>Cost/item</th>
+                    <th>Stock Worth</th>
+                  </tr>
+                </tfoot>
+                <tbody>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+                    <td class="text-danger">03</td>
+                    <td>&#2547;2100</td>
+                    <td>&#2547;6300</td>
+                  </tr>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+                    <td class="text-danger">03</td>
+                    <td>&#2547;2100</td>
+                    <td>&#2547;6300</td>
+                  </tr>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+                    <td class="text-danger">03</td>
+                    <td>&#2547;2100</td>
+                    <td>&#2547;6300</td>
+                  </tr>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+                    <td class="text-danger">Out of stock</td>
+                    <td>&#2547;2100</td>
+                    <td>&#2547;00</td>
+                  </tr>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+                    <td class="text-danger">03</td>
+                    <td>&#2547;2100</td>
+                    <td>&#2547;6300</td>
+                  </tr>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+                    <td class="text-danger">03</td>
+                    <td>&#2547;2100</td>
+                    <td>&#2547;6300</td>
+                  </tr>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+                    <td class="text-danger">03</td>
+                    <td>&#2547;2100</td>
+                    <td>&#2547;6300</td>
+                  </tr>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+                    <td class="text-danger">03</td>
+                    <td>&#2547;2100</td>
+                    <td>&#2547;6300</td>
+                  </tr>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+                    <td class="text-danger">03</td>
+                    <td>&#2547;2100</td>
+                    <td>&#2547;6300</td>
+                  </tr>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+                    <td class="text-danger">03</td>
+                    <td>&#2547;2100</td>
+                    <td>&#2547;6300</td>
+                  </tr>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+                    <td class="text-danger">03</td>
+                    <td>&#2547;2100</td>
+                    <td>&#2547;6300</td>
+                  </tr>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+                    <td class="text-danger">03</td>
+                    <td>&#2547;2100</td>
+                    <td>&#2547;6300</td>
+                  </tr>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+                    <td class="text-danger">Out of stock</td>
+                    <td>&#2547;2100</td>
+                    <td>&#2547;00</td>
+                  </tr>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+                    <td class="text-danger">03</td>
+                    <td>&#2547;2100</td>
+                    <td>&#2547;6300</td>
+                  </tr>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+                    <td class="text-danger">03</td>
+                    <td>&#2547;2100</td>
+                    <td>&#2547;6300</td>
+                  </tr>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+                    <td class="text-danger">03</td>
+                    <td>&#2547;2100</td>
+                    <td>&#2547;6300</td>
+                  </tr>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+                    <td class="text-danger">03</td>
+                    <td>&#2547;2100</td>
+                    <td>&#2547;6300</td>
+                  </tr>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+                    <td class="text-danger">03</td>
+                    <td>&#2547;2100</td>
+                    <td>&#2547;6300</td>
+                  </tr>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+                    <td class="text-danger">Out of stock</td>
+                    <td>&#2547;2100</td>
+                    <td>&#2547;00</td>
+                  </tr>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+                    <td class="text-danger">03</td>
+                    <td>&#2547;2100</td>
+                    <td>&#2547;6300</td>
+                  </tr>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+                    <td class="text-danger">03</td>
+                    <td>&#2547;2100</td>
+                    <td>&#2547;6300</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card-footer small text-muted">
+            Updated yesterday at 11:59 PM
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+    <script src="/js-calendar-main/js-calendar-main/app.js"></script>
+    <script src="/chart.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

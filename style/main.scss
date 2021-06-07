@@ -1,0 +1,38 @@
+*,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0px;
+  padding: 0px;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Comfortaa", cursive;
+}
+
+@import "_variable";
+@import "_sidebar";
+@import "_navbar";
+@import "_btn";
+@import "_typography";
+@import "card";
+@import "topcustomers";
+@import "help";
+
+// .content-box {
+//   background: linear-gradient(to right, $bacgroundColor5, $bacgroundColor6);
+// }
+.maincontentbox {
+  width: 84vw;
+  float: right;
+}
+
+.primary-background {
+  // background: linear-gradient(30deg, $bacgroundColor7, $bacgroundColor8);
+  background-color: $bacgroundColor2;
+}

@@ -1,0 +1,43 @@
+.btnprimary {
+  // background-color: $bacgroundColor2 !important;
+  background: $bacgroundColor2;
+  // background: linear-gradient(30deg, $bacgroundColor5, $bacgroundColor6);
+  color: $textColor2 !important;
+  transition: all 0.2s ease-in;
+  transform: translate(0px, 0px);
+  animation: 1s linear 1s infinite alternate slidein;
+}
+.btnprimary:hover {
+  transform: translate(5px, 5px);
+}
+
+.calendar-btn {
+  position: fixed;
+  right: 100px;
+  bottom: 50px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.58);
+  background-color: $bacgroundColor2;
+  color: $textColor2;
+  transform: translateY(0px);
+  transition: all 0.2s ease-in;
+  .calendar-icon {
+    font-size: 32px;
+  }
+}
+.calendar-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.58);
+  background-color: $textColor2;
+  color: $bacgroundColor2;
+}
+@keyframes slidein {
+  from {
+    transform: translate(0px, 0px);
+  }
+  to {
+    transform: translate(5px, 5px);
+  }
+}

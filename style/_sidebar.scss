@@ -1,0 +1,32 @@
+.sidebarbox {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 14vw;
+  height: 100%;
+  // background: linear-gradient(to bottom, $bacgroundColor7, $bacgroundColor8);
+  background-color: $bacgroundColor2;
+  box-shadow: 1px 0px 31px 5px rgba(0, 0, 0, 0.27);
+  z-index: 1;
+  &--menu-container {
+    margin: 10px 16px;
+  }
+  .logo {
+    margin-top: 20px;
+    width: 100%;
+  }
+  .logo img {
+    width: 100%;
+  }
+  .sidebar-link {
+    color: $textColor2;
+    transform: translate(0px, 0px);
+    transition: all 0.2s ease-in;
+  }
+  .sidebar-link:hover {
+    color: $bacgroundColor2;
+    transform: translate(5px, 0px);
+    background-color: $textColor2;
+    font-weight: 700;
+  }
+}

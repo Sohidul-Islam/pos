@@ -1,0 +1,59 @@
+.customers--profile-imgbox{
+    width: 64px;
+    height: 64px;
+    border: 1px solid $textColor1;
+    border-radius: 50%;
+    
+    background-color:$bacgroundColor4;
+    &_container{
+        width: 100%;
+       
+        &_content{
+            width: 100%;
+            border-radius: 50%;
+            
+        }
+    }
+}
+
+.customer-infobox{
+    display: inline-block;
+    .customer-name{
+        margin-bottom: 8px;
+        h4{
+            font-size: 24px;
+            font-weight: 700;
+            display: inline;
+            transition: all 0.2s ease-in;
+            cursor: pointer;
+            &:hover{
+                color: $textColor4;
+            }
+        }
+    }
+    .customer-loc{
+        display: inline-block;
+    }
+  
+
+}
+.customer-saling-info {
+    float: right;
+    font-size: 24px;
+}
+.customer-divider{
+    width: 100%;
+    height: 1px;
+    background-color: $gray1;
+}
+.payment-date{
+    margin-top: 8px;
+    font-size: 12px;
+}
+
+
+.scrollable-customers--box{
+    height: 550px;
+    overflow-x:hidden;
+    overflow-y:scroll;
+}
