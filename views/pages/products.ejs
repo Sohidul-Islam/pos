@@ -1,0 +1,890 @@
+<%- include('../template/head')-%>
+
+  <body>
+    <!-- dividing 1 rows nad 2 columns -->
+    <div class="content-box">
+      <!-- this is for menubar -->
+      <%- include('../template/sidebar')-%>
+      <!-- this is for contents -->
+      <div class="maincontentbox d-inline-block mx-auto">
+        <%- include('../template/menubar')-%>
+        <!-- Selling overview -->
+        <div class="mx-4 overflow-hidden">
+          <!-- <div class="row my-3">
+         
+            <div class="col-12 col-lg-6">
+              <div class="container">
+                <canvas id="myChart1"></canvas>
+              </div>
+            </div>
+            <div class="col-12 col-lg-6">
+              <div class="container">
+                <canvas id="myChart2"></canvas>
+              </div>
+            </div>
+
+            <div class="col-12 col-lg-6">
+              <div class="container">
+                <canvas id="myChart3"></canvas>
+              </div>
+            </div>
+            <div class="col-12 col-lg-6">
+              <div class="container">
+                <canvas id="myChart4"></canvas>
+              </div>
+            </div>
+           
+          </div> -->
+
+          <div id="content-wrapper">
+            <div class="container-fluid">
+              <!-- Breadcrumbs-->
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a href="index.html">Home</a>
+                </li>
+                <li class="breadcrumb-item active">Products</li>
+              </ol>
+              <!-- Page Content -->
+              <!-- DataTables Example -->
+              <!-- add new product modal -->
+              <div
+                class="modal fade"
+                id="addProductModal"
+                data-bs-keyboard="false"
+                tabindex="-1"
+                aria-labelledby="staticBackdropLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog modal-lg" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header primary-background text-white">
+                      <h5 class="modal-title" id="exampleModalLabel">
+                        <i class="fa fa-tag"></i>
+                        Add New Product
+                      </h5>
+                      <button
+                        class="close text-white btn btnprimary"
+                        type="button"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      >
+                        <span aria-hidden="true">×</span>
+                      </button>
+                    </div>
+                    <form class="">
+                      <div class="modal-body">
+                        <div class="form-group mb-4">
+                          <label class="text-dark">Product Type</label>
+                          <select class="form-control text-primary" required>
+                            <option disabled selected>
+                              <sub>Please select a product type</sub>
+                            </option>
+                            <option>Speakers</option>
+                            <option>Card Readers</option>
+                            <option>Headphones & MICs</option>
+                            <option>Mousepads</option>
+                            <option>Mice &amp; Pointing Devices</option>
+                            <option>Display Monitors</option>
+                            <option>Keyboards</option>
+                            <option>Cables & Chargers</option>
+                            <option>Power Supplies</option>
+                          </select>
+                          <small class="float-end text-dark fs-6"
+                            >Product type not listed here?
+                            <a
+                              href="#"
+                              data-bs-toggle="modal"
+                              data-bs-target="#addProductTypeModal"
+                              >Add new</a
+                            >
+                          </small>
+                        </div>
+                        <div class="form-group mb-4">
+                          <label class="text-dark">Product Brand</label>
+                          <select class="form-control text-primary" required>
+                            <option disabled selected>
+                              <sub>Please select a product brand</sub>
+                            </option>
+                            <option>Audionic</option>
+                            <option>DELL</option>
+                            <option>HP</option>
+                            <option>Samsung</option>
+                            <option>AMB</option>
+                            <option>Nokia</option>
+                            <option>Razer</option>
+                            <option>MSI</option>
+                          </select>
+                          <small class="float-end text-dark fs-6"
+                            >Products brand not listed here?
+                            <a
+                              href="#"
+                              data-bs-toggle="modal"
+                              data-bs-target="#addProductBrandModal"
+                              >Add new</a
+                            >
+                          </small>
+                        </div>
+                        <div class="form-group mb-4">
+                          <label class="text-dark">Product Vendor</label>
+                          <select class="form-control text-primary" required>
+                            <option disabled selected>
+                              <sub>Please select a product vendor</sub>
+                            </option>
+                            <option>Haider Abbas</option>
+                            <option>Muhammad Faisal</option>
+                            <option>Nouman Aslam</option>
+                            <option>Anees Ahmad Khan</option>
+                            <option>Waleed Ahmad</option>
+                            <option>Abdul Wahid</option>
+                          </select>
+                          <small class="float-end text-dark fs-6"
+                            >Product vendor not listed here?
+                            <a
+                              href="#"
+                              data-bs-toggle="modal"
+                              data-bs-target="#addProductVendorModal"
+                              >Add new</a
+                            >
+                          </small>
+                        </div>
+                        <div class="form-group mb-4">
+                          <label class="text-dark" for="">Product Name</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            name=""
+                            value=""
+                            placeholder="Enter product name..."
+                            required
+                          />
+                          <small
+                            class="text-muted text-aling-left"
+                            style="font-size: 12px"
+                            >Be more specific with product names. Make sure its
+                            unique.</small
+                          >
+                        </div>
+                        <div class="form-group">
+                          <label class="text-dark text-aling-left" for=""
+                            >Product Price
+                            <small class="text-muted">(cost/item)</small>
+                          </label>
+                          <input
+                            type="number"
+                            class="form-control"
+                            name=""
+                            value=""
+                            placeholder="Enter cost of product per item..."
+                            required
+                          />
+                        </div>
+                        <div class="form-group mb-4">
+                          <label for=""
+                            >Product Stock
+                            <small
+                              >(How many products are you adding in
+                              stock?)</small
+                            >
+                          </label>
+                          <input
+                            type="number"
+                            class="form-control"
+                            name=""
+                            value=""
+                            placeholder="Enter number of items..."
+                            required
+                          />
+                          <small
+                            class="text-muted text-aling-left"
+                            style="font-size: 12px"
+                            >This will be used as product quantity in stock
+                            keeping unit.</small
+                          >
+                        </div>
+                        <p class="text-dark">
+                          How are you paying for this product?
+                        </p>
+                        <div class="form-check">
+                          <label class="form-check-label text-dark">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="exampleRadios"
+                              id="exampleRadios1"
+                              value="option1"
+                              checked
+                            />
+                            Store Account
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <label class="form-check-label text-dark">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="exampleRadios"
+                              id="exampleRadios2"
+                              value="option2"
+                            />
+                            Other. I don't want to record this epxense.
+                          </label>
+                        </div>
+                        <br />
+                        <div class="form-group mb-4">
+                          <label class="text-dark" for=""
+                            >Description
+                            <small class="text-muted">(Optional)</small></label
+                          >
+                          <textarea
+                            name="name"
+                            class="form-control"
+                            cols="80"
+                            height="500"
+                            placeholder="Add some note or description about this product..."
+                          ></textarea>
+                        </div>
+                        <small class="text-muted"
+                          ><em
+                            >Please double check information before
+                            submitting.</em
+                          ></small
+                        >
+                      </div>
+                      <div class="modal-footer">
+                        <button
+                          class="btn btn-secondary"
+                          type="button"
+                          data-bs-dismiss="modal"
+                        >
+                          Cancel
+                        </button>
+                        <input
+                          type="submit"
+                          class="btn btnprimary text-white"
+                          value="Add Product"
+                        />
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <!-- Add Product Type-->
+              <div
+                class="modal fade"
+                id="addProductTypeModal"
+                tabindex="-1"
+                role="dialog"
+                data-bs-keyboard="false"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog modal-lg" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header primary-background text-white">
+                      <h5 class="modal-title" id="exampleModalLabel">
+                        <i class="fa fa-tags"></i>
+                        Add Product Type
+                      </h5>
+                      <button
+                        class="close btn btnprimary text-white"
+                        type="button"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      >
+                        <span aria-hidden="true">×</span>
+                      </button>
+                    </div>
+                    <form class="">
+                      <div class="modal-body">
+                        <div class="form-group mb-3">
+                          <label class="text-dark" for="">Product Type</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            name=""
+                            value=""
+                            placeholder="Enter product type..."
+                            required
+                          />
+                          <small class="text-muted"
+                            >Example: Mousepads, Headphones or Keyboards
+                            etc</small
+                          >
+                        </div>
+                        <div class="form-group">
+                          <label class="text-dark" for=""
+                            >Description
+                            <small
+                              class="
+                                text-muted text-muted text-aling-left
+                                float-start
+                              "
+                              >(Optional)</small
+                            ></label
+                          >
+                          <textarea
+                            name="name"
+                            class="form-control"
+                            rows="8"
+                            cols="80"
+                            placeholder="Add some note or description about this product type..."
+                          ></textarea>
+                        </div>
+                        <small class="text-muted"
+                          ><em
+                            >Please double check information before
+                            submitting.</em
+                          ></small
+                        >
+                      </div>
+                      <div class="modal-footer">
+                        <button
+                          class="btn btn-secondary"
+                          type="button"
+                          data-bs-dismiss="modal"
+                        >
+                          Cancel
+                        </button>
+                        <input
+                          type="submit"
+                          class="btn btnprimary text-white"
+                          value="Add Product Type"
+                        />
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <!-- Add Product Brand-->
+              <div
+                class="modal fade"
+                id="addProductBrandModal"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog modal-lg" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header primary-background text-white">
+                      <h5 class="modal-title" id="exampleModalLabel">
+                        <i class="fa fa-industry"></i>
+                        Add Product Brand
+                      </h5>
+                      <button
+                        class="close btn btnprimary text-white"
+                        type="button"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      >
+                        <span aria-hidden="true">×</span>
+                      </button>
+                    </div>
+                    <form class="">
+                      <div class="modal-body">
+                        <div class="form-group mb-3">
+                          <label class="text-dark" for="">Product Brand</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            name=""
+                            value=""
+                            placeholder="Enter brand name here..."
+                            required
+                          />
+                          <small class="text-muted"
+                            >Example: Nokia, AMB or MSI etc</small
+                          >
+                        </div>
+                        <div class="form-group mb-3">
+                          <label class="text-dark" for=""
+                            >Description
+                            <small
+                              class="text-muted text-aling-left float-start"
+                              >(Optional)</small
+                            ></label
+                          >
+                          <textarea
+                            name="name"
+                            class="form-control"
+                            rows="8"
+                            cols="80"
+                            placeholder="Add some note or description about this vendor..."
+                          ></textarea>
+                        </div>
+                        <small class="text-muted"
+                          ><em
+                            >Please double check information before
+                            submitting.</em
+                          ></small
+                        >
+                      </div>
+                      <div class="modal-footer">
+                        <button
+                          class="btn btn-secondary"
+                          type="button"
+                          data-bs-dismiss="modal"
+                        >
+                          Cancel
+                        </button>
+                        <input
+                          type="submit"
+                          class="btn btnprimary text-white"
+                          value="Add Brand"
+                        />
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <!-- Add Product Vendor -->
+              <div
+                class="modal fade"
+                id="addProductVendorModal"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog modal-lg" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header primary-background text-white">
+                      <h5 class="modal-title" id="exampleModalLabel">
+                        <i class="fa fa-user"></i>
+                        Add Products Vendor
+                      </h5>
+                      <button
+                        class="closeb btn btnprimary text-white"
+                        type="button"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      >
+                        <span aria-hidden="true">×</span>
+                      </button>
+                    </div>
+                    <form class="">
+                      <div class="modal-body">
+                        <div class="form-group mb-3">
+                          <label class="text-dark" for="">Vendor Name</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            name=""
+                            value=""
+                            placeholder="Enter vendor's name here..."
+                            required
+                          />
+                          <small class="text-muted"
+                            >Example: Anees Ahmad, Faisal Hayat or Shahzaib Khan
+                            etc</small
+                          >
+                        </div>
+                        <div class="form-group mb-3">
+                          <label class="text-dark" for="">Phone Number</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            name=""
+                            value=""
+                            placeholder="Enter vendor's phone number here..."
+                          />
+                          <small class="text-muted">Example: 555-665-123</small>
+                        </div>
+                        <div class="form-group mb-3">
+                          <label class="text-dark" for="">Email Address</label>
+                          <input
+                            type="email"
+                            class="form-control"
+                            name=""
+                            value=""
+                            placeholder="Enter vendor's email here..."
+                          />
+                          <small class="text-muted"
+                            >Example: ahmadanees02@gmail.com</small
+                          >
+                        </div>
+                        <div class="form-group mb-3">
+                          <label for=""
+                            >Description
+                            <small
+                              class="text-muted text-aling-left float-start"
+                              >(Optional)</small
+                            ></label
+                          >
+                          <textarea
+                            name="name"
+                            class="form-control"
+                            rows="8"
+                            cols="80"
+                            placeholder="Add some note or description about this vendor..."
+                          ></textarea>
+                        </div>
+                        <small class="text-muted"
+                          ><em
+                            >Please double check information before
+                            submitting.</em
+                          ></small
+                        >
+                      </div>
+                      <div class="modal-footer">
+                        <button
+                          class="btn btn-secondary"
+                          type="button"
+                          data-bs-dismiss="modal"
+                        >
+                          Cancel
+                        </button>
+                        <input
+                          type="submit"
+                          class="btn btnprimary text-white"
+                          value="Add Vendor"
+                        />
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Add Sale Modal-->
+              <div
+                class="modal fade"
+                id="addSaleModal"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog modal-lg" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header primary-background text-white">
+                      <h5 class="modal-title" id="exampleModalLabel">
+                        <i class="fa fa-money"></i>
+                        Add New Sale
+                      </h5>
+                      <button
+                        class="close text-white btn btnprimary"
+                        type="button"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      >
+                        <span aria-hidden="true">×</span>
+                      </button>
+                    </div>
+                    <form class="">
+                      <div class="modal-body">
+                        <div class="form-group">
+                          <label class="text-dark">Select Product</label>
+                          <select class="form-control text-primary" required>
+                            <option disabled selected>
+                              <sub>Please select a product</sub>
+                            </option>
+                            <option disabled>
+                              <sub>Speakers &amp; MICs</sub>
+                            </option>
+                            <option>Audionic MIC AM-20</option>
+                            <option>USB Sound Card</option>
+                            <option>Audionic Headphones AHT-11</option>
+                            <option disabled>
+                              <sub>Mice &amp; Accessories</sub>
+                            </option>
+                            <option>Razer Mousepad</option>
+                            <option>Blue Mousepad</option>
+                            <option>Apple Mouse Wireless A11</option>
+                            <option>DELL Mouse Wireless D232</option>
+                            <option>Razer Mousepad</option>
+                            <option>Razer Mousepad</option>
+                            <option>Razer Mousepad</option>
+                            <option>Razer Mousepad</option>
+                            <option>Razer Mousepad</option>
+                            <option>Razer Mousepad</option>
+                            <option>Razer Mousepad</option>
+                            <option disabled>
+                              <sub>Mice &amp; Accessories</sub>
+                            </option>
+                            <option>Razer Mousepad</option>
+                            <option>Razer Mousepad</option>
+                            <option>Razer Mousepad</option>
+                            <option>Razer Mousepad</option>
+                            <option>Razer Mousepad</option>
+                            <option>Razer Mousepad</option>
+                            <option disabled>
+                              <sub>Mice &amp; Accessories</sub>
+                            </option>
+                            <option>Razer Mousepad</option>
+                            <option>Razer Mousepad</option>
+                            <option>Razer Mousepad</option>
+                          </select>
+                          <small class="float-end text-dark"
+                            >Product not listed here?
+                            <a
+                              href="#"
+                              data-bs-toggle="modal"
+                              data-bs-target="#addProductModal"
+                              >Add new</a
+                            >
+                          </small>
+                        </div>
+                        <div class="form-group">
+                          <label class="text-dark" for="">Product Price</label>
+                          <input
+                            type="number"
+                            class="form-control"
+                            name=""
+                            value=""
+                            placeholder="Enter product price here..."
+                            required
+                          />
+                        </div>
+                        <div class="form-group">
+                          <label class="text-dark" for=""
+                            >Description
+                            <small class="text-muted">(Optional)</small></label
+                          >
+                          <textarea
+                            name="name"
+                            class="form-control"
+                            rows="8"
+                            cols="80"
+                            placeholder="Add some note or description about this sale..."
+                          ></textarea>
+                        </div>
+                        <small class="text-muted"
+                          ><em
+                            >Please double check information before
+                            submitting.</em
+                          ></small
+                        >
+                      </div>
+                      <div class="modal-footer">
+                        <button
+                          class="btn btn-secondary"
+                          type="button"
+                          data-bs-dismiss="modal"
+                        >
+                          Cancel
+                        </button>
+                        <input
+                          type="submit"
+                          class="btn btnprimary text-white"
+                          value="Add Sale"
+                        />
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            
+           
+                <div class="card mb-3">
+                  <div class="card-header primary-background text-white">
+                    <i class="fa fa-table"></i>
+                History
+                    <!-- <a
+                      href="#"
+                      class="text-white"
+                      data-bs-toggle="modal"
+                      data-bs-target="#addProductBrandModal"
+                    >
+                      <span class="float-end">
+                        <i class="fa fa-plus"></i>
+                        Add New Brand
+                      </span>
+                    </a> -->
+                  </div>
+                  <div class="card-body">
+                    <form class="d-flex">
+                      <input id="myInput" onkeyup="myFunction()" class="form-control my-2" type="search" placeholder="Search for brand" aria-label="Search">
+                    </form>
+                    <div class="table-responsive">
+                      <table id="myTable" class="table table-striped table-hover table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                          <tr>
+                            <th>PID</th>
+                            <th>Product Name</th>
+                            <th>Product Type</th>
+                            <th>Brand</th>
+                            <th>In-stock</th>
+                            <th>Cost/item</th>
+                            <th>Inventory Worth</th>
+                            <th>Revenue Generated</th>
+                            <th>Vendor</th>
+                          </tr>
+                        </thead>
+                        <tfoot>
+                          <tr>
+                            <th>PID</th>
+                            <th>Product Name</th>
+                            <th>Product Type</th>
+                            <th>Brand</th>
+                            <th>In-stock</th>
+                            <th>Cost/item</th>
+                            <th>Inventory Worth</th>
+                            <th>Revenue Generated</th>
+                            <th>Vendor</th>
+                          </tr>
+                        </tfoot>
+                        <tbody>
+                          <tr>
+                            <td>054681</td>
+                            <td>A4-Tech Mouse M60</td>
+                            <td>Mouse &amp; Pointing Devices</td>
+                            <td>A4-Tech</td>
+                            <td>6</td>
+                            <td>&#2547;840</td>
+                            <td>&#2547;5040</td>
+                            <td>&#2547;1370</td>
+                            <td>Anees Ahmad</td>
+                          </tr>
+                          <tr>
+                            <td>054681</td>
+                            <td>A4-Tech Mouse M60</td>
+                            <td>Mouse &amp; Pointing Devices</td>
+                            <td>A4-Tech</td>
+                            <td>6</td>
+                            <td>&#2547;840</td>
+                            <td>&#2547;5040</td>
+                            <td>&#2547;1370</td>
+                            <td>Anees Ahmad</td>
+                          </tr>
+                          <tr>
+                            <td>054681</td>
+                            <td>A4-Tech Mouse M60</td>
+                            <td>Mouse &amp; Pointing Devices</td>
+                            <td>A4-Tech</td>
+                            <td>6</td>
+                            <td>&#2547;840</td>
+                            <td>&#2547;5040</td>
+                            <td>&#2547;1370</td>
+                            <td>Anees Ahmad</td>
+                          </tr>
+                          <tr>
+                            <td>054681</td>
+                            <td>Asus Z490 prime plus</td>
+                            <td>Mohterboard</td>
+                            <td>A4-Tech</td>
+                            <td>6</td>
+                            <td>&#2547;840</td>
+                            <td>&#2547;5040</td>
+                            <td>&#2547;1370</td>
+                            <td>Anees Ahmad</td>
+                          </tr>
+                          <tr>
+                            <td>054681</td>
+                            <td>A4-Tech Mouse M60</td>
+                            <td>Mouse &amp; Pointing Devices</td>
+                            <td>A4-Tech</td>
+                            <td>6</td>
+                            <td>&#2547;840</td>
+                            <td>&#2547;5040</td>
+                            <td>&#2547;1370</td>
+                            <td>Anees Ahmad</td>
+                          </tr>
+                          <tr>
+                            <td>054681</td>
+                            <td>A4-Tech Mouse M60</td>
+                            <td>Mouse &amp; Pointing Devices</td>
+                            <td>A4-Tech</td>
+                            <td>6</td>
+                            <td>&#2547;840</td>
+                            <td>&#2547;5040</td>
+                            <td>&#2547;1370</td>
+                            <td>Anees Ahmad</td>
+                          </tr>
+                          <tr>
+                            <td>054681</td>
+                            <td>A4-Tech Mouse M60</td>
+                            <td>Mouse &amp; Pointing Devices</td>
+                            <td>A4-Tech</td>
+                            <td>6</td>
+                            <td>&#2547;840</td>
+                            <td>&#2547;5040</td>
+                            <td>&#2547;1370</td>
+                            <td>Anees Ahmad</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="card-footer small text-muted">
+                    Updated yesterday at 11:59 PM
+                  </div>
+                </div>
+           
+              </div>
+            </div>
+            <br /><br /><br />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add product modal -->
+    <!-- <div
+      class="modal fade"
+      id="addProductModal"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+     
+    </div> -->
+    <!-- Floating Button -->
+    <button
+      type="button"
+      class="btn calendar-btn"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+    >
+      <i class="fas fa-calendar-alt calendar-icon"></i>
+    </button>
+
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="calendar">
+            <div class="calendar-header">
+              <span class="month-picker" id="month-picker">February</span>
+              <div class="year-picker">
+                <span class="year-change" id="prev-year">
+                  <pre><</pre>
+                </span>
+                <span id="year">2021</span>
+                <span class="year-change" id="next-year">
+                  <pre>></pre>
+                </span>
+              </div>
+            </div>
+            <div class="calendar-body">
+              <div class="calendar-week-day">
+                <div>Sun</div>
+                <div>Mon</div>
+                <div>Tue</div>
+                <div>Wed</div>
+                <div>Thu</div>
+                <div>Fri</div>
+                <div>Sat</div>
+              </div>
+              <div class="calendar-days"></div>
+            </div>
+            <!-- <div class="calendar-footer">
+                <div class="toggle">
+                    <span>Dark Mode</span>
+                    <div class="dark-mode-switch">
+                        <div class="dark-mode-switch-ident"></div>
+                    </div>
+                </div>
+            </div> -->
+            <div class="month-list"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%- include('../template/footer')-%>

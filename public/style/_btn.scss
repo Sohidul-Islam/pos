@@ -38,6 +38,45 @@
     transform: translate(0px, 0px);
   }
   to {
-    transform: translate(5px, 5px);
+    transform: translate(0px, 2px);
   }
 }
+
+// .dataTables_wrapper .dataTables_paginate .paginate_button.current,
+// .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+//   color: #fff !important;
+//   border: 1px solid $textColor2 !important;
+//   background-color: $bacgroundColor2 !important;
+//   background: -webkit-gradient(
+//     linear,
+//     left top,
+//     left bottom,
+//     color-stop(0%, $bacgroundColor2),
+//     color-stop(100%, $bacgroundColor2)
+//   ) !important;
+//   background: -webkit-linear-gradient(
+//     top,
+//     $bacgroundColor2 0%,
+//     $bacgroundColor2 100%
+//   ) !important;
+//   background: -moz-linear-gradient(
+//     top,
+//     $bacgroundColor2 0%,
+//     $bacgroundColor2 100%
+//   ) !important;
+//   background: -ms-linear-gradient(
+//     top,
+//     $bacgroundColor2 0%,
+//     $bacgroundColor2 100%
+//   ) !important;
+//   background: -o-linear-gradient(
+//     top,
+//     $bacgroundColor2 0%,
+//     $bacgroundColor2 100%
+//   ) !important;
+//   background: linear-gradient(
+//     to bottom,
+//     $bacgroundColor2 0%,
+//     $bacgroundColor2 100%
+//   ) !important;
+// }

@@ -1,0 +1,190 @@
+<div class="menuBar">
+  <!-- Search Box -->
+  <form action="" class="d-inline-block">
+    <input
+      id="searchbox"
+      type="text"
+      placeholder="Search"
+      class="form-control d-inline search_box"
+    />
+    <button for="searchbox" class="btn btn-light d-inline btnprimary">
+      Search
+    </button>
+  </form>
+
+  <div class="shortcutMenu">
+    <!-- Add new product -->
+    <div class="addNew menuItem">
+      <a
+        class="dropdown-toggle nav-link menu-link"
+        href="#"
+        role="button"
+        id="dropdownMenuLink"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <i class="fas fa-plus"></i> Add New
+      </a>
+
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <a
+          class="dropdown-item"
+          href="#"
+          data-bs-toggle="modal"
+          data-bs-target="#addSaleModal"
+        >
+          <i class="far fa-money-bill-alt"></i> New Sale</a
+        >
+        <a
+          class="dropdown-item"
+          href="#"
+          data-bs-toggle="modal"
+          data-bs-target="#addProductModal"
+        >
+          <i class="fa fa-tag"></i> New Product</a
+        >
+        <div class="dropdown-divider"></div>
+        <a
+          class="dropdown-item"
+          href="#"
+          data-bs-toggle="modal"
+          data-bs-target="#addProductTypeModal"
+        >
+          <i class="fa fa-tags"></i> New Product Type</a
+        >
+        <a
+          class="dropdown-item"
+          href="#"
+          data-bs-toggle="modal"
+          data-bs-target="#addProductVendorModal"
+        >
+          <i class="fa fa-user"></i> New Product Vendor</a
+        >
+        <a
+          class="dropdown-item"
+          href="#"
+          data-bs-toggle="modal"
+          data-bs-target="#addProductBrandModal"
+        >
+          <i class="fa fa-industry"></i> New Product Brand</a
+        >
+        <div class="dropdown-divider"></div>
+        <a
+          class="dropdown-item"
+          href="#"
+          data-bs-toggle="modal"
+          data-bs-target="#addExpenseAccountModal"
+        >
+          <i class="fa fa-dollar"></i> New Expense Account</a
+        >
+      </ul>
+    </div>
+    <!-- Flash box -->
+    <div class="flashBox menuItem">
+      <a
+        class="dropdown-toggle nav-link menu-link"
+        href="#"
+        role="button"
+        id="dropdownMenuLink2"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <i class="fa fa-flash fa-fw"></i> Flash
+      </a>
+
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink2">
+        <a class="dropdown-item" href="http://localhost:8000/products">
+          <i class="fa fa-tag"></i> All Products</a
+        >
+        <a class="dropdown-item" href="http://localhost:8000/product-types">
+          <i class="fa fa-tags"></i> Product Types</a
+        >
+        <a class="dropdown-item" href="http://localhost:8000/product-vendors">
+          <i class="fa fa-user"></i> Product Vendors</a
+        >
+        <a class="dropdown-item" href="http://localhost:8000/product-brands">
+          <i class="fa fa-industry"></i> Product Brands</a
+        >
+        <!-- <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="revenue.html">
+            <i class="far fa-money-bill-alt"></i> Revenue</a
+          >
+          <a class="dropdown-item" href="improvements.html">
+            <i class="fa fa-rocket"></i> Improvements</a
+          > -->
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="http://localhost:8000/accounts">
+          <i class="fa fa-dollar"></i> Accounts</a
+        >
+      </ul>
+    </div>
+
+    <!-- Notification bell -->
+    <div class="notification menuItem">
+      <a
+        class="dropdown-toggle nav-link menu-link"
+        href="#"
+        role="button"
+        id="dropdownMenuLink3"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <i class="fas fa-bell"></i> Notification
+      </a>
+
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink3">
+        <a class="dropdown-item text-danger no-text-decorations" href="#">
+          <i class="fa fa-info-circle"></i> You've few blocked products</a
+        >
+        <a class="dropdown-item text-danger no-text-decorations" href="#">
+          <i class="fa fa-info-circle"></i> Another new notification</a
+        >
+        <a class="dropdown-item text-danger no-text-decorations" href="#">
+          <i class="fa fa-info-circle"></i> Another new notification</a
+        >
+        <a class="dropdown-item text-danger no-text-decorations" href="#">
+          <i class="fa fa-info-circle"></i> Another new notification</a
+        >
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="notifications.html"
+          >See more notifications</a
+        >
+      </ul>
+    </div>
+
+    <!-- Profile -->
+    <div class="profile menuItem">
+      <a
+        class="dropdown-toggle nav-link menu-link"
+        href="#"
+        role="button"
+        id="dropdownMenuLink3"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <i class="fas fa-user-circle"></i> profile
+      </a>
+
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink3">
+        <div class="dropdown-header">Rao Ahmed</div>
+        <a class="dropdown-item" href="profile.html">
+          <i class="fa fa-user"></i> Profile</a
+        >
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">
+          <i class="fa fa-cog"></i> Settings</a
+        >
+        <!-- <a class="dropdown-item" href="history.html"> <i class="fa fa-line-chart"></i> Activity Log</a> -->
+        <div class="dropdown-divider"></div>
+        <a
+          class="dropdown-item"
+          href="#"
+          data-bs-toggle="modal"
+          data-bs-target="#logoutModal"
+        >
+          <i class="fa fa-power-off"></i> Logout</a
+        >
+      </ul>
+    </div>
+  </div>
+</div>

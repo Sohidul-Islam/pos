@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta cha&#2547;et="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sales Count</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/style/main.css" />
+    <link rel="stylesheet" href="/style/font-awesome.css" />
+    <link rel="stylesheet" href="/js-calendar-main/js-calendar-main/app.css" />
+    <link
+      rel="stylesheet"
+      href="/node_modules/@fortawesome/fontawesome-free/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="content-box">
+      <%- include('../template/sidebar')-%>
+
+      <!-- Add Product Type-->
+      <div
+        class="modal fade"
+        id="addProductTypeModal"
+        tabindex="-1"
+        role="dialog"
+        data-bs-keyboard="false"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+              <h5 class="modal-title" id="exampleModalLabel">
+                <i class="fa fa-tags"></i>
+                Add Product Type
+              </h5>
+              <button
+                class="close btn btn-primary text-white"
+                type="button"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <form class="">
+              <div class="modal-body">
+                <div class="form-group mb-3">
+                  <label class="text-dark" for="">Product Type</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name=""
+                    value=""
+                    placeholder="Enter product type..."
+                    required
+                  />
+                  <small class="text-muted"
+                    >Example: Mousepads, Headphones or Keyboards etc</small
+                  >
+                </div>
+                <div class="form-group">
+                  <label class="text-dark" for=""
+                    >Description
+                    <small
+                      class="text-muted text-muted text-aling-left float-start"
+                      >(Optional)</small
+                    ></label
+                  >
+                  <textarea
+                    name="name"
+                    class="form-control"
+                    rows="8"
+                    cols="80"
+                    placeholder="Add some note or description about this product type..."
+                  ></textarea>
+                </div>
+                <small class="text-muted"
+                  ><em
+                    >Please double check information before submitting.</em
+                  ></small
+                >
+              </div>
+              <div class="modal-footer">
+                <button
+                  class="btn btn-secondary"
+                  type="button"
+                  data-bs-dismiss="modal"
+                >
+                  Cancel
+                </button>
+                <input
+                  type="submit"
+                  class="btn btn-primary"
+                  value="Add Product Type"
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- Add Product Brand-->
+      <div
+        class="modal fade"
+        id="addProductBrandModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+              <h5 class="modal-title" id="exampleModalLabel">
+                <i class="fa fa-industry"></i>
+                Add Product Brand
+              </h5>
+              <button
+                class="close btn btn-primary text-white"
+                type="button"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <form class="">
+              <div class="modal-body">
+                <div class="form-group mb-3">
+                  <label class="text-dark" for="">Product Brand</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name=""
+                    value=""
+                    placeholder="Enter brand name here..."
+                    required
+                  />
+                  <small class="text-muted"
+                    >Example: Nokia, AMB or MSI etc</small
+                  >
+                </div>
+                <div class="form-group mb-3">
+                  <label class="text-dark" for=""
+                    >Description
+                    <small class="text-muted text-aling-left float-start"
+                      >(Optional)</small
+                    ></label
+                  >
+                  <textarea
+                    name="name"
+                    class="form-control"
+                    rows="8"
+                    cols="80"
+                    placeholder="Add some note or description about this vendor..."
+                  ></textarea>
+                </div>
+                <small class="text-muted"
+                  ><em
+                    >Please double check information before submitting.</em
+                  ></small
+                >
+              </div>
+              <div class="modal-footer">
+                <button
+                  class="btn btn-secondary"
+                  type="button"
+                  data-bs-dismiss="modal"
+                >
+                  Cancel
+                </button>
+                <input
+                  type="submit"
+                  class="btn btn-primary"
+                  value="Add Brand"
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- Add Product Vendor -->
+      <div
+        class="modal fade"
+        id="addProductVendorModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+              <h5 class="modal-title" id="exampleModalLabel">
+                <i class="fa fa-user"></i>
+                Add Products Vendor
+              </h5>
+              <button
+                class="closeb btn btn-primary text-white"
+                type="button"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <form class="">
+              <div class="modal-body">
+                <div class="form-group mb-3">
+                  <label class="text-dark" for="">Vendor Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name=""
+                    value=""
+                    placeholder="Enter vendor's name here..."
+                    required
+                  />
+                  <small class="text-muted"
+                    >Example: Anees Ahmad, Faisal Hayat or Shahzaib Khan
+                    etc</small
+                  >
+                </div>
+                <div class="form-group mb-3">
+                  <label class="text-dark" for="">Phone Number</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name=""
+                    value=""
+                    placeholder="Enter vendor's phone number here..."
+                  />
+                  <small class="text-muted">Example: 555-665-123</small>
+                </div>
+                <div class="form-group mb-3">
+                  <label class="text-dark" for="">Email Address</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    name=""
+                    value=""
+                    placeholder="Enter vendor's email here..."
+                  />
+                  <small class="text-muted"
+                    >Example: ahmadanees02@gmail.com</small
+                  >
+                </div>
+                <div class="form-group mb-3">
+                  <label for=""
+                    >Description
+                    <small class="text-muted text-aling-left float-start"
+                      >(Optional)</small
+                    ></label
+                  >
+                  <textarea
+                    name="name"
+                    class="form-control"
+                    rows="8"
+                    cols="80"
+                    placeholder="Add some note or description about this vendor..."
+                  ></textarea>
+                </div>
+                <small class="text-muted"
+                  ><em
+                    >Please double check information before submitting.</em
+                  ></small
+                >
+              </div>
+              <div class="modal-footer">
+                <button
+                  class="btn btn-secondary"
+                  type="button"
+                  data-bs-dismiss="modal"
+                >
+                  Cancel
+                </button>
+                <input
+                  type="submit"
+                  class="btn btn-primary text-white"
+                  value="Add Vendor"
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- Add Expense Account Modal -->
+      <div
+        class="modal fade"
+        id="addExpenseAccountModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+              <h5 class="modal-title" id="exampleModalLabel">
+                <i class="fa fa-dollar"></i>
+                Add Expense Account
+              </h5>
+              <button
+                class="close btn btn-primary text-white"
+                type="button"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <form class="">
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="">Account Title</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name=""
+                    value=""
+                    placeholder="Enter account title here..."
+                    required
+                  />
+                  <small class="text-muted"
+                    >Example: Akhtar Hotel, Mian Tea Stall or My Personal
+                    Account etc</small
+                  >
+                </div>
+                <div class="form-group">
+                  <label for="">How much are you depositing?</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    name=""
+                    value=""
+                    placeholder="Enter the amount you are despositing..."
+                  />
+                </div>
+                <div class="form-group">
+                  <label for=""
+                    >Description
+                    <small class="text-muted">(Optional)</small></label
+                  >
+                  <textarea
+                    name="name"
+                    class="form-control"
+                    cols="80"
+                    placeholder="Add some note or description about this vendor..."
+                  ></textarea>
+                </div>
+                <small class="text-muted"
+                  ><em
+                    >Please double check information before submitting.</em
+                  ></small
+                >
+              </div>
+              <div class="modal-footer">
+                <button
+                  class="btn btn-secondary"
+                  type="button"
+                  data-bs-dismiss="modal"
+                >
+                  Cancel
+                </button>
+                <input
+                  type="submit"
+                  class="btn btn-primary"
+                  value="Add Account"
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="maincontentbox d-inline-block mx-auto">
+        <div class="card my-3">
+          <div class="card-header bg-warning text-dark">
+            <h2 class="">Sales Count</h2>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table
+                class="table table-bordered"
+                id="dataTable"
+                width="100%"
+                cellspacing="0"
+              >
+                <thead>
+                  <tr>
+                    <th>Product Type</th>
+                    <th>Product</th>
+
+                    <th>Price</th>
+                    <th>Payment</th>
+                  </tr>
+                </thead>
+                <tfoot>
+                  <tr>
+                    <th>Product Type</th>
+                    <th>Product</th>
+
+                    <th>Price</th>
+                    <th>Status</th>
+                  </tr>
+                </tfoot>
+                <tbody>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+
+                    <td>&#2547;2100</td>
+                    <td>&#2547;6300</td>
+                  </tr>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+
+                    <td>&#2547;2100</td>
+                    <td>Due</td>
+                  </tr>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+
+                    <td>&#2547;2100</td>
+                    <td>&#2547;6300</td>
+                  </tr>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+
+                    <td>&#2547;2100</td>
+                    <td>&#2547;6300</td>
+                  </tr>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+
+                    <td>&#2547;2100</td>
+                    <td>Due</td>
+                  </tr>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+
+                    <td>&#2547;2100</td>
+                    <td>&#2547;6300</td>
+                  </tr>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+
+                    <td>&#2547;2100</td>
+                    <td>&#2547;6300</td>
+                  </tr>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+
+                    <td>&#2547;2100</td>
+                    <td>Due</td>
+                  </tr>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+
+                    <td>&#2547;2100</td>
+                    <td>&#2547;6300</td>
+                  </tr>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+
+                    <td>&#2547;2100</td>
+                    <td>&#2547;6300</td>
+                  </tr>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+
+                    <td>&#2547;2100</td>
+                    <td>Due</td>
+                  </tr>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+
+                    <td>&#2547;2100</td>
+                    <td>&#2547;6300</td>
+                  </tr>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+
+                    <td>&#2547;2100</td>
+                    <td>Due</td>
+                  </tr>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+
+                    <td>&#2547;2100</td>
+                    <td>Due</td>
+                  </tr>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+
+                    <td>&#2547;2100</td>
+                    <td>Due</td>
+                  </tr>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+
+                    <td>&#2547;2100</td>
+                    <td>&#2547;6300</td>
+                  </tr>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+
+                    <td>&#2547;2100</td>
+                    <td>&#2547;6300</td>
+                  </tr>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+
+                    <td>&#2547;2100</td>
+                    <td>&#2547;6300</td>
+                  </tr>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+
+                    <td>&#2547;2100</td>
+                    <td>&#2547;6300</td>
+                  </tr>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+
+                    <td>&#2547;2100</td>
+                    <td>&#2547;6300</td>
+                  </tr>
+                  <tr>
+                    <td>Headphones & MICs</td>
+                    <td>Audionic MIC AM-20</td>
+
+                    <td>&#2547;2100</td>
+                    <td>&#2547;6300</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card-footer small text-muted">
+            Updated yesterday at 11:59 PM
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%- include('../template/footer')-%>
+  </body>
+</html>

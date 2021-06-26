@@ -1,0 +1,80 @@
+<%- include('../template/head')-%>
+
+<body>
+  <!-- dividing 1 rows nad 2 columns -->
+  <div class="content-box">
+    <!-- this is for menubar -->
+    <%- include('../template/sidebar')-%>
+  </div>
+
+  <!-- Add product modal -->
+  <!-- <div
+      class="modal fade"
+      id="addProductModal"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+     
+    </div> -->
+  <!-- Floating Button -->
+  <button
+    type="button"
+    class="btn calendar-btn"
+    data-bs-toggle="modal"
+    data-bs-target="#exampleModal"
+  >
+    <i class="fas fa-calendar-alt calendar-icon"></i>
+  </button>
+
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="calendar">
+          <div class="calendar-header">
+            <span class="month-picker" id="month-picker">February</span>
+            <div class="year-picker">
+              <span class="year-change" id="prev-year">
+                <pre><</pre>
+              </span>
+              <span id="year">2021</span>
+              <span class="year-change" id="next-year">
+                <pre>></pre>
+              </span>
+            </div>
+          </div>
+          <div class="calendar-body">
+            <div class="calendar-week-day">
+              <div>Sun</div>
+              <div>Mon</div>
+              <div>Tue</div>
+              <div>Wed</div>
+              <div>Thu</div>
+              <div>Fri</div>
+              <div>Sat</div>
+            </div>
+            <div class="calendar-days"></div>
+          </div>
+          <!-- <div class="calendar-footer">
+                <div class="toggle">
+                    <span>Dark Mode</span>
+                    <div class="dark-mode-switch">
+                        <div class="dark-mode-switch-ident"></div>
+                    </div>
+                </div>
+            </div> -->
+          <div class="month-list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%- include('../template/footer')-%>
+</body>
