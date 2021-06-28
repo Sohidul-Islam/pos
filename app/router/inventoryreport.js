@@ -1,5 +1,5 @@
 const express = require("express");
-const inventoryreport = require("../controllers/inventorycontroller");
+const inventoryreport = require("../controllers/inventoryController");
 
 const router = express.Router();
 

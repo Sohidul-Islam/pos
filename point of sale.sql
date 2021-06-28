@@ -120,7 +120,7 @@ values('A4-Tech Mouse M60','Mouse',1,9,2000,1),
 
 
 insert into product(product_n,product_type,brandid,stock,cost_p,vendorid)
-values('HP 22fw','Monitor',5,9,11500,1);
+values('Dell Inspiration','Laptop',2,7,35000,2);
 
 #insert into brand table
 
@@ -171,9 +171,9 @@ where  brand.brandid = product.brandid and vendors.vendorid = product.vendorid;
 
 #Sales report
 
-select customers.name, product.product_n, product.product_type,brand.brand_n,sales.qty,(sales.qty*product.cost_p) as total
-from sales,customers,product,brand
-where sales.customerid=customers.id and product.pid=sales.pid and brand.brandid = sales.brandid;
+select customers.name, product.product_n, product.product_type,brand.brand_n,sales.qty,(sales.qty*product.cost_p) as total,status
+from sales,customers,product,brand,payment
+where sales.customerid=customers.id and product.pid=sales.pid and brand.brandid = sales.brandid and payment.customerid = sales.customerid;
 
 #top selling
 

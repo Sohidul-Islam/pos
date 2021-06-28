@@ -35,363 +35,6 @@
           </div>
           <!-- Top Selling -->
         </div>
-        <!-- Add Product Type-->
-        <div
-          class="modal fade"
-          id="addProductTypeModal"
-          tabindex="-1"
-          role="dialog"
-          data-bs-keyboard="false"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-              <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title" id="exampleModalLabel">
-                  <i class="fa fa-tags"></i>
-                  Add Product Type
-                </h5>
-                <button
-                  class="close btn btn-primary text-white"
-                  type="button"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">×</span>
-                </button>
-              </div>
-              <form class="">
-                <div class="modal-body">
-                  <div class="form-group mb-3">
-                    <label class="text-dark" for="">Product Type</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      name=""
-                      value=""
-                      placeholder="Enter product type..."
-                      required
-                    />
-                    <small class="text-muted"
-                      >Example: Mousepads, Headphones or Keyboards etc</small
-                    >
-                  </div>
-                  <div class="form-group">
-                    <label class="text-dark" for=""
-                      >Description
-                      <small
-                        class="
-                          text-muted text-muted text-aling-left
-                          float-start
-                        "
-                        >(Optional)</small
-                      ></label
-                    >
-                    <textarea
-                      name="name"
-                      class="form-control"
-                      rows="8"
-                      cols="80"
-                      placeholder="Add some note or description about this product type..."
-                    ></textarea>
-                  </div>
-                  <small class="text-muted"
-                    ><em
-                      >Please double check information before submitting.</em
-                    ></small
-                  >
-                </div>
-                <div class="modal-footer">
-                  <button
-                    class="btn btn-secondary"
-                    type="button"
-                    data-bs-dismiss="modal"
-                  >
-                    Cancel
-                  </button>
-                  <input
-                    type="submit"
-                    class="btn btn-primary"
-                    value="Add Product Type"
-                  />
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-        <!-- Add Product Brand-->
-        <div
-          class="modal fade"
-          id="addProductBrandModal"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-              <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title" id="exampleModalLabel">
-                  <i class="fa fa-industry"></i>
-                  Add Product Brand
-                </h5>
-                <button
-                  class="close btn btn-primary text-white"
-                  type="button"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">×</span>
-                </button>
-              </div>
-              <form class="">
-                <div class="modal-body">
-                  <div class="form-group mb-3">
-                    <label class="text-dark" for="">Product Brand</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      name=""
-                      value=""
-                      placeholder="Enter brand name here..."
-                      required
-                    />
-                    <small class="text-muted"
-                      >Example: Nokia, AMB or MSI etc</small
-                    >
-                  </div>
-                  <div class="form-group mb-3">
-                    <label class="text-dark" for=""
-                      >Description
-                      <small class="text-muted text-aling-left float-start"
-                        >(Optional)</small
-                      ></label
-                    >
-                    <textarea
-                      name="name"
-                      class="form-control"
-                      rows="8"
-                      cols="80"
-                      placeholder="Add some note or description about this vendor..."
-                    ></textarea>
-                  </div>
-                  <small class="text-muted"
-                    ><em
-                      >Please double check information before submitting.</em
-                    ></small
-                  >
-                </div>
-                <div class="modal-footer">
-                  <button
-                    class="btn btn-secondary"
-                    type="button"
-                    data-bs-dismiss="modal"
-                  >
-                    Cancel
-                  </button>
-                  <input
-                    type="submit"
-                    class="btn btn-primary"
-                    value="Add Brand"
-                  />
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-        <!-- Add Product Vendor -->
-        <div
-          class="modal fade"
-          id="addProductVendorModal"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-              <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title" id="exampleModalLabel">
-                  <i class="fa fa-user"></i>
-                  Add Products Vendor
-                </h5>
-                <button
-                  class="closeb btn btn-primary text-white"
-                  type="button"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">×</span>
-                </button>
-              </div>
-              <form class="">
-                <div class="modal-body">
-                  <div class="form-group mb-3">
-                    <label class="text-dark" for="">Vendor Name</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      name=""
-                      value=""
-                      placeholder="Enter vendor's name here..."
-                      required
-                    />
-                    <small class="text-muted"
-                      >Example: Anees Ahmad, Faisal Hayat or Shahzaib Khan
-                      etc</small
-                    >
-                  </div>
-                  <div class="form-group mb-3">
-                    <label class="text-dark" for="">Phone Number</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      name=""
-                      value=""
-                      placeholder="Enter vendor's phone number here..."
-                    />
-                    <small class="text-muted">Example: 555-665-123</small>
-                  </div>
-                  <div class="form-group mb-3">
-                    <label class="text-dark" for="">Email Address</label>
-                    <input
-                      type="email"
-                      class="form-control"
-                      name=""
-                      value=""
-                      placeholder="Enter vendor's email here..."
-                    />
-                    <small class="text-muted"
-                      >Example: ahmadanees02@gmail.com</small
-                    >
-                  </div>
-                  <div class="form-group mb-3">
-                    <label for=""
-                      >Description
-                      <small class="text-muted text-aling-left float-start"
-                        >(Optional)</small
-                      ></label
-                    >
-                    <textarea
-                      name="name"
-                      class="form-control"
-                      rows="8"
-                      cols="80"
-                      placeholder="Add some note or description about this vendor..."
-                    ></textarea>
-                  </div>
-                  <small class="text-muted"
-                    ><em
-                      >Please double check information before submitting.</em
-                    ></small
-                  >
-                </div>
-                <div class="modal-footer">
-                  <button
-                    class="btn btn-secondary"
-                    type="button"
-                    data-bs-dismiss="modal"
-                  >
-                    Cancel
-                  </button>
-                  <input
-                    type="submit"
-                    class="btn btn-primary text-white"
-                    value="Add Vendor"
-                  />
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-        <!-- Add Expense Account Modal -->
-        <div
-          class="modal fade"
-          id="addExpenseAccountModal"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-              <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title" id="exampleModalLabel">
-                  <i class="fa fa-dollar"></i>
-                  Add Expense Account
-                </h5>
-                <button
-                  class="close btn btn-primary text-white"
-                  type="button"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">×</span>
-                </button>
-              </div>
-              <form class="">
-                <div class="modal-body">
-                  <div class="form-group">
-                    <label for="">Account Title</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      name=""
-                      value=""
-                      placeholder="Enter account title here..."
-                      required
-                    />
-                    <small class="text-muted"
-                      >Example: Akhtar Hotel, Mian Tea Stall or My Personal
-                      Account etc</small
-                    >
-                  </div>
-                  <div class="form-group">
-                    <label for="">How much are you depositing?</label>
-                    <input
-                      type="email"
-                      class="form-control"
-                      name=""
-                      value=""
-                      placeholder="Enter the amount you are despositing..."
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label for=""
-                      >Description
-                      <small class="text-muted">(Optional)</small></label
-                    >
-                    <textarea
-                      name="name"
-                      class="form-control"
-                      cols="80"
-                      placeholder="Add some note or description about this vendor..."
-                    ></textarea>
-                  </div>
-                  <small class="text-muted"
-                    ><em
-                      >Please double check information before submitting.</em
-                    ></small
-                  >
-                </div>
-                <div class="modal-footer">
-                  <button
-                    class="btn btn-secondary"
-                    type="button"
-                    data-bs-dismiss="modal"
-                  >
-                    Cancel
-                  </button>
-                  <input
-                    type="submit"
-                    class="btn btn-primary"
-                    value="Add Account"
-                  />
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
         <div class="row my-3">
           <!--  Customers-->
           <div class="col-6 my-2 scrollable-customers--box">
@@ -425,10 +68,7 @@
                       </div>
                     </div>
                     <div class="customer-saling-info">
-                      <a
-                        role="button"
-                        class="btn btnprimary"
-                        href="totalsales.html"
+                      <a role="button" class="btn btnprimary" href="/totalsales"
                         >View details</a
                       >
                     </div>
@@ -462,10 +102,7 @@
                       </div>
                     </div>
                     <div class="customer-saling-info">
-                      <a
-                        role="button"
-                        class="btn btnprimary"
-                        href="totalsales.html"
+                      <a role="button" class="btn btnprimary" href="/totalsales"
                         >View details</a
                       >
                     </div>
@@ -500,10 +137,7 @@
                       </div>
                     </div>
                     <div class="customer-saling-info">
-                      <a
-                        role="button"
-                        class="btn btnprimary"
-                        href="totalsales.html"
+                      <a role="button" class="btn btnprimary" href="/totalsales"
                         >View details</a
                       >
                     </div>
@@ -538,10 +172,7 @@
                       </div>
                     </div>
                     <div class="customer-saling-info">
-                      <a
-                        role="button"
-                        class="btn btnprimary"
-                        href="totalsales.html"
+                      <a role="button" class="btn btnprimary" href="/totalsales"
                         >View details</a
                       >
                     </div>
@@ -576,10 +207,7 @@
                       </div>
                     </div>
                     <div class="customer-saling-info">
-                      <a
-                        role="button"
-                        class="btn btnprimary"
-                        href="totalsales.html"
+                      <a role="button" class="btn btnprimary" href="/totalsales"
                         >View details</a
                       >
                     </div>
@@ -613,10 +241,7 @@
                       </div>
                     </div>
                     <div class="customer-saling-info">
-                      <a
-                        role="button"
-                        class="btn btnprimary"
-                        href="totalsales.html"
+                      <a role="button" class="btn btnprimary" href="/totalsales"
                         >View details</a
                       >
                     </div>
@@ -651,10 +276,7 @@
                       </div>
                     </div>
                     <div class="customer-saling-info">
-                      <a
-                        role="button"
-                        class="btn btnprimary"
-                        href="totalsales.html"
+                      <a role="button" class="btn btnprimary" href="/totalsales"
                         >View details</a
                       >
                     </div>
@@ -688,10 +310,7 @@
                       </div>
                     </div>
                     <div class="customer-saling-info">
-                      <a
-                        role="button"
-                        class="btn btnprimary"
-                        href="totalsales.html"
+                      <a role="button" class="btn btnprimary" href="/totalsales"
                         >View details</a
                       >
                     </div>
@@ -725,10 +344,7 @@
                       </div>
                     </div>
                     <div class="customer-saling-info">
-                      <a
-                        role="button"
-                        class="btn btnprimary"
-                        href="totalsales.html"
+                      <a role="button" class="btn btnprimary" href="/totalsales"
                         >View details</a
                       >
                     </div>
@@ -762,10 +378,7 @@
                       </div>
                     </div>
                     <div class="customer-saling-info">
-                      <a
-                        role="button"
-                        class="btn btnprimary"
-                        href="totalsales.html"
+                      <a role="button" class="btn btnprimary" href="/totalsales"
                         >View details</a
                       >
                     </div>
@@ -799,10 +412,7 @@
                       </div>
                     </div>
                     <div class="customer-saling-info">
-                      <a
-                        role="button"
-                        class="btn btnprimary"
-                        href="totalsales.html"
+                      <a role="button" class="btn btnprimary" href="/totalsales"
                         >View details</a
                       >
                     </div>
@@ -859,19 +469,11 @@
             </div>
             <div class="calendar-days"></div>
           </div>
-          <!-- <div class="calendar-footer">
-                <div class="toggle">
-                    <span>Dark Mode</span>
-                    <div class="dark-mode-switch">
-                        <div class="dark-mode-switch-ident"></div>
-                    </div>
-                </div>
-            </div> -->
           <div class="month-list"></div>
         </div>
       </div>
     </div>
   </div>
 
-  <%- include('../template/footer')-%>
+  <%- include('../template/modals')-%> <%- include('../template/footer')-%>
 </body>

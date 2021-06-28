@@ -1,0 +1,7 @@
+const express = require("express");
+const addbrands = require("../controllers/addbrandcontroller");
+const router = express.Router();
+router.route("/").get(addbrands.addbrand);
+// router.route("/").get(checksales.delete);
+
+module.exports = router;

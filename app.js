@@ -45,4 +45,28 @@ app.use("/product-brands", productBrands);
 const productVendors = require("./app/router/productVendors");
 app.use("/product-vendors", productVendors);
 
+const salescounter = require("./app/router/salescount");
+app.use("/salescount", salescounter);
+
+const addsales = require("./app/router/addsalesRouter");
+app.use("/addsales", addsales);
+
+const addvendors = require("./app/router/addvendorsRouter");
+app.use("/addvendors", addvendors);
+
+const addbrands = require("./app/router/addbrandRouter");
+app.use("/addbrand", addbrands);
+
+const addproduct = require("./app/router/addproductRouter");
+app.use("/addproduct", addproduct);
+
+const addproducttype = require("./app/router/addproductTypeRouter");
+app.use("/addproducttype", addproducttype);
+
+const addexpense = require("./app/router/addexpenseRouter");
+app.use("/addexpense", addexpense);
+
+// const addproducttype = require("./app/router/addproductTypeRouter");
+// app.use("/addproducttype", addproducttype);
+
 module.exports = app;

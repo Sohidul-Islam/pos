@@ -17,7 +17,7 @@
               <li class="breadcrumb-item">
                 <a href="/">Home</a>
               </li>
-              <li class="breadcrumb-item active">Inventory Reports</li>
+              <li class="breadcrumb-item active">Add Vendor</li>
             </ol>
             <!-- Page Content -->
             <!-- DataTables Example -->
@@ -25,7 +25,7 @@
             <div class="card mb-3">
               <div class="card-header primary-background text-white">
                 <i class="fa fa-table"></i>
-                Inventory Reports
+                Add Products
 
                 <a
                   type="button"
@@ -41,61 +41,57 @@
                 </a>
               </div>
               <div class="card-body">
-                <div class="table-responsive">
-                  <table
-                    class="table table-striped table-hover"
-                    id="example"
-                    width="100%"
-                    cellspacing="0"
-                  >
-                    <thead>
-                      <tr>
-                        <th>PID</th>
-                        <th>Product Name</th>
-                        <th>Product Type</th>
-                        <th>Brand</th>
-                        <th>In-stock</th>
-                        <th>Cost/item</th>
-                        <th>Inventory Worth</th>
-                        <th>Vendor</th>
-                        <!-- <th></th> -->
-                      </tr>
-                    </thead>
-                    <tfoot>
-                      <tr>
-                        <th>PID</th>
-                        <th>Product Name</th>
-                        <th>Product Type</th>
-                        <th>Brand</th>
-                        <th>In-stock</th>
-                        <th>Cost/item</th>
-                        <th>Inventory Worth</th>
-                        <th>Vendor</th>
-                        <!-- <th></th> -->
-                      </tr>
-                    </tfoot>
-                    <tbody>
-                      <% data.forEach(function(result){%>
-                      <tr>
-                        <td><%=result.pid%></td>
-                        <td><%=result.product_n%></td>
-                        <td><%=result.product_type%></td>
-                        <td><%=result.brand_n%></td>
-                        <td><%=result.qty%></td>
-                        <td>&#2547;<%=result.cost_p%></td>
-                        <td>&#2547;<%=result.total%></td>
-                        <td><%=result.v_name%></td>
-                        <!-- <td>
-                          <a href="/inventoryreport/delete/<%=result.pid%>"
-                            ><button class="btn text-danger">
-                              <i class="far fa-trash-alt"></i></button
-                          ></a>
-                        </td> -->
-                      </tr>
-                      <%});%>
-                    </tbody>
-                  </table>
-                </div>
+                <form class="" method="POST">
+                  <div class="modal-body">
+                    <div class="form-group mb-3">
+                      <label class="text-dark" for="">Vendor Name</label>
+                      <input type="text" class="form-control" name="v_name" />
+                      <small class="text-muted"
+                        >Example: Anees Ahmad, Faisal Hayat or Shahzaib Khan
+                        etc</small
+                      >
+                    </div>
+                    <div class="form-group mb-3">
+                      <label class="text-dark" for="">Phone Number</label>
+                      <input type="text" class="form-control" name="phone" />
+                      <small class="text-muted">Example: 555-665-123</small>
+                    </div>
+                    <div class="form-group mb-3">
+                      <label for=""
+                        >Description
+                        <small class="text-muted text-aling-left float-start"
+                          >(Optional)</small
+                        ></label
+                      >
+                      <textarea
+                        name="name"
+                        class="form-control"
+                        rows="8"
+                        cols="80"
+                        placeholder="Add some note or description about this vendor..."
+                      ></textarea>
+                    </div>
+                    <small class="text-muted"
+                      ><em
+                        >Please double check information before submitting.</em
+                      ></small
+                    >
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      class="btn btn-secondary"
+                      type="button"
+                      data-bs-dismiss="modal"
+                    >
+                      Cancel
+                    </button>
+                    <input
+                      type="submit"
+                      class="btn btnprimary text-white"
+                      value="Add Vendor"
+                    />
+                  </div>
+                </form>
               </div>
               <div class="card-footer small text-muted">
                 Updated yesterday at 11:59 PM
