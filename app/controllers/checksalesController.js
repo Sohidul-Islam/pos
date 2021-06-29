@@ -7,7 +7,7 @@ exports.allsales = (req, res) => {
       });
     } else
       res.render("./pages/sales", {
-        result: data,
+        data,
       });
 
     console.log(data);

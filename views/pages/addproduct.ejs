@@ -49,15 +49,11 @@
                         <option disabled selected>
                           <sub>Please select a product type</sub>
                         </option>
-                        <option>Speakers</option>
-                        <option>Card Readers</option>
-                        <option>Headphones & MICs</option>
-                        <option>Mousepads</option>
-                        <option>Mice &amp; Pointing Devices</option>
-                        <option>Display Monitors</option>
-                        <option>Keyboards</option>
-                        <option>Cables & Chargers</option>
-                        <option>Power Supplies</option>
+                        <% for(var i=0; i < prodtype.length; i++) { %>
+                        <option value="<%= prodtype[i].prodid%>">
+                          <%= prodtype[i].prod_type %>
+                        </option>
+                        <%}%>
                       </select>
                       <small class="float-end text-dark fs-6"
                         >Product type not listed here?
@@ -70,14 +66,12 @@
                         <option disabled selected>
                           <sub>Please select a product brand</sub>
                         </option>
-                        <option>Audionic</option>
-                        <option>DELL</option>
-                        <option>HP</option>
-                        <option>Samsung</option>
-                        <option>AMB</option>
-                        <option>Nokia</option>
-                        <option>Razer</option>
-                        <option>MSI</option>
+
+                        <% for(var i=0; i < brand.length; i++) { %>
+                        <option value="<%= brand[i].branid %>">
+                          <%= brand[i].brand_n %>
+                        </option>
+                        <%}%>
                       </select>
                       <small class="float-end text-dark fs-6"
                         >Products brand not listed here?
@@ -90,12 +84,12 @@
                         <option disabled selected>
                           <sub>Please select a product vendor</sub>
                         </option>
-                        <option>Haider Abbas</option>
-                        <option>Muhammad Faisal</option>
-                        <option>Nouman Aslam</option>
-                        <option>Anees Ahmad Khan</option>
-                        <option>Waleed Ahmad</option>
-                        <option>Abdul Wahid</option>
+
+                        <% for(var i=0; i < vendor.length; i++) { %>
+                        <option value="<%= vendor[i].vendorid %>">
+                          <%= vendor[i].v_name %>
+                        </option>
+                        <%}%>
                       </select>
                       <small class="float-end text-dark fs-6"
                         >Product vendor not listed here?
@@ -294,5 +288,6 @@
       </div>
     </div>
   </div>
+
   <%- include('../template/modals')-%> <%- include('../template/footer')-%>
 </body>

@@ -9,6 +9,8 @@ const sql = mysql.createConnection({
   user: dbConfig.USER,
   password: dbConfig.PASSWORD,
   database: dbConfig.DB,
+  debug: false,
+  multipleStatements: true,
 });
 
 // open the MySQL connection
