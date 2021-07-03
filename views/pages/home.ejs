@@ -27,7 +27,7 @@
                 </div>
                 <div class="card-body">
                   <h5 class="card-title card-duration">Last week</h5>
-                  <h6 class="card-text card-result"><strong>173</strong></h6>
+                  <h6 class="card-text card-result"><strong><%=count.salescount%></strong></h6>
                   <a class="btn btnprimary" href="/salescount" role="">view details</a>
                 </div>
               </div>
@@ -47,8 +47,8 @@
                 </div>
                 <div class="card-body">
                   <h5 class="card-title card-duration">Last week</h5>
-                  <h6 class="card-text card-result"><strong>35</strong></h6>
-                  <a class="btn btnprimary" href="topselling.html" role=""
+                  <h6 class="card-text card-result"><strong><%=topselling%></strong></h6>
+                  <a class="btn btnprimary" href="/topselling" role="button"
                     >view details</a
                   >
                 </div>
@@ -108,7 +108,9 @@
                 <div class="card-header primary-background">
                   <h4 class="text-light">Top Customers</h4>
                 </div>
-                <div class="card-body">
+                <%for(let i = 0 ; i< top.length ; i++){%>
+                  <%if(i<5){%>
+                  <div class="card-body">
                   <div class="row">
                     <div class="col-2">
                       <div class="customers--profile-imgbox">
@@ -124,160 +126,36 @@
                     <div class="col-10">
                       <div class="customer-infobox">
                         <div class="customer-name">
-                          <h4>Riku Das</h4>
+                          <h4><%=top[i].customername%></h4>
+                         
                         </div>
                         <div class="customer-loc">
                           <strong
                             ><i class="fas fa-location-arrow"></i
-                            >chattogram</strong
+                            ><%=top[i].address%></strong
                           >
                         </div>
                       </div>
                       <div class="customer-saling-info">
-                        <p>&#2547;6000</p>
+                        <p>&#2547;<%=top[i].total%></p>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="customer-divider"></div>
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-2">
-                      <div class="customers--profile-imgbox">
-                        <div class="customers--profile-imgbox_container">
-                          <img
-                            class="customers--profile-imgbox_container_content"
-                            src="/assets/profile.png"
-                            alt=""
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-10">
-                      <div class="customer-infobox">
-                        <div class="customer-name">
-                          <h4>Nusrat Jahan Woni</h4>
-                        </div>
-                        <div class="customer-loc">
-                          <strong
-                            ><i class="fas fa-location-arrow"></i
-                            >chattogram</strong
-                          >
-                        </div>
-                      </div>
-                      <div class="customer-saling-info">
-                        <p>&#2547;5000</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="customer-divider"></div>
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-2">
-                      <div class="customers--profile-imgbox">
-                        <div class="customers--profile-imgbox_container">
-                          <img
-                            class="customers--profile-imgbox_container_content"
-                            src="/assets/profile.png"
-                            alt=""
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-10">
-                      <div class="customer-infobox">
-                        <div class="customer-name">
-                          <h4>Shahadat Hossain</h4>
-                        </div>
-                        <div class="customer-loc">
-                          <strong
-                            ><i class="fas fa-location-arrow"></i
-                            >chattogram</strong
-                          >
-                        </div>
-                      </div>
-                      <div class="customer-saling-info">
-                        <p>&#2547;4500</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="customer-divider"></div>
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-2">
-                      <div class="customers--profile-imgbox">
-                        <div class="customers--profile-imgbox_container">
-                          <img
-                            class="customers--profile-imgbox_container_content"
-                            src="/assets/profile.png"
-                            alt=""
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-10">
-                      <div class="customer-infobox">
-                        <div class="customer-name">
-                          <h4>Kaium Uddin</h4>
-                        </div>
-                        <div class="customer-loc">
-                          <strong
-                            ><i class="fas fa-location-arrow"></i
-                            >chattogram</strong
-                          >
-                        </div>
-                      </div>
-                      <div class="customer-saling-info">
-                        <p>&#2547;4000</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="customer-divider"></div>
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-2">
-                      <div class="customers--profile-imgbox">
-                        <div class="customers--profile-imgbox_container">
-                          <img
-                            class="customers--profile-imgbox_container_content"
-                            src="/assets/profile.png"
-                            alt=""
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-10">
-                      <div class="customer-infobox">
-                        <div class="customer-name">
-                          <h4>Owahidul Hoque Chowdhury</h4>
-                        </div>
-                        <div class="customer-loc">
-                          <strong
-                            ><i class="fas fa-location-arrow"></i
-                            >chattogram</strong
-                          >
-                        </div>
-                      </div>
-                      <div class="customer-saling-info">
-                        <p>&#2547;4000</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <%}%>
+                <%}%>
+      
               </div>
             </div>
             <!--  Customers Due-->
             <div class="col-6">
-              <div class="card">
+              <div class="card customercard">
                 <div class="card-header primary-background">
                   <h4 class="text-white">Customers Dues</h4>
                 </div>
+                <%for(let i = 0 ; i< due.length ; i++){%>
+                 
                 <div class="card-body">
                   <div class="row">
                     <div class="col-2">
@@ -294,157 +172,25 @@
                     <div class="col-10">
                       <div class="customer-infobox">
                         <div class="customer-name">
-                          <h4>Azmaul Hossain</h4>
+                          <h4><%=due[i].name%></h4>
                         </div>
                         <div class="customer-loc">
                           <strong
                             ><i class="fas fa-location-arrow"></i
-                            >chattogram</strong
+                            ><%=due[i].address%></strong
                           >
                         </div>
                       </div>
                       <div class="customer-saling-info">
-                        <p>&#2547;800</p>
-                        <h6 class="payment-date">05/06/2021</h6>
+                        <p>&#2547;<%=due[i].due%></p>
+                        <h6 class="payment-date"><%=due[i].paytime%></h6>
                       </div>
                     </div>
                   </div>
                 </div>
+         
+                <%}%>
                 <div class="customer-divider"></div>
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-2">
-                      <div class="customers--profile-imgbox">
-                        <div class="customers--profile-imgbox_container">
-                          <img
-                            class="customers--profile-imgbox_container_content"
-                            src="/assets/profile.png"
-                            alt=""
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-10">
-                      <div class="customer-infobox">
-                        <div class="customer-name">
-                          <h4>Esrath Jahan Sathi</h4>
-                        </div>
-                        <div class="customer-loc">
-                          <strong
-                            ><i class="fas fa-location-arrow"></i
-                            >chattogram</strong
-                          >
-                        </div>
-                      </div>
-                      <div class="customer-saling-info">
-                        <p>&#2547;1500</p>
-                        <h6 class="payment-date">05/06/2021</h6>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="customer-divider"></div>
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-2">
-                      <div class="customers--profile-imgbox">
-                        <div class="customers--profile-imgbox_container">
-                          <img
-                            class="customers--profile-imgbox_container_content"
-                            src="/assets/profile.png"
-                            alt=""
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-10">
-                      <div class="customer-infobox">
-                        <div class="customer-name">
-                          <h4>Shahadat Hossain</h4>
-                        </div>
-                        <div class="customer-loc">
-                          <strong
-                            ><i class="fas fa-location-arrow"></i
-                            >chattogram</strong
-                          >
-                        </div>
-                      </div>
-                      <div class="customer-saling-info">
-                        <p>&#2547;1500</p>
-                        <h6 class="payment-date">05/06/2021</h6>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="customer-divider"></div>
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-2">
-                      <div class="customers--profile-imgbox">
-                        <div class="customers--profile-imgbox_container">
-                          <img
-                            class="customers--profile-imgbox_container_content"
-                            src="/assets/profile.png"
-                            alt=""
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-10">
-                      <div class="customer-infobox">
-                        <div class="customer-name">
-                          <h4>Arfat Rahman</h4>
-                        </div>
-                        <div class="customer-loc">
-                          <strong
-                            ><i class="fas fa-location-arrow"></i
-                            >chattogram</strong
-                          >
-                        </div>
-                      </div>
-                      <div class="customer-saling-info">
-                        <p>&#2547;2000</p>
-                        <h6 class="payment-date">05/06/2021</h6>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="customer-divider"></div>
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-2">
-                      <div class="customers--profile-imgbox">
-                        <div class="customers--profile-imgbox_container">
-                          <img
-                            class="customers--profile-imgbox_container_content"
-                            src="/assets/profile.png"
-                            alt=""
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-10">
-                      <div class="customer-infobox">
-                        <div class="customer-name">
-                          <h4>Owahidul Hoque Chowdhury</h4>
-                        </div>
-                        <div class="customer-loc">
-                          <strong
-                            ><i class="fas fa-location-arrow"></i
-                            >chattogram</strong
-                          >
-                        </div>
-                      </div>
-                      <div class="customer-saling-info">
-                        <p>&#2547;4000</p>
-                        <h6 class="payment-date">05/06/2021</h6>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -527,5 +273,4 @@
 
       
     </div>
-    <%- include('../template/modals')-%>
     <%- include('../template/footer')-%>

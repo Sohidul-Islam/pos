@@ -1,4 +1,5 @@
 const addproducts = require("../models/addproductModel");
+const Addproducts = require("../models/addproductModel");
 // const addproductBrand = require("../models/addproductbrandModel");
 
 exports.addProductType = (req, res) => {
@@ -21,6 +22,40 @@ exports.addProductType = (req, res) => {
       });
 
       console.log("data View", data);
+    }
+  });
+};
+
+exports.createProduct = (req, res) => {
+  // Validate request
+  if (!req.body) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+  }
+
+  // Create a product
+  const addproducts = new Addproducts({
+    prod_n: req.body.prod_n,
+    prodid: req.body.prodid,
+    brandid: req.body.brandid,
+    stock: req.body.stock,
+    cost_p: req.body.cost_p,
+    selling_p: req.body.selling_p,
+    vendorid: req.body.vendorid,
+    des: req.body.des,
+  });
+
+  console.log("Added Product : ", addproducts);
+  //Save Customer in the database
+  Addproducts.createProduct(addproducts, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while creating the Customer.",
+      });
+    else {
+      res.redirect("back");
     }
   });
 };

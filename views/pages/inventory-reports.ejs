@@ -78,12 +78,18 @@
                       <% data.forEach(function(result){%>
                       <tr>
                         <td><%=result.pid%></td>
-                        <td><%=result.product_n%></td>
-                        <td><%=result.product_type%></td>
+                        <td><%=result.prod_n%></td>
+                        <td><%=result.prod_type%></td>
                         <td><%=result.brand_n%></td>
-                        <td><%=result.qty%></td>
-                        <td>&#2547;<%=result.cost_p%></td>
-                        <td>&#2547;<%=result.total%></td>
+                        <%if(result.stock <=10 ){%>
+                        <td class="text-danger"><%=result.stock%></td>
+                        <%} else if(result.stock>10){%>
+                        <td><%=result.stock%></td>
+                        <%} else{%>
+                        <td class="text-danger"><%=result.stock%></td>
+                        <%}%>
+                        <td>&#2547;<%=result.selling_p%></td>
+                        <td>&#2547;<%=result.worth%></td>
                         <td><%=result.v_name%></td>
                         <!-- <td>
                           <a href="/inventoryreport/delete/<%=result.pid%>"
@@ -158,5 +164,5 @@
       </div>
     </div>
   </div>
-  <%- include('../template/modals')-%> <%- include('../template/footer')-%>
+  <%- include('../template/footer')-%>
 </body>

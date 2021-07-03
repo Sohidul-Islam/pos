@@ -1,20 +1,22 @@
 const sql = require("../models/db");
 
 const inventory = function (product) {
-  this.product_n = product.product_n;
-  this.product_type = product.product_type;
-  this.brandid = product.brandid;
+  this.pid = product.pid;
+  this.prod_n = product.prod_n;
+  this.prod_type = product.prod_type;
+  this.brand_n = product.brand_n;
   this.stock = product.stock;
-  this.cost_id = product.cost_id;
+  this.selling_p = product.selling_p;
   this.worth = product.worth;
   this.vendorid = product.vendorid;
+  this.v_name = product.v_name;
 };
 
 inventory.inventoryReport = (result) => {
   sql.query(
-    `select pid, product_n, product_type,brand_n,product.stock as qty,cost_p,(product.stock*product.cost_p) as total,vendors.v_name
-    from product,brand,vendors
-    where  brand.brandid = product.brandid and vendors.vendorid = product.vendorid;`,
+    `select product.pid,prod_n,prod_type,brand_n,stock,selling_p,(stock*selling_p) as worth,v_name
+    from product,prodtype,brand,vendors
+    where product.prodid = prodtype.prodid and product.brandid = brand.brandid and product.vendorid = vendors.vendorid`,
     (err, res) => {
       if (err) {
         console.log("error: ", err);

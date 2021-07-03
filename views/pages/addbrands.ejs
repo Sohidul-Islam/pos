@@ -41,15 +41,14 @@
                 </a>
               </div>
               <div class="card-body">
-                <form class="">
+                <form class="" method="POST">
                   <div class="modal-body">
                     <div class="form-group mb-3">
                       <label class="text-dark" for="">Product Brand</label>
                       <input
                         type="text"
                         class="form-control"
-                        name=""
-                        value=""
+                        name="brand_n"
                         placeholder="Enter brand name here..."
                         required
                       />
@@ -65,7 +64,7 @@
                         ></label
                       >
                       <textarea
-                        name="name"
+                        name="des"
                         class="form-control"
                         rows="8"
                         cols="80"
@@ -155,5 +154,5 @@
       </div>
     </div>
   </div>
-  <%- include('../template/modals')-%> <%- include('../template/footer')-%>
+  <%- include('../template/footer')-%>
 </body>

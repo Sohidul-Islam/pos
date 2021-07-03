@@ -28,15 +28,14 @@
                 Add Expense
               </div>
               <div class="card-body">
-                <form class="">
+                <form class="" method="POST">
                   <div class="modal-body">
                     <div class="form-group">
                       <label for="">Account Title</label>
                       <input
                         type="text"
                         class="form-control"
-                        name=""
-                        value=""
+                        name="account"
                         placeholder="Enter account title here..."
                         required
                       />
@@ -48,10 +47,9 @@
                     <div class="form-group">
                       <label for="">How much are you depositing?</label>
                       <input
-                        type="email"
+                        type="number"
                         class="form-control"
-                        name=""
-                        value=""
+                        name="price"
                         placeholder="Enter the amount you are despositing..."
                       />
                     </div>
@@ -61,7 +59,7 @@
                         <small class="text-muted">(Optional)</small></label
                       >
                       <textarea
-                        name="name"
+                        name="des"
                         class="form-control"
                         cols="80"
                         placeholder="Add some note or description about this vendor..."
@@ -74,13 +72,14 @@
                     >
                   </div>
                   <div class="modal-footer">
-                    <button
+                    <a
+                      role="button"
+                      href="/"
                       class="btn btn-secondary"
                       type="button"
-                      data-bs-dismiss="modal"
                     >
                       Cancel
-                    </button>
+                    </a>
                     <input
                       type="submit"
                       class="btn btnprimary text-white"
@@ -150,5 +149,5 @@
       </div>
     </div>
   </div>
-  <%- include('../template/modals')-%> <%- include('../template/footer')-%>
+  <%- include('../template/footer')-%>
 </body>

@@ -136,15 +136,23 @@
                           <th>Transaction Type</th>
                           <th>Description</th>
                           <th>Account</th>
-                          <th>Date</th>
                           <th>Price</th>
+                          <th>Date</th>
                         </tr>
                       </tfoot>
                       <tbody>
                         <%data.forEach(function(result){%>
                         <tr>
-                          <td><%=result.tid%></td>
-                          <td class="text-danger"><%=result.t_type%></td>
+                          <td>#<%=result.tid%></td>
+                          <%if(result.t_type === "Income"){%>
+                          <td class="text-primary font-weight-bold">
+                            <%=result.t_type%>
+                          </td>
+                          <%} else{%>
+                          <td class="text-danger font-weight-bold">
+                            <%=result.t_type%>
+                          </td>
+                          <%}%>
                           <td><%=result.des%></td>
                           <td><%=result.account%></td>
                           <td><%=result.date%></td>
@@ -223,6 +231,6 @@
       </div>
     </div>
 
-    <%- include('../template/modals')-%> <%- include('../template/footer')-%>
+    <%- include('../template/footer')-%>
   </div>
 </body>

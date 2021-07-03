@@ -7,10 +7,10 @@ const brands = function (brand) {
 
 brands.allbrands = (result) => {
   sql.query(
-    `select brand.brandid,brand_n,count(product_n) as stock,stock as total,count(product_n)*cost_p as worth
-    from product,brand
-    where product.brandid = brand.brandid
-    group by product.brandid;`,
+    `select brand.brandid,brand.brand_n,sum(stock) as products,sum(stock*selling_p) as worth,v_name
+    from product,vendors,brand
+    where product.brandid = brand.brandid and product.vendorid = vendors.vendorid 
+    group by v_name`,
     (err, res) => {
       if (err) {
         console.log("error: ", err);

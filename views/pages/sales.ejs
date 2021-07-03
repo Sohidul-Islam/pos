@@ -51,31 +51,49 @@
                         <tr>
                           <th>INVOICE-ID</th>
                           <th>Product</th>
-                          <th>In-Stock</th>
-                          <th>Price</th>
-                          <th>Date</th>
+                          <th>Product Type</th>
+                          <th>Brand</th>
+                          <th>qty</th>
+                          <th>stock</th>
+                          <th>Price/item</th>
+                          <th>Total</th>
                           <th>Status</th>
+                          <th>Profit</th>
                         </tr>
                       </thead>
                       <tfoot>
                         <tr>
                           <th>INVOICE-ID</th>
                           <th>Product</th>
-                          <th>In-Stock</th>
-                          <th>Price</th>
-                          <th>Date</th>
+                          <th>Product Type</th>
+                          <th>Brand</th>
+                          <th>qty</th>
+                          <th>stock</th>
+                          <th>Price/item</th>
+                          <th>Total</th>
                           <th>Status</th>
+                          <th>Profit</th>
                         </tr>
                       </tfoot>
                       <tbody>
                         <%result.forEach(function(entry){%>
                         <tr>
                           <td>#<%=entry.salesid%></td>
-                          <td><%=entry.product_n%></td>
+                          <td><%=entry.prod_n%></td>
+                          <td class="text-danger"><%=entry.prod_type%></td>
+                          <td><%=entry.brand_n%></td>
+                          <td><%=entry.qty%></td>
+                          <%if(entry.stock <=10 ){%>
                           <td class="text-danger"><%=entry.stock%></td>
-                          <td>&#2547;<%=entry.cost_p%></td>
-                          <td><%=entry.date%></td>
+                          <%} else if(entry.stock>10){%>
+                          <td><%=entry.stock%></td>
+                          <%} else{%>
+                          <td class="text-danger"><%=entry.stock%></td>
+                          <%}%>
+                          <td>&#2547;<%=entry.price%></td>
+                          <td>&#2547;<%=entry.total%></td>
                           <td class="text-primary"><%=entry.status%></td>
+                          <td class="text-primary"><%=entry.profit%></td>
                         </tr>
                         <%});%>
                       </tbody>
@@ -142,6 +160,6 @@
         </div>
       </div>
     </div>
-    <%- include('../template/modals')-%> <%- include('../template/footer')-%>
+    <%- include('../template/footer')-%>
   </div>
 </body>

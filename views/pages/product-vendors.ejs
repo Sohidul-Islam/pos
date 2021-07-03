@@ -41,7 +41,6 @@
                           <th>Vendor Name</th>
                           <th>Phone</th>
                           <th>Products</th>
-                          <th>Total Products Qty</th>
                           <th>Inventory Worth</th>
                         </tr>
                       </thead>
@@ -51,7 +50,6 @@
                           <th>Vendor Name</th>
                           <th>Phone</th>
                           <th>Products</th>
-                          <th>Total Products Qty</th>
                           <th>Inventory Worth</th>
                         </tr>
                       </tfoot>
@@ -62,7 +60,6 @@
                           <td><%=entry.v_name%></td>
                           <td><%=entry.phone%></td>
                           <td><%=entry.products%></td>
-                          <td><%=entry.total%></td>
                           <td>&#2547;<%=entry.worth%></td>
                         </tr>
                         <%});%>
@@ -143,5 +140,5 @@
         </div>
       </div>
     </div>
-    <%- include('../template/modals')-%>
+  
     <%- include('../template/footer')-%>

@@ -5,7 +5,7 @@
     <%- include('../template/sidebar')-%>
     <div class="maincontentbox d-inline-block mx-auto">
       <div class="card my-3">
-        <div class="card-header bg-warning text-dark">
+        <div class="card-header primary-background text-white">
           <h2 class="">Top Selling Product</h2>
         </div>
         <div class="card-body">
@@ -33,132 +33,14 @@
                 </tr>
               </tfoot>
               <tbody>
+                <%result.forEach((entry)=>{%>
                 <tr>
-                  <td>Headphones & MICs</td>
-                  <td>Audionic MIC AM-20</td>
-                  <td class="text-danger">10</td>
-                  <td>&#2547;2100</td>
+                  <td><%=entry.prod_type%></td>
+                  <td><%=entry.prod_n%></td>
+                  <td class="text-danger"><%=entry.qty%></td>
+                  <td>&#2547;<%=entry.selling_p%></td>
                 </tr>
-                <tr>
-                  <td>Headphones & MICs</td>
-                  <td>Audionic MIC AM-20</td>
-                  <td class="text-danger">09</td>
-                  <td>&#2547;2100</td>
-                </tr>
-                <tr>
-                  <td>Headphones & MICs</td>
-                  <td>Audionic MIC AM-20</td>
-                  <td class="text-danger">06</td>
-                  <td>&#2547;2100</td>
-                </tr>
-                <tr>
-                  <td>Headphones & MICs</td>
-                  <td>Audionic MIC AM-20</td>
-                  <td class="text-danger">05</td>
-                  <td>&#2547;2100</td>
-                </tr>
-                <tr>
-                  <td>Headphones & MICs</td>
-                  <td>Audionic MIC AM-20</td>
-                  <td class="text-danger">04</td>
-                  <td>&#2547;2100</td>
-                </tr>
-                <tr>
-                  <td>Headphones & MICs</td>
-                  <td>Audionic MIC AM-20</td>
-                  <td class="text-danger">04</td>
-                  <td>&#2547;2100</td>
-                </tr>
-                <tr>
-                  <td>Headphones & MICs</td>
-                  <td>Audionic MIC AM-20</td>
-                  <td class="text-danger">04</td>
-                  <td>&#2547;2100</td>
-                </tr>
-                <tr>
-                  <td>Headphones & MICs</td>
-                  <td>Audionic MIC AM-20</td>
-                  <td class="text-danger">04</td>
-                  <td>&#2547;2100</td>
-                </tr>
-                <tr>
-                  <td>Headphones & MICs</td>
-                  <td>Audionic MIC AM-20</td>
-                  <td class="text-danger">04</td>
-                  <td>&#2547;2100</td>
-                </tr>
-                <tr>
-                  <td>Headphones & MICs</td>
-                  <td>Audionic MIC AM-20</td>
-                  <td class="text-danger">04</td>
-                  <td>&#2547;2100</td>
-                </tr>
-                <tr>
-                  <td>Headphones & MICs</td>
-                  <td>Audionic MIC AM-20</td>
-                  <td class="text-danger">04</td>
-                  <td>&#2547;2100</td>
-                </tr>
-                <tr>
-                  <td>Headphones & MICs</td>
-                  <td>Audionic MIC AM-20</td>
-                  <td class="text-danger">04</td>
-                  <td>&#2547;2100</td>
-                </tr>
-                <tr>
-                  <td>Headphones & MICs</td>
-                  <td>Audionic MIC AM-20</td>
-                  <td class="text-danger">05</td>
-                  <td>&#2547;2100</td>
-                </tr>
-                <tr>
-                  <td>Headphones & MICs</td>
-                  <td>Audionic MIC AM-20</td>
-                  <td class="text-danger">04</td>
-                  <td>&#2547;2100</td>
-                </tr>
-                <tr>
-                  <td>Headphones & MICs</td>
-                  <td>Audionic MIC AM-20</td>
-                  <td class="text-danger">04</td>
-                  <td>&#2547;2100</td>
-                </tr>
-                <tr>
-                  <td>Headphones & MICs</td>
-                  <td>Audionic MIC AM-20</td>
-                  <td class="text-danger">04</td>
-                  <td>&#2547;2100</td>
-                </tr>
-                <tr>
-                  <td>Headphones & MICs</td>
-                  <td>Audionic MIC AM-20</td>
-                  <td class="text-danger">04</td>
-                  <td>&#2547;2100</td>
-                </tr>
-                <tr>
-                  <td>Headphones & MICs</td>
-                  <td>Audionic MIC AM-20</td>
-                  <td class="text-danger">04</td>
-                  <td>&#2547;2100</td>
-                </tr>
-                <tr>
-                  <td>Headphones & MICs</td>
-                  <td>Audionic MIC AM-20</td>
-                  <td class="text-danger">05</td>
-                  <td>&#2547;2100</td>
-                </tr>
-                <tr>
-                  <td>Headphones & MICs</td>
-                  <td>Audionic MIC AM-20</td>
-                  <td class="text-danger">04</td>
-                  <td>&#2547;2100</td>
-                </tr>
-                <tr>
-                  <td>Headphones & MICs</td>
-                  <td>Audionic MIC AM-20</td>
-                  <td class="text-danger">04</td>
-                  <td>&#2547;2100</td>
-                </tr>
+                <%})%>
               </tbody>
             </table>
           </div>
@@ -170,5 +52,5 @@
     </div>
   </div>
 
-  <%- include('../template/modals')-%> <%- include('../template/footer')-%>
+  <%- include('../template/footer')-%>
 </body>

@@ -1,8 +1,8 @@
 const express = require("express");
-const salesCounter = require("../controllers/salescountController");
+const salesCounter = require("../controllers/salecountController");
 
 const router = express.Router();
 
-router.route("/").get(salesCounter.showsalescount);
+router.route("/").get(salesCounter.allsalesCount);
 
 module.exports = router;

@@ -41,11 +41,15 @@
                 </a>
               </div>
               <div class="card-body">
-                <form class="">
-                  <div class="modal-body">
+                <form method="POST">
+                  <div class="">
                     <div class="form-group mb-4">
                       <label class="text-dark">Product Type</label>
-                      <select class="form-control text-primary" required>
+                      <select
+                        class="form-control text-primary"
+                        name="prodid"
+                        required
+                      >
                         <option disabled selected>
                           <sub>Please select a product type</sub>
                         </option>
@@ -62,13 +66,17 @@
                     </div>
                     <div class="form-group mb-4">
                       <label class="text-dark">Product Brand</label>
-                      <select class="form-control text-primary" required>
+                      <select
+                        class="form-control text-primary"
+                        name="brandid"
+                        required
+                      >
                         <option disabled selected>
                           <sub>Please select a product brand</sub>
                         </option>
 
                         <% for(var i=0; i < brand.length; i++) { %>
-                        <option value="<%= brand[i].branid %>">
+                        <option value="<%= brand[i].brandid %>">
                           <%= brand[i].brand_n %>
                         </option>
                         <%}%>
@@ -80,7 +88,11 @@
                     </div>
                     <div class="form-group mb-4">
                       <label class="text-dark">Product Vendor</label>
-                      <select class="form-control text-primary" required>
+                      <select
+                        class="form-control text-primary"
+                        name="vendorid"
+                        required
+                      >
                         <option disabled selected>
                           <sub>Please select a product vendor</sub>
                         </option>
@@ -101,8 +113,7 @@
                       <input
                         type="text"
                         class="form-control"
-                        name=""
-                        value=""
+                        name="prod_n"
                         placeholder="Enter product name..."
                         required
                       />
@@ -121,8 +132,7 @@
                       <input
                         type="number"
                         class="form-control"
-                        name=""
-                        value=""
+                        name="cost_p"
                         placeholder="Enter cost of product per item..."
                         required
                       />
@@ -135,9 +145,8 @@
                       <input
                         type="number"
                         class="form-control"
-                        name=""
-                        value=""
-                        placeholder="Enter cost of product per item..."
+                        name="selling_p"
+                        placeholder="Enter selling of product per item..."
                         required
                       />
                     </div>
@@ -151,8 +160,7 @@
                       <input
                         type="number"
                         class="form-control"
-                        name=""
-                        value=""
+                        name="stock"
                         placeholder="Enter number of items..."
                         required
                       />
@@ -163,34 +171,7 @@
                         unit.</small
                       >
                     </div>
-                    <!-- <p class="text-dark">
-                      How are you paying for this product?
-                    </p> -->
-                    <!-- <div class="form-check">
-                      <label class="form-check-label text-dark">
-                        <input
-                          class="form-check-input"
-                          type="radio"
-                          name="exampleRadios"
-                          id="exampleRadios1"
-                          value="option1"
-                          checked
-                        />
-                        Store Account
-                      </label>
-                    </div>
-                    <div class="form-check">
-                      <label class="form-check-label text-dark">
-                        <input
-                          class="form-check-input"
-                          type="radio"
-                          name="exampleRadios"
-                          id="exampleRadios2"
-                          value="option2"
-                        />
-                        Other. I don't want to record this epxense.
-                      </label>
-                    </div> -->
+
                     <br />
                     <div class="form-group mb-4">
                       <label class="text-dark" for=""
@@ -198,9 +179,9 @@
                         <small class="text-muted">(Optional)</small></label
                       >
                       <textarea
-                        name="name"
+                        name="des"
                         class="form-control"
-                        cols="80"
+                        cols="100"
                         height="500"
                         placeholder="Add some note or description about this product..."
                       ></textarea>
@@ -289,5 +270,5 @@
     </div>
   </div>
 
-  <%- include('../template/modals')-%> <%- include('../template/footer')-%>
+  <%- include('../template/footer')-%>
 </body>

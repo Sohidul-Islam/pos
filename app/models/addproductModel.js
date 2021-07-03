@@ -1,13 +1,19 @@
 const sql = require("./db");
 
-const addproducttype = function (product) {
+const addproduct = function (product) {
   this.prodid = product.prodid;
-  this.prod_type = product.prod_type;
+  this.brandid = product.brandid;
+  this.vendorid = product.vendorid;
+  this.prod_n = product.prod_n;
+  this.cost_p = product.cost_p;
+  this.selling_p = product.selling_p;
+  this.stock = product.stock;
+  this.des = product.des;
   // this.brandid = product.brandid;
   // this.brand_n = product.brand_n;
 };
 
-addproducttype.getAllprodtype = (result) => {
+addproduct.getAllprodtype = (result) => {
   sql.query(
     "SELECT * FROM prodtype;select * from brand;SELECT * FROM vendors",
     (err, res) => {
@@ -22,4 +28,16 @@ addproducttype.getAllprodtype = (result) => {
   );
 };
 
-module.exports = addproducttype;
+addproduct.createProduct = (newproduct, result) => {
+  sql.query("INSERT INTO product SET ?", newproduct, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+
+    console.log("created product: ", { id: res.insertId, ...newproduct });
+    result(null, { id: res.insertId, ...newproduct });
+  });
+};
+module.exports = addproduct;

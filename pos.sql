@@ -59,36 +59,40 @@ foreign key(customerid) references customers(customerid)
 
 create table sales(
 salesid int auto_increment,
-customerid int,
+customername varchar(100),
+address varchar(100),
+phone varchar(100),
 pid int,
 qty int,
 status varchar(20) default 'due',
 price int,
 date datetime,
+des varchar(200),
 primary key(salesid),
-foreign key(pid) references product(pid),
-foreign key(customerid) references customers(customerid)
+foreign key(pid) references product(pid)
 );
 
-create table payment(
+create table expense(
 tid int auto_increment,
+t_type varchar(20),
 des varchar(200),
 account varchar(200),
-customerid int,
 date datetime,
 price int ,
-primary key(tid),
-foreign key(customerid) references customers(customerid)
+primary key(tid)
 );
+drop table expense;
 
 create table due(
 dueid int auto_increment,
-customerid int,
+name varchar(50),
+address varchar(200),
+phone varchar(50),
+due int,
 paytime datetime,
-primary key(dueid),
-foreign key(customerid) references customers(customerid)
+primary key(dueid)
 );
-
+drop table due;
 create table users(
 userid int auto_increment,
 name varchar(50),
@@ -125,3 +129,10 @@ insert into vendors(v_name,phone)
 values('Haidar Abbas',"01854107684"),
 ('Joynal Abedin',"01874147694"),
 ('Karim Uddin',"01874157672");
+
+ALTER TABLE sales DROP FOREIGN KEY customerid;
+
+drop table sales;
+
+INSERT INTO Customers (name, address, phone)
+SELECT customername, address, phone FROM sales;

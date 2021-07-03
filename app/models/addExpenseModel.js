@@ -1,12 +1,15 @@
 const sql = require("./db");
 
-const addbrand = function (product) {
-  this.brand_n = product.brand_n;
-  this.des = product.des;
+const addexpense = function (payment) {
+  this.t_type = "Expense";
+  this.des = payment.des;
+  this.account = payment.account;
+  this.date = new Date();
+  this.price = payment.price;
 };
 
-addbrand.getAllbrand = (result) => {
-  sql.query("select * from brand", (err, res) => {
+addexpense.getAllexpense = (result) => {
+  sql.query("select * from expense", (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
@@ -17,8 +20,8 @@ addbrand.getAllbrand = (result) => {
   });
 };
 
-addbrand.createbrand = (newproduct, result) => {
-  sql.query("INSERT INTO brand SET ?", newproduct, (err, res) => {
+addexpense.newexpense = (newproduct, result) => {
+  sql.query("INSERT INTO expense SET ?", newproduct, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -30,4 +33,4 @@ addbrand.createbrand = (newproduct, result) => {
   });
 };
 
-module.exports = addbrand;
+module.exports = addexpense;

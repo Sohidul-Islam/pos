@@ -175,6 +175,12 @@ body {
   margin-bottom: 10px;
 }
 
+.customercard {
+  max-height: 435px;
+  overflow-y: scroll;
+  overflow-x: none;
+}
+
 .customers--profile-imgbox {
   width: 64px;
   height: 64px;

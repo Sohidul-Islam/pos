@@ -66,6 +66,9 @@ app.use("/addproducttype", addproducttype);
 const addexpense = require("./app/router/addexpenseRouter");
 app.use("/addexpense", addexpense);
 
+const topselling = require("./app/router/topsellingRouter");
+app.use("/topselling", topselling);
+
 // const addproducttype = require("./app/router/addproductTypeRouter");
 // app.use("/addproducttype", addproducttype);
 

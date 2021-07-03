@@ -7,10 +7,17 @@ exports.allinventory = (req, res) => {
         message:
           err.message || "Some error occured in inventoryReport function",
       });
-    } else
+    } else {
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].stock <= 0) {
+          data[i].stock = "out of stock";
+        }
+        console.log(data[i].stock);
+      }
       res.render("./pages/inventory-reports", {
         data,
       });
+    }
 
     console.log(data);
   });

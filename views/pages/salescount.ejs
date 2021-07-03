@@ -1,212 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta cha&#2547;et="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sales Count</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="/style/main.css" />
-    <link rel="stylesheet" href="/style/font-awesome.css" />
-    <link rel="stylesheet" href="/js-calendar-main/js-calendar-main/app.css" />
-    <link
-      rel="stylesheet"
-      href="/node_modules/@fortawesome/fontawesome-free/css/all.min.css"
-    />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
+<%- include('../template/head')-%>
 
   <body>
     <div class="content-box">
       <%- include('../template/sidebar')-%>
       <div class="maincontentbox d-inline-block mx-auto">
         <div class="card my-3">
-          <div class="card-header bg-warning text-dark">
+          <div class="card-header primary-background text-white">
             <h2 class="">Sales Count</h2>
           </div>
           <div class="card-body">
             <div class="table-responsive">
               <table
-                class="table table-bordered"
-                id="dataTable"
+                class="table table-striped table-hover"
+                id="example"
                 width="100%"
                 cellspacing="0"
               >
                 <thead>
                   <tr>
-                    <th>Product Type</th>
                     <th>Product</th>
-
+                    <th>Product Type</th>
+                    <th>Qty</th>
                     <th>Price</th>
-                    <th>Payment</th>
+                    <th>Status</th>
                   </tr>
                 </thead>
                 <tfoot>
                   <tr>
                     <th>Product Type</th>
                     <th>Product</th>
-
+                    <th>Qty</th>
                     <th>Price</th>
                     <th>Status</th>
                   </tr>
                 </tfoot>
                 <tbody>
+                  <%result.forEach((entry)=>{%>
                   <tr>
-                    <td>Headphones & MICs</td>
-                    <td>Audionic MIC AM-20</td>
-
-                    <td>&#2547;2100</td>
-                    <td>&#2547;6300</td>
+                    <td><%=entry.prod_n%></td>
+                    <td><%=entry.prod_type%></td>
+                    <td><%=entry.qty%></td>
+                    <td>&#2547;<%=entry.total%></td>
+                    <%if(entry.status==="Payment"){%>
+                    <td class="text-primary"><%=entry.status%></td>
+                    <%} else{%>
+                    <td class="text-danger"><%=entry.status%></td>
+                    <%}%>
                   </tr>
-                  <tr>
-                    <td>Headphones & MICs</td>
-                    <td>Audionic MIC AM-20</td>
-
-                    <td>&#2547;2100</td>
-                    <td>Due</td>
-                  </tr>
-                  <tr>
-                    <td>Headphones & MICs</td>
-                    <td>Audionic MIC AM-20</td>
-
-                    <td>&#2547;2100</td>
-                    <td>&#2547;6300</td>
-                  </tr>
-                  <tr>
-                    <td>Headphones & MICs</td>
-                    <td>Audionic MIC AM-20</td>
-
-                    <td>&#2547;2100</td>
-                    <td>&#2547;6300</td>
-                  </tr>
-                  <tr>
-                    <td>Headphones & MICs</td>
-                    <td>Audionic MIC AM-20</td>
-
-                    <td>&#2547;2100</td>
-                    <td>Due</td>
-                  </tr>
-                  <tr>
-                    <td>Headphones & MICs</td>
-                    <td>Audionic MIC AM-20</td>
-
-                    <td>&#2547;2100</td>
-                    <td>&#2547;6300</td>
-                  </tr>
-                  <tr>
-                    <td>Headphones & MICs</td>
-                    <td>Audionic MIC AM-20</td>
-
-                    <td>&#2547;2100</td>
-                    <td>&#2547;6300</td>
-                  </tr>
-                  <tr>
-                    <td>Headphones & MICs</td>
-                    <td>Audionic MIC AM-20</td>
-
-                    <td>&#2547;2100</td>
-                    <td>Due</td>
-                  </tr>
-                  <tr>
-                    <td>Headphones & MICs</td>
-                    <td>Audionic MIC AM-20</td>
-
-                    <td>&#2547;2100</td>
-                    <td>&#2547;6300</td>
-                  </tr>
-                  <tr>
-                    <td>Headphones & MICs</td>
-                    <td>Audionic MIC AM-20</td>
-
-                    <td>&#2547;2100</td>
-                    <td>&#2547;6300</td>
-                  </tr>
-                  <tr>
-                    <td>Headphones & MICs</td>
-                    <td>Audionic MIC AM-20</td>
-
-                    <td>&#2547;2100</td>
-                    <td>Due</td>
-                  </tr>
-                  <tr>
-                    <td>Headphones & MICs</td>
-                    <td>Audionic MIC AM-20</td>
-
-                    <td>&#2547;2100</td>
-                    <td>&#2547;6300</td>
-                  </tr>
-                  <tr>
-                    <td>Headphones & MICs</td>
-                    <td>Audionic MIC AM-20</td>
-
-                    <td>&#2547;2100</td>
-                    <td>Due</td>
-                  </tr>
-                  <tr>
-                    <td>Headphones & MICs</td>
-                    <td>Audionic MIC AM-20</td>
-
-                    <td>&#2547;2100</td>
-                    <td>Due</td>
-                  </tr>
-                  <tr>
-                    <td>Headphones & MICs</td>
-                    <td>Audionic MIC AM-20</td>
-
-                    <td>&#2547;2100</td>
-                    <td>Due</td>
-                  </tr>
-                  <tr>
-                    <td>Headphones & MICs</td>
-                    <td>Audionic MIC AM-20</td>
-
-                    <td>&#2547;2100</td>
-                    <td>&#2547;6300</td>
-                  </tr>
-                  <tr>
-                    <td>Headphones & MICs</td>
-                    <td>Audionic MIC AM-20</td>
-
-                    <td>&#2547;2100</td>
-                    <td>&#2547;6300</td>
-                  </tr>
-                  <tr>
-                    <td>Headphones & MICs</td>
-                    <td>Audionic MIC AM-20</td>
-
-                    <td>&#2547;2100</td>
-                    <td>&#2547;6300</td>
-                  </tr>
-                  <tr>
-                    <td>Headphones & MICs</td>
-                    <td>Audionic MIC AM-20</td>
-
-                    <td>&#2547;2100</td>
-                    <td>&#2547;6300</td>
-                  </tr>
-                  <tr>
-                    <td>Headphones & MICs</td>
-                    <td>Audionic MIC AM-20</td>
-
-                    <td>&#2547;2100</td>
-                    <td>&#2547;6300</td>
-                  </tr>
-                  <tr>
-                    <td>Headphones & MICs</td>
-                    <td>Audionic MIC AM-20</td>
-
-                    <td>&#2547;2100</td>
-                    <td>&#2547;6300</td>
-                  </tr>
+                  <%});%>
                 </tbody>
               </table>
             </div>
@@ -217,7 +58,56 @@
         </div>
       </div>
     </div>
+     <!-- Floating Button -->
+     <button
+     type="button"
+     class="btn calendar-btn"
+     data-bs-toggle="modal"
+     data-bs-target="#exampleModal"
+   >
+     <i class="fas fa-calendar-alt calendar-icon"></i>
+   </button>
 
-    <%- include('../template/modals')-%> <%- include('../template/footer')-%>
+   <div
+     class="modal fade"
+     id="exampleModal"
+     tabindex="-1"
+     aria-labelledby="exampleModalLabel"
+     aria-hidden="true"
+   >
+     <div class="modal-dialog">
+       <div class="modal-content">
+         <div class="calendar">
+           <div class="calendar-header">
+             <span class="month-picker" id="month-picker">February</span>
+             <div class="year-picker">
+               <span class="year-change" id="prev-year">
+                 <pre><</pre>
+               </span>
+               <span id="year">2021</span>
+               <span class="year-change" id="next-year">
+                 <pre>></pre>
+               </span>
+             </div>
+           </div>
+           <div class="calendar-body">
+             <div class="calendar-week-day">
+               <div>Sun</div>
+               <div>Mon</div>
+               <div>Tue</div>
+               <div>Wed</div>
+               <div>Thu</div>
+               <div>Fri</div>
+               <div>Sat</div>
+             </div>
+             <div class="calendar-days"></div>
+           </div>
+           <div class="month-list"></div>
+         </div>
+       </div>
+     </div>
+   </div>
+
+    <%- include('../template/footer')-%>
   </body>
 </html>
