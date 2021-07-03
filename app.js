@@ -69,7 +69,13 @@ app.use("/addexpense", addexpense);
 const topselling = require("./app/router/topsellingRouter");
 app.use("/topselling", topselling);
 
-// const addproducttype = require("./app/router/addproductTypeRouter");
-// app.use("/addproducttype", addproducttype);
+const chart = require("./app/router/chartrouter");
+app.use("/chart", chart);
+
+const shortitems = require("./app/router/shortitemsRouter");
+app.use("/shortitems", shortitems);
+
+const todaysales = require("./app/router/todaysalesRouter");
+app.use("/todaysales", todaysales);
 
 module.exports = app;

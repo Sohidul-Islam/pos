@@ -176,7 +176,7 @@ body {
 }
 
 .customercard {
-  max-height: 435px;
+  max-height: 535px;
   overflow-y: scroll;
   overflow-x: none;
 }

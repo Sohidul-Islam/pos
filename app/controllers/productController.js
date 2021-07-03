@@ -27,10 +27,17 @@ exports.allproducts = (req, res) => {
         message: err.message || "Some error occured in allproducts function",
       });
     } else {
-      let count = data[1][0];
       let top = data[0];
+      let count = data[1][0];
       let due = data[2];
       let topselling = data[3].length;
+      let stock = data[4].length;
+      let totalsaels = data[5];
+      let todaysales = 0;
+      for (let i = 0; i < totalsaels.length; i++) {
+        todaysales = todaysales + totalsaels[i].total;
+      }
+
       console.log("Topselling length", topselling);
       for (let i = 0; i < due.length; i++) {
         due[i].paytime = handleDate(due[i].paytime);
@@ -42,6 +49,8 @@ exports.allproducts = (req, res) => {
         count: count,
         due: due,
         topselling: topselling,
+        stock: stock,
+        todaysales: todaysales,
       });
     }
   });

@@ -72,3 +72,16 @@ select product.pid,prod_n,prod_type,brand_n,stock,selling_p,(stock*selling_p) as
     where product.pid = sales.pid and product.prodid = prodtype.prodid and product.brandid = brand.brandid and 1 >= all (SELECT WEEK(date(now()))-WEEK(sales.date) from sales) or 0>all 
     (SELECT WEEK(date(now()))-WEEK(sales.date) from sales) order by qty desc
    ;
+   
+   SELECT WEEK(date(now()))-WEEK(sales.date) from sales;
+   
+   
+   #short items
+   select prod_n,prod_type,stock,selling_p, stock*selling_p as worth from product join prodtype join brand
+   on product.prodid = prodtype.prodid and product.brandid = brand.brandid
+   where product.stock <=10;
+   
+      select prod_n,prod_type,qty,selling_p, qty*selling_p as total,date from product join prodtype join brand join sales
+   on sales.pid =product.pid and product.prodid = prodtype.prodid and product.brandid = brand.brandid
+   where sales.date = CURDATE();
+

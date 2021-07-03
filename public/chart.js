@@ -1,5 +1,5 @@
-let myChart1 = document.getElementById("myChart1").getContext("2d");
-let myChart2 = document.getElementById("myChart2").getContext("2d");
+var myChart1 = document.getElementById("myChart1").getContext("2d");
+var myChart2 = document.getElementById("myChart2").getContext("2d");
 // let myChart3 = document.getElementById("myChart3").getContext("2d");
 // let myChart4 = document.getElementById("myChart4").getContext("2d");
 // Global Options
@@ -7,7 +7,7 @@ Chart.defaults.global.defaultFontFamily = "Lato";
 Chart.defaults.global.defaultFontSize = 18;
 Chart.defaults.global.defaultFontColor = "#777";
 
-let massPopChart1 = new Chart(myChart1, {
+var massPopChart1 = new Chart(myChart1, {
   type: "bar", // bar, horizontalBar, pie, line, doughnut, radar, polarArea
   data: {
     labels: ["1st week", "2nd week", "3rd week", "4th weeek"],
@@ -65,7 +65,7 @@ let massPopChart1 = new Chart(myChart1, {
   },
 });
 
-let massPopChart2 = new Chart(myChart2, {
+var massPopChart2 = new Chart(myChart2, {
   type: "bar", // bar, horizontalBar, pie, line, doughnut, radar, polarArea
   data: {
     labels: ["1st week", "2nd week", "3rd week", "4th weeek"],
