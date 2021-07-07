@@ -15,7 +15,7 @@ const Products = function (product) {
 //4 query : count top selling products
 Products.getAll = (result) => {
   sql.query(
-    `select productname,address,phone,(qty*price) as total from sales where status<>'Due' order by qty*price desc; 
+    `select customername,address,phone,(qty*price) as total from sales where status<>'Due' order by qty*price desc; 
     
     select prod_n,prod_type,qty,qty*sales.price as total,status,issuetime from sales,product,prodtype,brand 
     where product.pid = sales.pid and product.prodid = prodtype.prodid and product.brandid = brand.brandid;
@@ -40,7 +40,7 @@ Products.getAll = (result) => {
     (err, res) => {
       if (err) {
         console.log("error: ", err);
-        result(null, err);
+        result(err, null);
         return;
       }
 
