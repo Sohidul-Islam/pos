@@ -21,7 +21,7 @@
             </ol>
             <!-- Page Content -->
             <!-- DataTables Example -->
-            <div class="mx-4 overflow-hidden">
+            <div class="overflow-hidden">
               <!-- DataTables Example -->
               <div class="card mb-3">
                 <div class="card-header primary-background text-white">
@@ -57,7 +57,9 @@
                           <th>stock</th>
                           <th>Price/item</th>
                           <th>Total</th>
+
                           <th>Status</th>
+                          <th>Payment Date</th>
                           <th>Profit</th>
                         </tr>
                       </thead>
@@ -71,7 +73,9 @@
                           <th>stock</th>
                           <th>Price/item</th>
                           <th>Total</th>
+
                           <th>Status</th>
+                          <th>Payment Date</th>
                           <th>Profit</th>
                         </tr>
                       </tfoot>
@@ -92,7 +96,13 @@
                           <%}%>
                           <td>&#2547;<%=entry.price%></td>
                           <td>&#2547;<%=entry.total%></td>
+
                           <td class="text-primary"><%=entry.status%></td>
+                          <%if(entry.status=="Payment"){%>
+                          <td class="text-primary"><%=entry.date%></td>
+                          <%} else{%>
+                          <td class="text-danger"><%=entry.date%></td>
+                          <%}%>
                           <td class="text-primary"><%=entry.profit%></td>
                         </tr>
                         <%});%>

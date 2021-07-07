@@ -57,6 +57,7 @@ foreign key(pid) references product(pid),
 foreign key(customerid) references customers(customerid)
 );
 
+
 create table sales(
 salesid int auto_increment,
 customername varchar(100),

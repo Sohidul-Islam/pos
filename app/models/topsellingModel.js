@@ -11,9 +11,8 @@ const topselling = function (payment) {
 };
 topselling.topselling = (result) => {
   sql.query(
-    `select prod_n,prod_type,sum(qty) as qty,selling_p,status from sales,product,prodtype,brand 
-    where product.pid = sales.pid and product.prodid = prodtype.prodid and product.brandid = brand.brandid and 1 >= all (SELECT WEEK(date(now()))-WEEK(sales.date) from sales) or 0>all 
-    (SELECT WEEK(date(now()))-WEEK(sales.date) from sales)  group by prod_n order by qty desc
+    `select prod_n,prod_type,sum(qty) as qty,selling_p,status,issuetime from sales,product,prodtype,brand 
+    where product.pid = sales.pid and product.prodid = prodtype.prodid and product.brandid = brand.brandid group by prod_n order by qty desc
    ;`,
     (err, res) => {
       if (err) {

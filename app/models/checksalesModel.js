@@ -13,7 +13,7 @@ const checksales = function (payment) {
 checksales.checkallsales = (result) => {
   sql.query(
     `select salesid,prod_n,customername,prod_type,brand_n,sales.qty,product.stock,price,(price*qty)as total, 
-    qty*(price-cost_p) as profit,status from product,sales,brand,prodtype
+    qty*(price-cost_p) as profit,issuetime,status,date from product,sales,brand,prodtype
     where product.pid = sales.pid and product.brandid= brand.brandid and product.prodid = prodtype.prodid`,
     (err, res) => {
       if (err) {

@@ -29,11 +29,9 @@
                 
                   </div>
                   <div class="card-body">
-                    <form class="d-flex">
-                      <input id="myInput" onkeyup="myFunction()" class="form-control my-2" type="search" placeholder="Search for brand" aria-label="Search">
-                    </form>
+                   
                     <div class="table-responsive">
-                      <table id="myTable" class="table table-striped table-hover table-bordered" id="dataTable" width="100%" cellspacing="0">
+                      <table id="example" class="table table-striped table-hover" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                           <tr>
                             <th>PID</th>
@@ -42,9 +40,10 @@
                             <th>Brand</th>
                             <th>In-stock</th>
                             <th>Cost/item</th>
+                            <th>Price/item</th>
                             <th>Inventory Worth</th>
-                            <th>Revenue Generated</th>
                             <th>Vendor</th>
+                            <th> </th>
                           </tr>
                         </thead>
                         <tfoot>
@@ -55,89 +54,28 @@
                             <th>Brand</th>
                             <th>In-stock</th>
                             <th>Cost/item</th>
+                            <th>Price/item</th>
                             <th>Inventory Worth</th>
-                            <th>Revenue Generated</th>
                             <th>Vendor</th>
+                            <th> </th>
                           </tr>
                         </tfoot>
                         <tbody>
+                          <%data.forEach((entry)=>{%>
                           <tr>
-                            <td>054681</td>
-                            <td>A4-Tech Mouse M60</td>
-                            <td>Mouse &amp; Pointing Devices</td>
-                            <td>A4-Tech</td>
-                            <td>6</td>
-                            <td>&#2547;840</td>
-                            <td>&#2547;5040</td>
-                            <td>&#2547;1370</td>
-                            <td>Anees Ahmad</td>
+                            <td><%=entry.pid%></td>
+                            <td><%=entry.prod_n%></td>
+                            <td><%=entry.prod_type%></td>
+                            <td><%=entry.brand_n%></td>
+                            <td><%=entry.stock%></td>
+                            <td>&#2547;<%=entry.cost_p%></td>
+                            <td>&#2547;<%=entry.selling_p%></td>
+                            <td>&#2547;<%=entry.worth%></td>
+                            <td><%=entry.v_name%></td>
+                            <td><span class="btn-group "><a class="btn btn-outline-success" href="/products/edit/<%=entry.pid%>"><i class="fas fa-edit"></i></a><a class="btn btn-outline-danger" href=""><i class="fas fa-trash-alt"></i></a></span></td>
                           </tr>
-                          <tr>
-                            <td>054681</td>
-                            <td>A4-Tech Mouse M60</td>
-                            <td>Mouse &amp; Pointing Devices</td>
-                            <td>A4-Tech</td>
-                            <td>6</td>
-                            <td>&#2547;840</td>
-                            <td>&#2547;5040</td>
-                            <td>&#2547;1370</td>
-                            <td>Anees Ahmad</td>
-                          </tr>
-                          <tr>
-                            <td>054681</td>
-                            <td>A4-Tech Mouse M60</td>
-                            <td>Mouse &amp; Pointing Devices</td>
-                            <td>A4-Tech</td>
-                            <td>6</td>
-                            <td>&#2547;840</td>
-                            <td>&#2547;5040</td>
-                            <td>&#2547;1370</td>
-                            <td>Anees Ahmad</td>
-                          </tr>
-                          <tr>
-                            <td>054681</td>
-                            <td>Asus Z490 prime plus</td>
-                            <td>Mohterboard</td>
-                            <td>A4-Tech</td>
-                            <td>6</td>
-                            <td>&#2547;840</td>
-                            <td>&#2547;5040</td>
-                            <td>&#2547;1370</td>
-                            <td>Anees Ahmad</td>
-                          </tr>
-                          <tr>
-                            <td>054681</td>
-                            <td>A4-Tech Mouse M60</td>
-                            <td>Mouse &amp; Pointing Devices</td>
-                            <td>A4-Tech</td>
-                            <td>6</td>
-                            <td>&#2547;840</td>
-                            <td>&#2547;5040</td>
-                            <td>&#2547;1370</td>
-                            <td>Anees Ahmad</td>
-                          </tr>
-                          <tr>
-                            <td>054681</td>
-                            <td>A4-Tech Mouse M60</td>
-                            <td>Mouse &amp; Pointing Devices</td>
-                            <td>A4-Tech</td>
-                            <td>6</td>
-                            <td>&#2547;840</td>
-                            <td>&#2547;5040</td>
-                            <td>&#2547;1370</td>
-                            <td>Anees Ahmad</td>
-                          </tr>
-                          <tr>
-                            <td>054681</td>
-                            <td>A4-Tech Mouse M60</td>
-                            <td>Mouse &amp; Pointing Devices</td>
-                            <td>A4-Tech</td>
-                            <td>6</td>
-                            <td>&#2547;840</td>
-                            <td>&#2547;5040</td>
-                            <td>&#2547;1370</td>
-                            <td>Anees Ahmad</td>
-                          </tr>
+                          <%})%>
+                          
                         </tbody>
                       </table>
                     </div>
@@ -203,5 +141,4 @@
       </div>
     </div>
 
-    <%- include('../template/modals')-%>
     <%- include('../template/footer')-%>

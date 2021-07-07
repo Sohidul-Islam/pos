@@ -78,4 +78,7 @@ app.use("/shortitems", shortitems);
 const todaysales = require("./app/router/todaysalesRouter");
 app.use("/todaysales", todaysales);
 
+const productlist = require("./app/router/productlistRouter");
+app.use("/products", productlist);
+
 module.exports = app;

@@ -5,6 +5,11 @@ select * from expense;
 select * from vendors;
 select * from due;
 
+truncate table due;
+truncate table sales;
+truncate table expense;
+truncate table customers;
+
 delete from due
 where dueid = 1;
 
@@ -73,8 +78,18 @@ select product.pid,prod_n,prod_type,brand_n,stock,selling_p,(stock*selling_p) as
     (SELECT WEEK(date(now()))-WEEK(sales.date) from sales) order by qty desc
    ;
    
-   SELECT WEEK(date(now()))-WEEK(sales.date) from sales;
+   SELECT abs(WEEK(date(now()))-WEEK('2021-06-08'));
+   SELECT abs(WEEK(date(now()))-WEEK('2021-06-16'));
+   SELECT abs(WEEK(date(now()))-WEEK('2021-06-23'));
+   SELECT abs(WEEK(date(now()))-WEEK('2021-06-24'));
    
+   
+   #last week data.
+   select prod_n,prod_type,qty,qty*sales.price as total,status from sales,product,prodtype,brand 
+    where product.pid = sales.pid and product.prodid = prodtype.prodid and product.brandid = brand.brandid and
+    1 >= all (SELECT abs(WEEK(date(now()))-WEEK(sales.issuetime)) from sales);
+   
+   SELECT abs(WEEK(date(now()))-WEEK(sales.issuetime)) from sales;
    
    #short items
    select prod_n,prod_type,stock,selling_p, stock*selling_p as worth from product join prodtype join brand
@@ -85,3 +100,24 @@ select product.pid,prod_n,prod_type,brand_n,stock,selling_p,(stock*selling_p) as
    on sales.pid =product.pid and product.prodid = prodtype.prodid and product.brandid = brand.brandid
    where sales.date = CURDATE();
 
+select prod_n,prod_type,qty,qty*sales.price as total,status from sales,product,prodtype,brand 
+    where product.pid = sales.pid and product.prodid = prodtype.prodid and product.brandid = brand.brandid and 1 >= all (SELECT abs(WEEK(date(now()))-WEEK(sales.issuetime)) from sales);
+    
+    select count(salesid) as salescount from sales,product,prodtype,brand 
+    where product.pid = sales.pid and product.prodid = prodtype.prodid and product.brandid = brand.brandid and 1 >= all (SELECT abs(WEEK(date(now()))-WEEK(sales.issuetime)) from sales);
+    
+    select prod_n,prod_type,qty,selling_p, qty*selling_p as total,date from product join prodtype join brand join sales
+   on sales.pid =product.pid and product.prodid = prodtype.prodid and product.brandid = brand.brandid
+   where sales.date = CURDATE();
+   
+select sum(qty*(price-product.cost_p)) as profit,issuetime from sales,product where sales.pid = product.pid group by issuetime;
+
+select pid,prod_n,prod_type,brand_n,stock,cost_p,selling_p
+from product,prodtype,brand
+where product.prodid = prodtype.prodid and product.brandid = brand.brandid;
+
+select pid,product.prodid,prod_type,prod_n,product.brandid,brand_n,product.vendorid,v_name from product,prodtype,brand,vendors 
+where  product.brandid = brand.brandid and product.prodid = prodtype.prodid and product.vendorid = vendors.vendorid and pid = 2;
+
+select pid,product.prodid,prod_type,prod_n,product.brandid,brand_n,product.vendorid,v_name,stock,cost_p,selling_p,des from product,prodtype,brand,vendors 
+    where  product.brandid = brand.brandid and product.prodid = prodtype.prodid and product.vendorid = vendors.vendorid and pid = 2;

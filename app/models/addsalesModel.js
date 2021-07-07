@@ -1,4 +1,7 @@
 const sql = require("./db");
+
+var curdate = new Date();
+
 const addsales = function (product) {
   this.pid = product.pid;
   this.price = product.price;
@@ -8,6 +11,8 @@ const addsales = function (product) {
   this.status = product.status;
   this.phone = product.phone;
   this.date = product.date;
+  // this.date = handleDate(curdate);
+  this.issuetime = handleDate(curdate);
   this.qty = product.qty;
 };
 
@@ -41,8 +46,8 @@ addsales.createsales = (newproduct, result) => {
             return;
           } else {
             sql.query(
-              `INSERT INTO Customers (name, address, phone)
-            SELECT customername,address,phone FROM sales ORDER BY salesid DESC LIMIT 1;SELECT * FROM customers`,
+              `INSERT INTO Customers (customerid,name, address, phone)
+            SELECT salesid,customername,address,phone FROM sales ORDER BY salesid DESC LIMIT 1;SELECT * FROM customers`,
               (err, res) => {
                 if (err) {
                   console.log("error: ", err);
@@ -51,7 +56,7 @@ addsales.createsales = (newproduct, result) => {
                 } else {
                   sql.query(
                     `insert into expense(t_type,des,account,date,price)
-                  select "Income",CONCAT(product.prod_n, ' sold'),customername,date,qty*price
+                  select "Income",CONCAT(product.prod_n, ' sold'),customername,issuetime,qty*price
                   from sales,product
                   where product.pid = sales.pid and status = "Payment"
                   order by salesid desc limit 1`,
@@ -62,8 +67,8 @@ addsales.createsales = (newproduct, result) => {
                         return;
                       } else {
                         sql.query(
-                          `insert into due(name,address,phone,due,paytime)
-                          select customername,address,phone,price*qty,date
+                          `insert into due(dueid,name,address,phone,due,issuetime,paytime)
+                          select salesid,customername,address,phone,price*qty,issuetime,date
                           from sales,product
                           where product.pid = sales.pid and status = "Due"
                           order by salesid desc limit 1;`,
@@ -91,4 +96,14 @@ addsales.createsales = (newproduct, result) => {
     result(null, { id: res.insertId, ...newproduct });
   });
 };
+
+const handleDate = (dataD) => {
+  let data = new Date(dataD);
+  let month = data.getMonth() + 1;
+  let day = data.getDate();
+  let year = data.getFullYear();
+  const postDate = year + "-" + month + "-" + day;
+  return postDate;
+};
+
 module.exports = addsales;

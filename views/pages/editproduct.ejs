@@ -1,0 +1,268 @@
+<%- include('../template/head')-%>
+
+<body>
+  <!-- dividing 1 rows nad 2 columns -->
+  <div class="content-box">
+    <!-- this is for menubar -->
+    <%- include('../template/sidebar')-%>
+    <!-- this is for contents -->
+    <div class="maincontentbox d-inline-block mx-auto">
+      <%- include('../template/menubar')-%>
+      <!-- Selling overview -->
+      <div class="mx-4 overflow-hidden">
+        <div id="content-wrapper">
+          <div class="container-fluid">
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="/">Home</a>
+              </li>
+              <li class="breadcrumb-item active">Add Products</li>
+            </ol>
+            <!-- Page Content -->
+            <!-- DataTables Example -->
+
+            <div class="card mb-3">
+              <div class="card-header primary-background text-white">
+                <i class="fa fa-table"></i>
+                Add Products
+
+                <a
+                  type="button"
+                  class="text-white float-end text-decoration-none"
+                  role="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#addProductModal"
+                >
+                  <span class="float-end">
+                    <i class="fa fa-plus"></i>
+                    Add New Product
+                  </span>
+                </a>
+              </div>
+              <div class="card-body">
+                <form method="POST">
+                  <div class="">
+                    <div class="form-group mb-4">
+                      <label class="text-dark">Product Type</label>
+                      <select
+                        class="form-control text-primary"
+                        name="prodid"
+                        required
+                      >
+                        <option disabled>
+                          <sub>Please select a product type</sub>
+                        </option>
+
+                        <option value="<%= data.prodid%>" selected>
+                          <%= data.prod_type%>
+                        </option>
+                      </select>
+                      <small class="float-end text-dark fs-6"
+                        >Product type not listed here?
+                        <a href="/addproducttype">Add new</a>
+                      </small>
+                    </div>
+                    <div class="form-group mb-4">
+                      <label class="text-dark">Product Brand</label>
+                      <select
+                        class="form-control text-primary"
+                        name="brandid"
+                        required
+                      >
+                        <option disabled>
+                          <sub>Please select a product brand</sub>
+                        </option>
+
+                        <option value=" <%= data.brandid%>" selected>
+                          <%= data.brand_n%>
+                        </option>
+                      </select>
+                      <small class="float-end text-dark fs-6"
+                        >Products brand not listed here?
+                        <a href="/addbrand">Add new</a>
+                      </small>
+                    </div>
+                    <div class="form-group mb-4">
+                      <label class="text-dark">Product Vendor</label>
+                      <select
+                        class="form-control text-primary"
+                        name="vendorid"
+                        required
+                      >
+                        <option disabled>
+                          <sub>Please select a product vendor</sub>
+                        </option>
+
+                        <option value="<%= data.vendorid %>" selected>
+                          <%= data.v_name %>
+                        </option>
+                      </select>
+                      <small class="float-end text-dark fs-6"
+                        >Product vendor not listed here?
+                        <a href="/addvendors">Add new</a>
+                      </small>
+                    </div>
+                    <div class="form-group mb-4">
+                      <label class="text-dark" for="">Product Name</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="prod_n"
+                        value="<%= data.prod_n %>"
+                        placeholder="Enter product name..."
+                        required
+                      />
+                      <small
+                        class="text-muted text-aling-left"
+                        style="font-size: 12px"
+                        >Be more specific with product names. Make sure its
+                        unique.</small
+                      >
+                    </div>
+                    <div class="form-group">
+                      <label class="text-dark text-aling-left" for=""
+                        >Cost Price
+                        <small class="text-muted">(cost/item)</small>
+                      </label>
+                      <input
+                        type="number"
+                        class="form-control"
+                        name="cost_p"
+                        value="<%= data.cost_p %>"
+                        placeholder="Enter cost of product per item..."
+                        required
+                      />
+                    </div>
+                    <div class="form-group my-4">
+                      <label class="text-dark text-aling-left" for=""
+                        >Selling Price
+                        <small class="text-muted">(price/item)</small>
+                      </label>
+                      <input
+                        type="number"
+                        class="form-control"
+                        name="selling_p"
+                        value="<%= data.selling_p %>"
+                        placeholder="Enter selling of product per item..."
+                        required
+                      />
+                    </div>
+                    <div class="form-group mb-4">
+                      <label for=""
+                        >Product Stock
+                        <small
+                          >(How many products are you adding in stock?)</small
+                        >
+                      </label>
+                      <input
+                        type="number"
+                        class="form-control"
+                        name="stock"
+                        value="<%= data.stock %>"
+                        required
+                      />
+                      <small
+                        class="text-muted text-aling-left"
+                        style="font-size: 12px"
+                        >This will be used as product quantity in stock keeping
+                        unit.</small
+                      >
+                    </div>
+
+                    <br />
+                    <div class="form-group mb-4">
+                      <label class="text-dark" for=""
+                        >Description
+                        <small class="text-muted">(Optional)</small></label
+                      >
+                      <textarea
+                        name="des"
+                        class="form-control"
+                        cols="100"
+                        height="500"
+                        value="<%=data.des%>"
+                      ></textarea>
+                    </div>
+                    <small class="text-muted"
+                      ><em
+                        >Please double check information before submitting.</em
+                      ></small
+                    >
+                  </div>
+                  <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button">
+                      Cancel
+                    </button>
+                    <input
+                      type="submit"
+                      class="btn btnprimary text-white"
+                      value="Add Product"
+                    />
+                  </div>
+                </form>
+              </div>
+              <div class="card-footer small text-muted">
+                Updated yesterday at 11:59 PM
+              </div>
+            </div>
+          </div>
+          <br /><br /><br />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Button -->
+  <button
+    type="button"
+    class="btn calendar-btn"
+    data-bs-toggle="modal"
+    data-bs-target="#exampleModal"
+  >
+    <i class="fas fa-calendar-alt calendar-icon"></i>
+  </button>
+
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="calendar">
+          <div class="calendar-header">
+            <span class="month-picker" id="month-picker">February</span>
+            <div class="year-picker">
+              <span class="year-change" id="prev-year">
+                <pre><</pre>
+              </span>
+              <span id="year">2021</span>
+              <span class="year-change" id="next-year">
+                <pre>></pre>
+              </span>
+            </div>
+          </div>
+          <div class="calendar-body">
+            <div class="calendar-week-day">
+              <div>Sun</div>
+              <div>Mon</div>
+              <div>Tue</div>
+              <div>Wed</div>
+              <div>Thu</div>
+              <div>Fri</div>
+              <div>Sat</div>
+            </div>
+            <div class="calendar-days"></div>
+          </div>
+
+          <div class="month-list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%- include('../template/footer')-%>
+</body>

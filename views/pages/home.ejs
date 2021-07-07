@@ -27,7 +27,7 @@
                 </div>
                 <div class="card-body">
                   <h5 class="card-title card-duration">Last week</h5>
-                  <h6 class="card-text card-result"><strong><%=count.salescount%></strong></h6>
+                  <h6 class="card-text card-result"><strong><%=count%></strong></h6>
                   <a class="btn btnprimary" href="/salescount" role="">view details</a>
                 </div>
               </div>
@@ -108,6 +108,40 @@
                 <div class="card-header primary-background">
                   <h4 class="text-light">Top Customers</h4>
                 </div>
+                <%if(top.length==0){%>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-2">
+                        <div class="customers--profile-imgbox">
+                          <div class="customers--profile-imgbox_container">
+                            <img
+                              class="customers--profile-imgbox_container_content"
+                              src="/assets/profile.png"
+                              alt=""
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-10">
+                        <div class="customer-infobox">
+                          <div class="customer-name">
+                            <h4>Lorem Ipsum</h4>
+                           
+                          </div>
+                          <div class="customer-loc">
+                            <strong
+                              ><i class="fas fa-location-arrow"></i
+                              >Location</strong
+                            >
+                          </div>
+                        </div>
+                        <div class="customer-saling-info">
+                          <p>&#2547;####</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <%} else{%>
                 <%for(let i = 0 ; i< top.length ; i++){%>
                   <%if(i<5){%>
                   <div class="card-body">
@@ -145,6 +179,7 @@
                 <div class="customer-divider"></div>
                 <%}%>
                 <%}%>
+                <%}%>
       
               </div>
             </div>
@@ -154,42 +189,78 @@
                 <div class="card-header primary-background">
                   <h4 class="text-white">Customers Dues</h4>
                 </div>
-                <%for(let i = 0 ; i< due.length ; i++){%>
-                 
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-2">
-                      <div class="customers--profile-imgbox">
-                        <div class="customers--profile-imgbox_container">
-                          <img
-                            class="customers--profile-imgbox_container_content"
-                            src="/assets/profile.png"
-                            alt=""
-                          />
+                <%if(due.length==0){%>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-2">
+                        <div class="customers--profile-imgbox">
+                          <div class="customers--profile-imgbox_container">
+                            <img
+                              class="customers--profile-imgbox_container_content"
+                              src="/assets/profile.png"
+                              alt=""
+                            />
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="col-10">
-                      <div class="customer-infobox">
-                        <div class="customer-name">
-                          <h4><%=due[i].name%></h4>
+                      <div class="col-10">
+                        <div class="customer-infobox">
+                          <div class="customer-name">
+                            <h4>Lorem Ipsum</h4>
+                          </div>
+                          <div class="customer-loc">
+                            <strong
+                              ><i class="fas fa-location-arrow"></i
+                              >Location</strong
+                            >
+                          </div>
                         </div>
-                        <div class="customer-loc">
-                          <strong
-                            ><i class="fas fa-location-arrow"></i
-                            ><%=due[i].address%></strong
-                          >
+                        <div class="customer-saling-info">
+                          <p>&#2547;####</p>
+                          <h6 class="payment-date">day-month-year</h6>
                         </div>
-                      </div>
-                      <div class="customer-saling-info">
-                        <p>&#2547;<%=due[i].due%></p>
-                        <h6 class="payment-date"><%=due[i].paytime%></h6>
                       </div>
                     </div>
                   </div>
-                </div>
+                  <%} else{%>
+                      <%for(let i = 0 ; i< due.length ; i++){%>
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col-2">
+                              <div class="customers--profile-imgbox">
+                                <div class="customers--profile-imgbox_container">
+                                  <img
+                                    class="customers--profile-imgbox_container_content"
+                                    src="/assets/profile.png"
+                                    alt=""
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-10">
+                              <div class="customer-infobox">
+                                <div class="customer-name">
+                                  <h4><%=due[i].name%></h4>
+                                </div>
+                                <div class="customer-loc">
+                                  <strong
+                                    ><i class="fas fa-location-arrow"></i
+                                    ><%=due[i].address%></strong
+                                  >
+                                </div>
+                              </div>
+                              <div class="customer-saling-info">
+                                <p>&#2547;<%=due[i].due%></p>
+                                <h6 class="payment-date"><%=due[i].paytime%></h6>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <%}%>
+                      
+               <%}%>
          
-                <%}%>
+                
                 <div class="customer-divider"></div>
               </div>
             </div>
@@ -273,4 +344,88 @@
 
       
     </div>
+    <div id="mydiv" style="display: none;"><%= salesChart %></div>
+    <div id="mydiv2" style="display: none;"><%= profitChart %></div>
+ 
     <%- include('../template/footer')-%>
+  
+    <script>
+     var myChart1 = document.getElementById("myChart1").getContext("2d");
+var myChart2 = document.getElementById("myChart2").getContext("2d");
+
+Chart.defaults.global.defaultFontFamily = "comfortaa";
+Chart.defaults.global.defaultFontSize = 18;
+Chart.defaults.global.defaultFontColor = "#777";
+
+
+var result = document.getElementById('mydiv').innerText;
+result = result.split(",")
+result = result.map(i=>Number(i));
+
+var result2 = document.getElementById('mydiv2').innerText;
+result2 = result2.split(",")
+result2 = result2.map(i=>Number(i));
+
+var head = "Sales:(৳)";
+var head2 = "Profit:(৳)";
+var txt1 = "Sales Report of the week";
+var txt2 = "Profit Report of the week";
+var lbl = ["1st week", "2nd week", "3rd week", "4th weeek"];
+var cf = (ID, head,txt, result, label) => {
+  var newChart = new Chart(ID, {
+    type: "bar", // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+    data: {
+      labels: label,
+      datasets: [
+        {
+          label: head,
+          data: result,
+          //backgroundColor:'green',
+          backgroundColor: [
+            "rgba(40, 75, 99, 0.9)",
+            "rgba(152, 193, 217, 0.9)",
+            "rgba(40, 75, 99, 0.9)",
+            "rgba(152, 193, 217, 0.9)",
+            "rgba(40, 75, 99, 0.9)",
+            "rgba(152, 193, 217, 0.9)",
+            "rgba(40, 75, 99, 0.9)",
+          ],
+          borderWidth: 1,
+          borderColor: "#777",
+          hoverBorderWidth: 3,
+          hoverBorderColor: "#000",
+        },
+      ],
+    },
+    options: {
+      title: {
+        display: true,
+        text: txt,
+        fontSize: 20,
+      },
+      legend: {
+        display: true,
+        position: "right",
+        labels: {
+          fontColor: "#000",
+        },
+      },
+      layout: {
+        padding: {
+          left: 50,
+          right: 0,
+          bottom: 0,
+          top: 0,
+        },
+      },
+      tooltips: {
+        enabled: true,
+      },
+    },
+  });
+};
+
+var massPopChart3 = cf(myChart1, head,txt1, result, lbl);
+var massPopChart1 = cf(myChart2, head2,txt2, result2, lbl);
+
+          </script>
