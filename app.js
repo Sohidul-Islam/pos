@@ -24,8 +24,8 @@ app.set("view engine", "ejs");
 app.use(express.static("./public"));
 //here store our css/javascript and other static files.
 
-const router = require("./app/router/productRouter");
-app.use("/", router);
+const home = require("./app/router/productRouter");
+app.use("/", home);
 
 const inventory = require("./app/router/inventoryreport");
 app.use("/inventoryreport", inventory);
@@ -69,9 +69,6 @@ app.use("/addexpense", addexpense);
 const topselling = require("./app/router/topsellingRouter");
 app.use("/topselling", topselling);
 
-const chart = require("./app/router/chartrouter");
-app.use("/chart", chart);
-
 const shortitems = require("./app/router/shortitemsRouter");
 app.use("/shortitems", shortitems);
 
@@ -80,5 +77,10 @@ app.use("/todaysales", todaysales);
 
 const productlist = require("./app/router/productlistRouter");
 app.use("/products", productlist);
+
+const productType = require("./app/router/productType");
+app.use("/product-types", productType);
+
+// main().catch(console.error);
 
 module.exports = app;

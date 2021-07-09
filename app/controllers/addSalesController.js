@@ -31,7 +31,7 @@ exports.createsales = (req, res) => {
     pid: req.body.pid,
     customername: req.body.customername,
     address: req.body.address,
-    phone: req.body.phone,
+    email: req.body.email,
     qty: req.body.qty,
     status: req.body.status,
     price: req.body.price,

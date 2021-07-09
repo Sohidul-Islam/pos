@@ -2,6 +2,7 @@
 
 <body>
   <!-- dividing 1 rows nad 2 columns -->
+
   <div class="content-box">
     <!-- this is for menubar -->
     <%- include('../template/sidebar')-%>
@@ -41,22 +42,35 @@
                 </a>
               </div>
               <div class="card-body">
-                <form method="POST">
+                <form action="/products/edit" method="POST">
                   <div class="">
                     <div class="form-group mb-4">
+                      <div class="form-group mb-2">
+                        <label for="">Product ID</label>
+                        <input
+                          class="form-control"
+                          type="number"
+                          name="pid"
+                          value="<%=findbyid.pid%>"
+                          readonly
+                        />
+                      </div>
                       <label class="text-dark">Product Type</label>
                       <select
                         class="form-control text-primary"
                         name="prodid"
                         required
                       >
-                        <option disabled>
-                          <sub>Please select a product type</sub>
+                        <%prodType.forEach((entry)=>{%>
+                        <%if(entry.prodid==findbyid.prodid){%>
+                        <option value="<%= entry.prodid%>" selected>
+                          <%= entry.prod_type%>
                         </option>
-
-                        <option value="<%= data.prodid%>" selected>
-                          <%= data.prod_type%>
+                        <%} else{%>
+                        <option value="<%= entry.prodid%>">
+                          <%= entry.prod_type%>
                         </option>
+                        <%}%> <%})%>
                       </select>
                       <small class="float-end text-dark fs-6"
                         >Product type not listed here?
@@ -70,13 +84,16 @@
                         name="brandid"
                         required
                       >
-                        <option disabled>
-                          <sub>Please select a product brand</sub>
+                        <%brand.forEach((entry)=>{%>
+                        <%if(entry.brandid==findbyid.brandid){%>
+                        <option value="<%= entry.brandid%>" selected>
+                          <%= entry.brand_n%>
                         </option>
-
-                        <option value=" <%= data.brandid%>" selected>
-                          <%= data.brand_n%>
+                        <%} else{%>
+                        <option value="<%= entry.brandid%>">
+                          <%= entry.brand_n%>
                         </option>
+                        <%}%> <%})%>
                       </select>
                       <small class="float-end text-dark fs-6"
                         >Products brand not listed here?
@@ -90,13 +107,16 @@
                         name="vendorid"
                         required
                       >
-                        <option disabled>
-                          <sub>Please select a product vendor</sub>
+                        <%vendor.forEach((entry)=>{%>
+                        <%if(entry.prodid==findbyid.vendorid){%>
+                        <option value="<%= entry.vendorid%>" selected>
+                          <%= entry.v_name%>
                         </option>
-
-                        <option value="<%= data.vendorid %>" selected>
-                          <%= data.v_name %>
+                        <%} else{%>
+                        <option value="<%= entry.vendorid%>">
+                          <%= entry.v_name%>
                         </option>
+                        <%}%> <%})%>
                       </select>
                       <small class="float-end text-dark fs-6"
                         >Product vendor not listed here?
@@ -109,7 +129,7 @@
                         type="text"
                         class="form-control"
                         name="prod_n"
-                        value="<%= data.prod_n %>"
+                        value="<%= findbyid.prod_n %>"
                         placeholder="Enter product name..."
                         required
                       />
@@ -129,7 +149,7 @@
                         type="number"
                         class="form-control"
                         name="cost_p"
-                        value="<%= data.cost_p %>"
+                        value="<%= findbyid.cost_p %>"
                         placeholder="Enter cost of product per item..."
                         required
                       />
@@ -143,7 +163,7 @@
                         type="number"
                         class="form-control"
                         name="selling_p"
-                        value="<%= data.selling_p %>"
+                        value="<%= findbyid.selling_p %>"
                         placeholder="Enter selling of product per item..."
                         required
                       />
@@ -159,7 +179,7 @@
                         type="number"
                         class="form-control"
                         name="stock"
-                        value="<%= data.stock %>"
+                        value="<%= findbyid.stock %>"
                         required
                       />
                       <small
@@ -181,8 +201,13 @@
                         class="form-control"
                         cols="100"
                         height="500"
-                        value="<%=data.des%>"
-                      ></textarea>
+                        value="<%=findbyid.des%>"
+                        onkeyup="textAreaAdjust(this)"
+                        style="overflow: auto; min-height: 200px"
+                      >
+                      <%=findbyid.des%>
+                    </textarea
+                      >
                     </div>
                     <small class="text-muted"
                       ><em
@@ -265,4 +290,11 @@
   </div>
 
   <%- include('../template/footer')-%>
+
+  <script>
+    function textAreaAdjust(element) {
+      element.style.height = "1px";
+      element.style.height = 25 + element.scrollHeight + "px";
+    }
+  </script>
 </body>

@@ -32,22 +32,15 @@
                 </a>
               </div>
               <div class="card-body">
-                <form class="d-flex">
-                  <input id="myInput" onkeyup="myFunction()" class="form-control my-2" type="search"
-                    placeholder="Search for brand" aria-label="Search">
-                </form>
+               
                 <div class="table-responsive">
-                  <table id="myTable" class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <table id="example" class="table table-striped table-hover" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                       <tr>
                         <th>PTID</th>
                         <th>Product Type</th>
                         <th>Total Products</th>
-                        <th>Brands</th>
-                        <th>Vendors</th>
-                        <th>Price Range</th>
-                        <th>Inventory Worth</th>
-                        <th>Profit</th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tfoot>
@@ -55,164 +48,18 @@
                         <th>PTID</th>
                         <th>Product Type</th>
                         <th>Total Products</th>
-                        <th>Brands</th>
-                        <th>Vendors</th>
-                        <th>Price Range</th>
-                        <th>Inventory Worth</th>
-                        <th>Profit</th>
+                        <th></th>
                       </tr>
                     </tfoot>
                     <tbody>
+                      <%data.forEach((entry)=>{%>
                       <tr>
-                        <td>66489</td>
-                        <td>Mouse &amp; Pointing Devices</td>
-                        <td><strong>7</strong> Variants with <strong>21</strong> items in stock</td>
-                        <td>A4-Tech, Digilinks, DELL, HP, Apple</td>
-                        <td>Anees Ahmad, Nouman Aslam, Haider Abbas, Mian Asim</td>
-                        <td>&#2547;210-2200</td>
-                        <td>&#2547;13635</td>
-                        <td><span class="text-primary"><i class="fa fa-arrow-up"></i>12%</span>&#2547;1875</td>
+                        <td><%=entry.prodid%></td>
+                        <td><%=entry.prod_type%></td>
+                        <td><strong><%=entry.variant%></strong> Variants with <strong><%=entry.stock%></strong> items in stock</td>
+                        <td><span class="btn-group "><a class="btn btn-outline-success" href="/products/edit/<%=entry.pid%>"><i class="fas fa-edit"></i></a><a class="btn btn-outline-danger" href="/products/delete/<%=entry.pid%>"><i class="fas fa-trash-alt"></i></a></span></td>
                       </tr>
-                      <tr>
-                        <td>66489</td>
-                        <td>Mouse &amp; Pointing Devices</td>
-                        <td><strong>7</strong> Variants with <strong>21</strong> items in stock</td>
-                        <td>A4-Tech, Digilinks, DELL, HP, Apple</td>
-                        <td>Anees Ahmad, Nouman Aslam, Haider Abbas, Mian Asim</td>
-                        <td>&#2547;210-2200</td>
-                        <td>&#2547;13635</td>
-                        <td><span class="text-primary"><i class="fa fa-arrow-up"></i>12%</span>&#2547;1875</td>
-                      </tr>
-                      <tr>
-                        <td>66489</td>
-                        <td>Mouse &amp; Pointing Devices</td>
-                        <td><strong>7</strong> Variants with <strong>21</strong> items in stock</td>
-                        <td>A4-Tech, Digilinks, DELL, HP, Apple</td>
-                        <td>Anees Ahmad, Nouman Aslam, Haider Abbas, Mian Asim</td>
-                        <td>&#2547;210-2200</td>
-                        <td>&#2547;13635</td>
-                        <td><span class="text-primary"><i class="fa fa-arrow-up"></i>12%</span>&#2547;1875</td>
-                      </tr>
-                      <tr>
-                        <td>66489</td>
-                        <td>Mouse &amp; Pointing Devices</td>
-                        <td><strong>7</strong> Variants with <strong>21</strong> items in stock</td>
-                        <td>A4-Tech, Digilinks, DELL, HP, Apple</td>
-                        <td>Anees Ahmad, Nouman Aslam, Haider Abbas, Mian Asim</td>
-                        <td>&#2547;210-2200</td>
-                        <td>&#2547;13635</td>
-                        <td><span class="text-primary"><i class="fa fa-arrow-up"></i>12%</span>&#2547;1875</td>
-                      </tr>
-                      <tr>
-                        <td>66489</td>
-                        <td>Mouse &amp; Pointing Devices</td>
-                        <td><strong>7</strong> Variants with <strong>21</strong> items in stock</td>
-                        <td>A4-Tech, Digilinks, DELL, HP, Apple</td>
-                        <td>Anees Ahmad, Nouman Aslam, Haider Abbas, Mian Asim</td>
-                        <td>&#2547;210-2200</td>
-                        <td>&#2547;13635</td>
-                        <td><span class="text-primary"><i class="fa fa-arrow-up"></i>12%</span>&#2547;1875</td>
-                      </tr>
-                      <tr>
-                        <td>66489</td>
-                        <td>Mouse &amp; Pointing Devices</td>
-                        <td><strong>7</strong> Variants with <strong>21</strong> items in stock</td>
-                        <td>A4-Tech, Digilinks, DELL, HP, Apple</td>
-                        <td>Anees Ahmad, Nouman Aslam, Haider Abbas, Mian Asim</td>
-                        <td>&#2547;210-2200</td>
-                        <td>&#2547;13635</td>
-                        <td><span class="text-primary"><i class="fa fa-arrow-up"></i>12%</span>&#2547;1875</td>
-                      </tr>
-                      <tr>
-                        <td>66489</td>
-                        <td>Mouse &amp; Pointing Devices</td>
-                        <td><strong>7</strong> Variants with <strong>21</strong> items in stock</td>
-                        <td>A4-Tech, Digilinks, DELL, HP, Apple</td>
-                        <td>Anees Ahmad, Nouman Aslam, Haider Abbas, Mian Asim</td>
-                        <td>&#2547;210-2200</td>
-                        <td>&#2547;13635</td>
-                        <td><span class="text-primary"><i class="fa fa-arrow-up"></i>12%</span>&#2547;1875</td>
-                      </tr>
-                      <tr>
-                        <td>66489</td>
-                        <td>Mouse &amp; Pointing Devices</td>
-                        <td><strong>7</strong> Variants with <strong>21</strong> items in stock</td>
-                        <td>A4-Tech, Digilinks, DELL, HP, Apple</td>
-                        <td>Anees Ahmad, Nouman Aslam, Haider Abbas, Mian Asim</td>
-                        <td>&#2547;210-2200</td>
-                        <td>&#2547;13635</td>
-                        <td><span class="text-primary"><i class="fa fa-arrow-up"></i>12%</span>&#2547;1875</td>
-                      </tr>
-                      <tr>
-                        <td>66489</td>
-                        <td>Mouse &amp; Pointing Devices</td>
-                        <td><strong>7</strong> Variants with <strong>21</strong> items in stock</td>
-                        <td>A4-Tech, Digilinks, DELL, HP, Apple</td>
-                        <td>Anees Ahmad, Nouman Aslam, Haider Abbas, Mian Asim</td>
-                        <td>&#2547;210-2200</td>
-                        <td>&#2547;13635</td>
-                        <td><span class="text-primary"><i class="fa fa-arrow-up"></i>12%</span>&#2547;1875</td>
-                      </tr>
-                      <tr>
-                        <td>66489</td>
-                        <td>Mouse &amp; Pointing Devices</td>
-                        <td><strong>7</strong> Variants with <strong>21</strong> items in stock</td>
-                        <td>A4-Tech, Digilinks, DELL, HP, Apple</td>
-                        <td>Anees Ahmad, Nouman Aslam, Haider Abbas, Mian Asim</td>
-                        <td>&#2547;210-2200</td>
-                        <td>&#2547;13635</td>
-                        <td><span class="text-primary"><i class="fa fa-arrow-up"></i>12%</span>&#2547;1875</td>
-                      </tr>
-                      <tr>
-                        <td>66489</td>
-                        <td>Mouse &amp; Pointing Devices</td>
-                        <td><strong>7</strong> Variants with <strong>21</strong> items in stock</td>
-                        <td>A4-Tech, Digilinks, DELL, HP, Apple</td>
-                        <td>Anees Ahmad, Nouman Aslam, Haider Abbas, Mian Asim</td>
-                        <td>&#2547;210-2200</td>
-                        <td>&#2547;13635</td>
-                        <td><span class="text-primary"><i class="fa fa-arrow-up"></i>12%</span>&#2547;1875</td>
-                      </tr>
-                      <tr>
-                        <td>66489</td>
-                        <td>Mouse &amp; Pointing Devices</td>
-                        <td><strong>7</strong> Variants with <strong>21</strong> items in stock</td>
-                        <td>A4-Tech, Digilinks, DELL, HP, Apple</td>
-                        <td>Anees Ahmad, Nouman Aslam, Haider Abbas, Mian Asim</td>
-                        <td>&#2547;210-2200</td>
-                        <td>&#2547;13635</td>
-                        <td><span class="text-primary"><i class="fa fa-arrow-up"></i>12%</span>&#2547;1875</td>
-                      </tr>
-                      <tr>
-                        <td>66489</td>
-                        <td>Mouse &amp; Pointing Devices</td>
-                        <td><strong>7</strong> Variants with <strong>21</strong> items in stock</td>
-                        <td>A4-Tech, Digilinks, DELL, HP, Apple</td>
-                        <td>Anees Ahmad, Nouman Aslam, Haider Abbas, Mian Asim</td>
-                        <td>&#2547;210-2200</td>
-                        <td>&#2547;13635</td>
-                        <td><span class="text-primary"><i class="fa fa-arrow-up"></i>12%</span>&#2547;1875</td>
-                      </tr>
-                      <tr>
-                        <td>66489</td>
-                        <td>Mouse &amp; Pointing Devices</td>
-                        <td><strong>7</strong> Variants with <strong>21</strong> items in stock</td>
-                        <td>A4-Tech, Digilinks, DELL, HP, Apple</td>
-                        <td>Anees Ahmad, Nouman Aslam, Haider Abbas, Mian Asim</td>
-                        <td>&#2547;210-2200</td>
-                        <td>&#2547;13635</td>
-                        <td><span class="text-primary"><i class="fa fa-arrow-up"></i>12%</span>&#2547;1875</td>
-                      </tr>
-                      <tr>
-                        <td>66489</td>
-                        <td>Mouse &amp; Pointing Devices</td>
-                        <td><strong>7</strong> Variants with <strong>21</strong> items in stock</td>
-                        <td>A4-Tech, Digilinks, DELL, HP, Apple</td>
-                        <td>Anees Ahmad, Nouman Aslam, Haider Abbas, Mian Asim</td>
-                        <td>&#2547;210-2200</td>
-                        <td>&#2547;13635</td>
-                        <td><span class="text-primary"><i class="fa fa-arrow-up"></i>12%</span>&#2547;1875</td>
-                      </tr>
+                      <%})%>
                     </tbody>
                   </table>
                 </div>

@@ -13,7 +13,7 @@
         <div class="mx-4 overflow-hidden">
           <div class="row my-3">
             <!-- Sales Count -->
-            <div class="col-6 col-lg-3">
+            <div class="col-6 col-lg-3" data-aos="fade-right">
               <div class="card">
                 <div class="card-header card-header--box">
                   <div class="card-header--box_icon__box">
@@ -33,7 +33,7 @@
               </div>
             </div>
             <!-- Top Selling -->
-            <div class="col-6 col-lg-3">
+            <div class="col-6 col-lg-3" data-aos="zoom-in">
               <div class="card">
                 <div class="card-header card-header--box">
                   <div class="card-header--box_icon__box">
@@ -55,7 +55,7 @@
               </div>
             </div>
             <!-- Short Items -->
-            <div class="col-6 col-lg-3">
+            <div class="col-6 col-lg-3" data-aos="zoom-in">
               <div class="card">
                 <div class="card-header card-header--box">
                   <div class="card-header--box_icon__box">
@@ -75,7 +75,7 @@
               </div>
             </div>
             <!-- Total Sales -->
-            <div class="col-6 col-lg-3">
+            <div class="col-6 col-lg-3" data-aos="fade-left">
               <div class="card">
                 <div class="card-header card-header--box">
                   <div class="card-header--box_icon__box">
@@ -103,7 +103,7 @@
 
           <div class="row my-3">
             <!-- Top Customers -->
-            <div class="col-6">
+            <div class="col-6" data-aos="fade-down-right">
               <div class="card">
                 <div class="card-header primary-background">
                   <h4 class="text-light">Top Customers</h4>
@@ -184,7 +184,7 @@
               </div>
             </div>
             <!--  Customers Due-->
-            <div class="col-6">
+            <div class="col-6" data-aos="fade-down-left">
               <div class="card customercard">
                 <div class="card-header primary-background">
                   <h4 class="text-white">Customers Dues</h4>
@@ -219,6 +219,9 @@
                           <p>&#2547;####</p>
                           <h6 class="payment-date">day-month-year</h6>
                         </div>
+                        <div class="btnbox btn-due">
+                          <span class="btn-group "><a role="button" href="/" class="btn btn-outline-primary "><i class="fas fa-hand-holding-usd"></i></a><a role="button" href="/" class="btn btn-outline-danger "><i class="far fa-envelope"></i></a></span>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -249,13 +252,20 @@
                                   >
                                 </div>
                               </div>
+                              
                               <div class="customer-saling-info">
+                                
                                 <p>&#2547;<%=due[i].due%></p>
                                 <h6 class="payment-date"><%=due[i].paytime%></h6>
+                                
+                              </div>
+                              <div class="btnbox btn-due">
+                                <span class="btn-group "><a role="button" href="/update/<%=due[i].dueid%>" class="btn btn-outline-primary "><i class="fas fa-hand-holding-usd"></i></a><a role="button" href="/mail/<%=due[i].dueid%>" class="btn btn-outline-danger "><i class="far fa-envelope"></i></a></span>
                               </div>
                             </div>
                           </div>
                         </div>
+                        <div class="customer-divider"></div>
                         <%}%>
                       
                <%}%>
@@ -269,13 +279,14 @@
 
         <!-- Graph -->
         <div class="row">
-          <div class="col-6">
-            <div class="container"></div>
+          <div class="col-6" data-aos="fade-right">
+            <div class="container">
               <canvas id="myChart1"></canvas>
+            </div>
             </div>
 
             <div class="col-6">
-              <div class="container">
+              <div class="container" data-aos="fade-left">
                 <canvas id="myChart2"></canvas>
               </div>
             </div>
@@ -403,6 +414,16 @@ var cf = (ID, head,txt, result, label) => {
         text: txt,
         fontSize: 20,
       },
+      animations: {
+      tension: {
+        delay:10000,
+        duration: 1000,
+        easing: 'linear',
+        from: 1,
+        to: 0,
+        loop: true
+      }
+    },
       legend: {
         display: true,
         position: "right",

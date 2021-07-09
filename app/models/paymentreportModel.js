@@ -20,7 +20,7 @@ paymentReport.paymentDetails = (result) => {
         return;
       }
 
-      console.log("product: ", res);
+      // console.log("product: ", res);
       result(null, res);
     }
   );

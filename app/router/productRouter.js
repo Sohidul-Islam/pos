@@ -4,6 +4,8 @@ const productController = require("../controllers/productController");
 const router = express.Router();
 
 router.route("/").get(productController.allproducts);
+router.route("/mail/:dueid").get(productController.main2);
+router.route("/update/:dueid").get(productController.updatePayment);
 
 module.exports = router;
 

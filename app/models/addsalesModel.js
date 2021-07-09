@@ -9,7 +9,7 @@ const addsales = function (product) {
   this.customername = product.customername;
   this.address = product.address;
   this.status = product.status;
-  this.phone = product.phone;
+  this.email = product.email;
   this.date = product.date;
   // this.date = handleDate(curdate);
   this.issuetime = handleDate(curdate);
@@ -46,8 +46,8 @@ addsales.createsales = (newproduct, result) => {
             return;
           } else {
             sql.query(
-              `INSERT INTO Customers (customerid,name, address, phone)
-            SELECT salesid,customername,address,phone FROM sales ORDER BY salesid DESC LIMIT 1;SELECT * FROM customers`,
+              `INSERT INTO Customers (customerid,name, address, email)
+            SELECT salesid,customername,address,email FROM sales ORDER BY salesid DESC LIMIT 1;SELECT * FROM customers`,
               (err, res) => {
                 if (err) {
                   console.log("error: ", err);
@@ -67,8 +67,8 @@ addsales.createsales = (newproduct, result) => {
                         return;
                       } else {
                         sql.query(
-                          `insert into due(dueid,name,address,phone,due,issuetime,paytime)
-                          select salesid,customername,address,phone,price*qty,issuetime,date
+                          `insert into due(dueid,name,address,email,due,issuetime,paytime,product,status)
+                          select salesid,customername,address,email,price*qty,issuetime,date,sales.pid,'not_sent'
                           from sales,product
                           where product.pid = sales.pid and status = "Due"
                           order by salesid desc limit 1;`,

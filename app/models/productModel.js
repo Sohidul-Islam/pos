@@ -8,6 +8,7 @@ const Products = function (product) {
   this.cost_id = product.cost_id;
   this.worth = product.worth;
   this.vendorid = product.vendorid;
+  this.dueid = product.dueid;
 };
 //1 query : top product
 //2 query : sales count
@@ -15,7 +16,7 @@ const Products = function (product) {
 //4 query : count top selling products
 Products.getAll = (result) => {
   sql.query(
-    `select customername,address,phone,(qty*price) as total from sales where status<>'Due' order by qty*price desc; 
+    `select customername,address,email,(qty*price) as total from sales where status<>'Due' order by qty*price desc; 
     
     select prod_n,prod_type,qty,qty*sales.price as total,status,issuetime from sales,product,prodtype,brand 
     where product.pid = sales.pid and product.prodid = prodtype.prodid and product.brandid = brand.brandid;
@@ -34,7 +35,8 @@ Products.getAll = (result) => {
    on sales.pid =product.pid and product.prodid = prodtype.prodid and product.brandid = brand.brandid
    where sales.issuetime = CURDATE();
    
-   select sum(price) as total,issuetime from sales group by issuetime;
+   select sum(price) as total,date from expense where t_type<>'Expense' group by date;
+
    select sum(qty*(price-product.cost_p)) as profit,issuetime from sales,product where sales.pid = product.pid group by issuetime;
    `,
     (err, res) => {
@@ -42,6 +44,85 @@ Products.getAll = (result) => {
         console.log("error: ", err);
         result(err, null);
         return;
+      }
+
+      // console.log("product: ", res);
+      result(null, res);
+    }
+  );
+};
+
+Products.getbyStatus = (result) => {
+  sql.query(
+    `select dueid,name,email,due,paytime,prod_n from due,product where due.product = product.pid and status = 'not_sent'`,
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+
+      // console.log("product: ", res);
+      result(null, res);
+    }
+  );
+};
+Products.getbyDuid = (dueid, result) => {
+  sql.query(
+    `select dueid,name,email,due,paytime,prod_n from due,product where due.product = product.pid and dueid = ?`,
+    dueid,
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+
+      // console.log("product: ", res);
+      result(null, res);
+    }
+  );
+};
+
+Products.updateStatusbyid = (dueid, result) => {
+  sql.query(
+    `update due set status ='sent' where dueid = ?`,
+    dueid,
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+
+      // console.log("product: ", res);
+      result(null, res);
+    }
+  );
+};
+Products.updatepaymentbyid = (dueid, result) => {
+  console.log(`update sales set status = 'Payment' where  = ${dueid}`);
+  sql.query(
+    `update sales set status = 'Payment',date =CURDATE() where salesid = ${dueid}`,
+    dueid,
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      } else {
+        console.log(`delete from due where dueid = ${dueid}`);
+        sql.query(
+          `delete from due where dueid = ${dueid}`,
+          dueid,
+          (err, res) => {
+            if (err) {
+              console.log("error: ", err);
+              result(err, null);
+              return;
+            }
+          }
+        );
       }
 
       // console.log("product: ", res);
