@@ -56,11 +56,11 @@ exports.paymentinfo = (req, res) => {
         data[i].date = handleDate(data[i].date);
         if (data[i].t_type != "Expense") sum3 = sum3 + data[i].price;
       }
-      console.log("Income: ", sum1);
-      console.log("expense: ", sum2);
-      console.log("Total: ", sum3);
+      // console.log("Income: ", sum1);
+      // console.log("expense: ", sum2);
+      // console.log("Total: ", sum3);
       sum4 = sum3 - sum2;
-      console.log("Available : ", sum4);
+      // console.log("Available : ", sum4);
       res.render("./pages/payment-reports", {
         data,
         sum1,

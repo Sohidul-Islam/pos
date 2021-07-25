@@ -1,0 +1,235 @@
+<%- include('../template/head')-%>
+
+<body>
+  <!-- dividing 1 rows nad 2 columns -->
+  <div class="content-box">
+    <!-- this is for menubar -->
+    <%- include('../template/sidebar')-%>
+    <!-- this is for contents -->
+    <div class="maincontentbox d-inline-block mx-auto">
+      <%- include('../template/menubar')-%>
+      <!-- Selling overview -->
+      <div class="mx-4 overflow-hidden">
+        <div id="content-wrapper">
+          <div class="container-fluid">
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="/">Home</a>
+              </li>
+              <li class="breadcrumb-item active">Add new sales</li>
+            </ol>
+            <!-- Page Content -->
+            <!-- DataTables Example -->
+
+            <div class="card mb-3">
+              <div class="card-header primary-background text-white">
+                <i class="fa fa-table"></i>
+                Add New Sales
+              </div>
+              <div class="card-body">
+                <form class="" action="/products/sales/<%=findbyid.pid%>" method="POST">
+                  <div class="modal-body">
+                    <div class="form-group">
+                      <label>Select Product</label>
+                      <select
+                        class="form-control text-primary"
+                        name="pid"
+                        required
+                      >
+                        <option value="<%=findbyid.pid%>" selected>
+                          <%=findbyid.prod_n%>
+                        </option>
+                      </select>
+                      <small class="float-right"
+                        >Product not listed here?
+                        <a href="/addproduct">Add new</a>
+                      </small>
+                    </div>
+                    <div class="form-group">
+                      <label for="">Product Price</label>
+                      <input
+                        type="number"
+                        class="form-control"
+                        name="price"
+                        value="<%= findbyid.selling_p%>"
+                        placeholder="Enter product price here..."
+                        required
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="">Product Qty</label>
+                      <input
+                        type="number"
+                        class="form-control"
+                        name="qty"
+                        placeholder="Enter product qty here..."
+                        required
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="">Customer Name</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="customername"
+                        placeholder="Enter customer name here..."
+                        required
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="">Customer Email</label>
+                      <input
+                        type="email"
+                        class="form-control"
+                        name="email"
+                        placeholder="Enter customer emai..."
+                        required
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="">Address</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="address"
+                        placeholder="Enter customer address..."
+                        required
+                      />
+                    </div>
+
+                    <div class="form-group">
+                      <label for="">Payment Status</label>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          name="status"
+                          value="Payment"
+                          id="flexRadioDefault1"
+                          checked
+                        />
+                        <label class="form-check-label" for="flexRadioDefault1">
+                          Payment
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          name="status"
+                          value="Due"
+                          id="flexRadioDefault2"
+                        />
+                        <label class="form-check-label" for="flexRadioDefault2">
+                          Due
+                        </label>
+                      </div>
+                      <div class="form-group">
+                        <label class="form-check-label" for="datetimepicker1">
+                          Select Payment Date
+                        </label>
+                        <div class="input-group date" id="datetimepicker1">
+                          <input type="date" name="date" class="form-control" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for=""
+                        >Description
+                        <small class="text-muted">(Optional)</small></label
+                      >
+                      <textarea
+                        name="des"
+                        class="form-control"
+                        rows="8"
+                        cols="80"
+                        placeholder="Add some note or description about this sale..."
+                      ></textarea>
+                    </div>
+                    <small class="text-muted"
+                      ><em
+                        >Please double check information before submitting.</em
+                      ></small
+                    >
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      class="btn btn-secondary"
+                      type="button"
+                      data-bs-dismiss="modal"
+                    >
+                      Cancel
+                    </button>
+                    <input
+                      type="submit"
+                      class="btn btnprimary text-white"
+                      value="Add Sale"
+                    />
+                  </div>
+                </form>
+              </div>
+              <div class="card-footer small text-muted">
+                Updated yesterday at 11:59 PM
+              </div>
+            </div>
+          </div>
+          <br /><br /><br />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Button -->
+  <button
+    type="button"
+    class="btn calendar-btn"
+    data-bs-toggle="modal"
+    data-bs-target="#exampleModal"
+  >
+    <i class="fas fa-calendar-alt calendar-icon"></i>
+  </button>
+
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="calendar">
+          <div class="calendar-header">
+            <span class="month-picker" id="month-picker">February</span>
+            <div class="year-picker">
+              <span class="year-change" id="prev-year">
+                <pre><</pre>
+              </span>
+              <span id="year">2021</span>
+              <span class="year-change" id="next-year">
+                <pre>></pre>
+              </span>
+            </div>
+          </div>
+          <div class="calendar-body">
+            <div class="calendar-week-day">
+              <div>Sun</div>
+              <div>Mon</div>
+              <div>Tue</div>
+              <div>Wed</div>
+              <div>Thu</div>
+              <div>Fri</div>
+              <div>Sat</div>
+            </div>
+            <div class="calendar-days"></div>
+          </div>
+
+          <div class="month-list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%- include('../template/footer')-%>
+</body>

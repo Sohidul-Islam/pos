@@ -1,5 +1,7 @@
 const productlist = require("../models/productlistModel");
 const Productlist = require("../models/productlistModel");
+const addsales = require("../models/addsalesModel");
+const Addsales = require("../models/addsalesModel");
 
 exports.findAllproductlist = (req, res) => {
   productlist.gettAllproduct((err, data) => {
@@ -83,6 +85,28 @@ exports.findOne = (req, res) => {
     }
   });
 };
+exports.salesone = (req, res) => {
+  productlist.findById(req.params.pid, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Not found Customer with id ${req.params.pid}.`,
+        });
+      } else {
+        res.status(500).send({
+          message: "Error retrieving Customer with pid " + req.params.pid,
+        });
+      }
+    } else {
+      let findbyid = data[0][0];
+
+      console.log("findbyid ", findbyid.selling_p);
+      res.render("./pages/salesindividual", {
+        findbyid: findbyid,
+      });
+    }
+  });
+};
 
 exports.delete = (req, res) => {
   productlist.remove(req.params.pid, (err, data) => {
@@ -97,6 +121,41 @@ exports.delete = (req, res) => {
         });
       }
     } else res.redirect("back");
+  });
+};
+
+exports.createsales = (req, res) => {
+  // Validate request
+  if (!req.body) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+  }
+
+  // Create a product
+  const addsales = new Addsales({
+    pid: req.body.pid,
+    customername: req.body.customername,
+    address: req.body.address,
+    email: req.body.email,
+    qty: req.body.qty,
+    status: req.body.status,
+    price: req.body.price,
+    date: req.body.date,
+    des: req.body.des,
+  });
+
+  // console.log("Added Product : ", addsales);
+  //Save Customer in the database
+  Addsales.createsales(addsales, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while creating the Customer.",
+      });
+    else if (data !== null && data !== "") {
+      res.send(data);
+    }
   });
 };
 // <%for(let i = 0 ; i<prodType.length;i++)%>

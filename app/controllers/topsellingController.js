@@ -10,15 +10,27 @@ exports.FindAlltopSelling = (req, res) => {
       curDate = handleDate2(curDate);
       let tmp = [],
         j = 0;
+        // console.log("original top sellign",data);
       for (let i = 0; i < data.length; i++) {
         data[i].issuetime = handleDate2(data[i].issuetime);
         let d1 = new Date(curDate);
         let d2 = new Date(data[i].issuetime);
+        // console.log(`${curDate} and ${data[i].issuetime}`,diff_weeks(d1, d2));
         if (diff_weeks(d1, d2) <= 1) {
+          console.log(`Data ==> ${i} ${data[i]}`);
           tmp[j] = data[i];
           j++;
         }
       }
+      for(let i = 0 ; i<tmp.length ; i++){
+        for(let j = i+1; j<tmp.length; j++){
+          if(tmp[i].pid===tmp[j].pid){
+            tmp[i].qty = tmp[i].qty+tmp[j].qty;
+            tmp.splice(j, 1);
+          }
+        }
+      }
+      console.log("Temporary top sellign",tmp);
       res.render("./pages/topselling", {
         result: tmp,
       });

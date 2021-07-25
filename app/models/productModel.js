@@ -23,8 +23,8 @@ Products.getAll = (result) => {
 
     select * from due order by issuetime desc;
 
-    select prod_n,prod_type,sum(qty) as qty,selling_p,status,issuetime from sales,product,prodtype,brand 
-    where product.pid = sales.pid and product.prodid = prodtype.prodid and product.brandid = brand.brandid group by prod_n order by qty desc
+    select sales.pid as pid,prod_n,prod_type,sum(qty) as qty,selling_p,status,issuetime from sales,product,prodtype,brand 
+    where product.pid = sales.pid and product.prodid = prodtype.prodid and product.brandid = brand.brandid group by issuetime order by qty desc
    ;
    
    select prod_n,prod_type,stock,selling_p, stock*selling_p as worth from product join prodtype join brand
@@ -54,7 +54,9 @@ Products.getAll = (result) => {
 
 Products.getbyStatus = (result) => {
   sql.query(
-    `select dueid,name,email,due,paytime,prod_n from due,product where due.product = product.pid and status = 'not_sent'`,
+    `select dueid,name,email,due,paytime,prod_n from due,product where due.product = product.pid and status = 'not_sent'
+    ;
+    select dueid,name,email,due,paytime,prod_n from due,product where due.product = product.pid and status = 'sent' or status = 'not_sent'`,
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -100,6 +102,22 @@ Products.updateStatusbyid = (dueid, result) => {
     }
   );
 };
+Products.updateStatusbyid2 = (dueid, result) => {
+  sql.query(
+    `update due set status ='finally sent' where dueid = ?`,
+    dueid,
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+
+      // console.log("product: ", res);
+      result(null, res);
+    }
+  );
+};
 Products.updatepaymentbyid = (dueid, result) => {
   console.log(`update sales set status = 'Payment' where  = ${dueid}`);
   sql.query(
@@ -111,15 +129,36 @@ Products.updatepaymentbyid = (dueid, result) => {
         result(err, null);
         return;
       } else {
-        console.log(`delete from due where dueid = ${dueid}`);
+        console.log(`insert into expense(t_type,des,account,date,price)
+        select "Income",CONCAT(product.prod_n, ' sold'),customername,date,qty*price
+        from sales,product
+        where product.pid = sales.pid and status = "Payment" and selesid=${dueid}
+        `);
         sql.query(
-          `delete from due where dueid = ${dueid}`,
+          `insert into expense(t_type,des,account,date,price)
+          select "Income",CONCAT(product.prod_n, ' sold'),customername,CURDATE(),qty*price
+          from sales,product
+          where product.pid = sales.pid and status = "Payment" and sales.salesid=${dueid};
+          `,
           dueid,
           (err, res) => {
             if (err) {
               console.log("error: ", err);
               result(err, null);
               return;
+            } else {
+              console.log(`delete from due where dueid = ${dueid}`);
+              sql.query(
+                `delete from due where dueid = ${dueid}`,
+                dueid,
+                (err, res) => {
+                  if (err) {
+                    console.log("error: ", err);
+                    result(err, null);
+                    return;
+                  }
+                }
+              );
             }
           }
         );

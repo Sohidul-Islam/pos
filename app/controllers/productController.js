@@ -18,6 +18,7 @@ exports.allproducts = (req, res) => {
       let totalsales = data[5];
       let forchart = data[6];
       let forchart2 = data[7];
+
       let salesChart = [0, 0, 0, 0];
       let profitChart = [0, 0, 0, 0];
       let todaysales = 0;
@@ -32,20 +33,26 @@ exports.allproducts = (req, res) => {
           sellingCount++;
         }
       }
+      console.log("Due: ", due);
+      for (let i = 0; i < due.length; i++) {
+        due[i].paytime = handleDate(due[i].paytime);
 
+        console.log(due[i].paytime);
+      }
+      // chart 1
       for (let i = 0; i < forchart.length; i++) {
         forchart[i].issuetime = handleDate2(forchart[i].date);
         let d1 = new Date(curDate);
         let d2 = new Date(forchart[i].date);
 
         if (diff_weeks(d1, d2) > 3 && diff_weeks(d1, d2) <= 4) {
-          salesChart[0] = salesChart[0] + forchart[i].total;
+          salesChart[0] = salesChart[0] + forchart[i].total; //1st week of the graph
         } else if (diff_weeks(d1, d2) > 2 && diff_weeks(d1, d2) <= 3) {
-          salesChart[1] = salesChart[1] + forchart[i].total;
+          salesChart[1] = salesChart[1] + forchart[i].total; //2nd week of the graph
         } else if (diff_weeks(d1, d2) > 1 && diff_weeks(d1, d2) <= 2) {
-          salesChart[2] = salesChart[2] + forchart[i].total;
+          salesChart[2] = salesChart[2] + forchart[i].total; //3rd week of the graph
         } else if (diff_weeks(d1, d2) <= 1) {
-          salesChart[3] = salesChart[3] + forchart[i].total;
+          salesChart[3] = salesChart[3] + forchart[i].total; //4th week of the graph
         }
       }
 
@@ -55,13 +62,13 @@ exports.allproducts = (req, res) => {
         let d2 = new Date(forchart2[i].issuetime);
 
         if (diff_weeks(d1, d2) > 3 && diff_weeks(d1, d2) <= 4) {
-          profitChart[0] = profitChart[0] + forchart2[i].profit;
+          profitChart[0] = profitChart[0] + forchart2[i].profit; //1st week of profit
         } else if (diff_weeks(d1, d2) > 2 && diff_weeks(d1, d2) <= 3) {
-          profitChart[1] = profitChart[1] + forchart2[i].profit;
+          profitChart[1] = profitChart[1] + forchart2[i].profit; //2nd week of profit
         } else if (diff_weeks(d1, d2) > 1 && diff_weeks(d1, d2) <= 2) {
-          profitChart[2] = profitChart[2] + forchart2[i].profit;
+          profitChart[2] = profitChart[2] + forchart2[i].profit; //3rd week of profit
         } else if (diff_weeks(d1, d2) <= 1) {
-          profitChart[3] = profitChart[3] + forchart2[i].profit;
+          profitChart[3] = profitChart[3] + forchart2[i].profit; //4th week of profit
         }
       }
 
@@ -99,7 +106,7 @@ exports.updatePayment = (req, res) => {
     if (err) {
       res.status(500).send("Some error for updating payment");
     } else {
-      res.redirect("back");
+      res.redirect("/");
     }
   });
 };
@@ -160,56 +167,103 @@ function main() {
         message: err.message || "Some error occured in allproducts function",
       });
     } else {
+      
       (async () => {
         let transporter = nodemailer.createTransport({
           service: "gmail",
           port: 587,
           secure: false, // true for 465, false for other ports
           auth: {
-            user: "shufol.cse2@gmail.com", // generated ethereal user
-            pass: "shufol01854107699", // generated ethereal password
+            user: "pointofsale.system2021@gmail.com", // generated ethereal user
+            pass: "shufol01866922658", // generated ethereal password
           },
         });
-        for (let i = 0; i < data.length; i++) {
-          if (DayDifference(handleDate2(data[i].paytime), curDate) <= 10) {
-            let info = await transporter.sendMail({
-              from: "shufol.cse2@gmail.com", // sender address
-              to: `${data[i].email}`, // list of receivers
-              subject: "POS DUE WARNING ⚠️", // Subject line
+    
+          day10 = data[0];
+      day2 = data[1];
+      console.log("Day 2 ",day2);
+      console.log("Day 10",day10);
+      for(let i = 0,j=0 ; i<day10.length,j<day2.length ; i++,j++){
+        if (DayDifference(handleDate2(day10[i].paytime), curDate) <=10 && DayDifference(handleDate2(day10[i].paytime), curDate) >2) {
+        let info = await transporter.sendMail({
+          from: "pointofsale.system2021@gmail.com", // sender address
+          to: `${day10[i].email}`, // list of receivers
+          subject: "POS DUE WARNING ⚠️", // Subject line
 
-              html: `<h4 style="font-size: 20px">Hey <span style="color: #007f5f;">${
-                data[i].name
-              }</span></h4>
-        <h4 style="font-size: 16px; color:#ee6c4d ">You Have Some Due Please Pay The Dues Within ${handleDate(
-          data[i].paytime
-        )}</h4>
-        <ul>
-          <li><strong>Product:</strong> ${data[i].prod_n}</li>
-          <li><strong>Due:</strong> &#2547;${data[i].due}</li>
-          <li><strong>Promise Date:</strong> ${handleDate(data[i].paytime)}</li>
-        </ul>`, // html body
-            });
+          html: `<h4 style="font-size: 20px">Hey <span style="color: #007f5f;">${
+            day10[i].name
+          }</span></h4>
+    <h4 style="font-size: 16px; color:#ee6c4d ">You Have Some Due Please Pay The Dues Within ${handleDate(
+      day10[i].paytime
+    )}</h4>
+    <h4 style="font-size: 16px; color:#d62828 "> (${DayDifference(handleDate2(day10[i].paytime), curDate)
+    } Days Are Remaining)</h4>
+    <ul>
+      <li><strong>Product:</strong> ${day10[i].prod_n}</li>
+      <li><strong>Due:</strong> &#2547;${day10[i].due}</li>
+      <li><strong>Promise Date:</strong> ${handleDate(day10[i].paytime)}</li>
+    </ul>`, // html body
+        });
 
-            if (info.messageId) {
-              product.updateStatusbyid(data[i].dueid, (err, data) => {
-                if (err) {
-                  res.status(500).send({
-                    message:
-                      err.message ||
-                      "Some error occured in allproducts function",
-                  });
-                } else {
-                  console.log("Status Updated");
-                }
+        if (info.messageId) {
+          product.updateStatusbyid(day10[i].dueid, (err, data) => {
+            if (err) {
+              res.status(500).send({
+                message:
+                  err.message ||
+                  "Some error occured in allproducts function",
               });
+            } else {
+              console.log("Status Updated");
             }
-            // console.log(info);
-            // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-
-            // Preview only available when sending through an Ethereal account
-            console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-          }
+          });
         }
+ 
+        console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+      }
+      else  if (DayDifference(handleDate2(day2[j].paytime), curDate)<=2) {
+        let info = await transporter.sendMail({
+          from: "pointofsale.system2021@gmail.com", // sender address
+          to: `${day2[j].email}`, // list of receivers
+          subject: "POS DUE WARNING ⚠️", // Subject line
+
+          html: `<h4 style="font-size: 20px">Hey <span style="color: #007f5f;">${
+            day2[j].name
+          }</span></h4>
+    <h4 style="font-size: 16px; color:#ee6c4d ">You Have Some Due Please Pay The Dues Within ${handleDate(
+      day2[j].paytime
+    )}</h4>
+    <h4 style="font-size: 16px; color:#d62828 "> (${DayDifference(handleDate2(day2[j].paytime), curDate)
+    } Days Are Remaining)</h4>
+    <ul>
+      <li><strong>Product:</strong> ${day2[j].prod_n}</li>
+      <li><strong>Due:</strong> &#2547;${day2[j].due}</li>
+      <li><strong>Promise Date:</strong> ${handleDate(day2[j].paytime)}</li>
+    </ul>`, // html body
+        });
+
+        if (info.messageId) {
+          product.updateStatusbyid2(day2[j].dueid, (err, data) => {
+            if (err) {
+              res.status(500).send({
+                message:
+                  err.message ||
+                  "Some error occured in allproducts function",
+              });
+            } else {
+              console.log("Status Updated");
+            }
+          });
+        }
+        // console.log(info);
+        // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+
+        // Preview only available when sending through an Ethereal account
+        console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+      }
+    }
+         
+        
       })().catch((err) => {
         console.error(err);
       });
@@ -222,6 +276,10 @@ function main() {
 }
 
 exports.main2 = (req, res) => {
+
+  let curDate = new Date();
+  curDate = handleDate2(curDate);
+
   product.getbyDuid(req.params.dueid, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
@@ -242,15 +300,15 @@ exports.main2 = (req, res) => {
           port: 587,
           secure: false, // true for 465, false for other ports
           auth: {
-            user: "shufol.cse2@gmail.com", // generated ethereal user
-            pass: "shufol01854107699", // generated ethereal password
+            user: "pointofsale.system2021@gmail.com", // generated ethereal user
+            pass: "shufol01866922658", // generated ethereal password
           },
         });
 
         // console.log("IN main 2 : ", data);
 
         let info = await transporter.sendMail({
-          from: "shufol.cse2@gmail.com", // sender address
+          from: "pointofsale.system2021@gmail.com", // sender address
           to: `${data.email}`, // list of receivers
           subject: "POS DUE WARNING ⚠️", // Subject line
 
@@ -260,6 +318,8 @@ exports.main2 = (req, res) => {
         <h4 style="font-size: 16px; color:#ee6c4d ">You Have Some Due Please Pay The Dues Within ${handleDate(
           data.paytime
         )}</h4>
+        <h4 style="font-size: 16px; color:#d62828 "> (${DayDifference(handleDate2(data.paytime), curDate)
+        } Days Are Remaining)</h4>
         <ul>
           <li><strong>Product:</strong> ${data.prod_n}</li>
           <li><strong>Due:</strong> &#2547;${data.due}</li>
