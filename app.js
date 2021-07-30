@@ -81,6 +81,9 @@ app.use("/products", productlist);
 const productType = require("./app/router/productType");
 app.use("/product-types", productType);
 
+const chart = require("./app/router/chartfilterRouter");
+app.use("/chartfilter", chart);
+
 // main().catch(console.error);
 
 module.exports = app;

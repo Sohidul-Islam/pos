@@ -1,0 +1,489 @@
+<%- include('../template/head')-%>
+
+  <body>
+    <!-- dividing 1 rows nad 2 columns -->
+    <div class="content-box">
+      <!-- this is for menubar -->
+      <%- include('../template/sidebar')-%>
+        <!-- this is for contents -->
+        <div class="maincontentbox d-inline-block mx-auto">
+          <%- include('../template/menubar')-%>
+            <!-- Selling overview -->
+            <div class="mx-4 overflow-hidden">
+              <div id="content-wrapper">
+                <div class="container-fluid">
+                  <!-- Breadcrumbs-->
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                      <a href="/">Home</a>
+                    </li>
+                    <li class="breadcrumb-item active">Payment Reports</li>
+                  </ol>
+                  <!-- Page Content -->
+                  <!-- DataTables Example -->
+                  <div class="mx-4 overflow-hidden">
+                    <div class="row my-3">
+                      <!-- Top Selling -->
+                      <div class="col-6 col-lg-6">
+                        <div class="card">
+                          <div class="card-header card-header--box">
+                            <div class="card-header--box_icon__box">
+                              <i class="fas fa-chart-pie card-header--box_icon__box__icon"></i>
+
+                            </div>
+                            <h2 class="float-start card-header--box_text_account">
+                              Product brand
+                            </h2>
+                          </div>
+                          <div class="card-body">
+                            <div class="container">
+                              <canvas id="myChart5"></canvas>
+
+                            </div>
+                            <span class="d-none" id="myChart5label">
+
+                              <%=chartlabel2%>
+
+                            </span>
+                            <span class="d-none" id="myChart5Data">
+
+                              <%=chartdata2%>
+
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Total Sales -->
+                      <div class="col-6 col-lg-6">
+                        <div class="card">
+                          <div class="card-header card-header--box">
+                            <div class="card-header--box_icon__box">
+                              <i class="fas fa-chart-pie card-header--box_icon__box__icon"></i>
+
+                            </div>
+                            <h2 class="float-start card-header--box_text_account">
+                              Product Type
+                            </h2>
+                          </div>
+                          <div class="card-body">
+                            <div class="container">
+                              <canvas id="myChart4"></canvas>
+
+                            </div>
+                            <span class="d-none" id="myChart4label">
+
+                              <%=chartlabel%>
+
+                            </span>
+                            <span class="d-none" id="myChart4Data">
+
+                              <%=chartdata%>
+
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Table -->
+                    <div class="card mb-3">
+                      <div class="card-header primary-background text-white">
+                        <i class="fa fa-table"></i>
+                        Account Details
+                        <a href="#" class="text-white float-end" data-bs-toggle="modal" data-bs-target="#addSaleModal">
+                          <span class="float-right">
+                            <i class="fa fa-plus"></i>
+                            Add Expense
+                          </span>
+                        </a>
+                      </div>
+
+                      <div class="card-body">
+
+                        <form action="/get-year-data" class="form-group" method="POST">
+
+
+                          <div class="input-group" style="max-width: 800px;">
+                            <span class="input-group-text" id="basic-addon2">select Year</span>
+                            <input class="form-control" id="year" data-toggle="datepicker">
+
+                            <span class="input-group-text" id="basic-addon2"><i class="fas fa-calendar-alt"></i></span>
+                            <div data-toggle="datepicker"></div>
+
+                            <span class="input-group-text" id="basic-addon2">select Year and month</span>
+                            <input class="form-control" id="year-month" name="date" data-toggle="datepicker">
+
+                            <span class="input-group-text" id="basic-addon2"><i class="fas fa-calendar-alt"></i></span>
+                            <div data-toggle="datepicker"></div>
+                          </div>
+
+
+
+                        </form>
+
+
+                      </div>
+
+                      <div class="container" id="myChartContainer">
+                        <canvas id="myChart3"></canvas>
+
+                      </div>
+                      <div class="card-footer small text-muted">
+                        Updated yesterday at 11:59 PM
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <button onclick="load()">Mydiv</button>
+            <div class="myDiv" id="Midiv" onload="load()" style="width:100px; height: 100px; background-color: red;">
+            </div> -->
+                  <br /><br /><br />
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <button type="button" class="btn calendar-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <i class="fas fa-calendar-alt calendar-icon"></i>
+        </button>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="calendar">
+                <div class="calendar-header">
+                  <span class="month-picker" id="month-picker">February</span>
+                  <div class="year-picker">
+                    <span class="year-change" id="prev-year">
+                      <pre><</pre>
+                    </span>
+                    <span id="year">2021</span>
+                    <span class="year-change" id="next-year">
+                      <pre>></pre>
+                    </span>
+                  </div>
+                </div>
+                <div class="calendar-body">
+                  <div class="calendar-week-day">
+                    <div>Sun</div>
+                    <div>Mon</div>
+                    <div>Tue</div>
+                    <div>Wed</div>
+                    <div>Thu</div>
+                    <div>Fri</div>
+                    <div>Sat</div>
+                  </div>
+                  <div class="calendar-days"></div>
+                </div>
+                <!-- <div class="calendar-footer">
+                <div class="toggle">
+                    <span>Dark Mode</span>
+                    <div class="dark-mode-switch">
+                        <div class="dark-mode-switch-ident"></div>
+                    </div>
+                </div>
+            </div> -->
+                <div class="month-list"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <%- include('../template/footer')-%>
+    </div>
+  </body>
+  <script>
+    var datachart4 = $("#myChart4Data").text();
+    var labelchart4 = $("#myChart4label").text();
+    var datachart5 = $("#myChart5Data").text();
+    var labelchart5 = $("#myChart5label").text();
+
+    datachart4 = datachart4.split(",");
+    labelchart4 = labelchart4.trim();
+    labelchart4 = labelchart4.split(",");
+
+    datachart5 = datachart5.split(",");
+    labelchart5 = labelchart5.trim();
+    labelchart5 = labelchart5.split(",");
+
+    console.log("Length: ", labelchart4.length);
+    console.log("Length 5: ", labelchart5.length);
+
+    var chart4color = []
+    for (let i = 0; i < labelchart4.length; i++) {
+      chart4color[i] = generateRandomColor();
+    }
+
+    var chart5color = []
+    for (let i = 0; i < labelchart5.length; i++) {
+      chart5color[i] = generateRandomColor();
+    }
+
+    datachart4 = datachart4.map(i => Number(i));
+    Chart.defaults.global.defaultFontFamily = "comfortaa";
+    Chart.defaults.global.defaultFontSize = 18;
+    Chart.defaults.global.defaultFontColor = "#777";
+    var head = "Sales:(৳)";
+    var head2 = "Profit:(৳)";
+    var txt1 = "Sales Report of selected year";
+    var txt2 = "Sales Report of selected Month";
+    var lbl = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    var lbl2 = ["1st week", "2nd week", "3rd week", "4th weeek", "5th week"];
+    var ID = $("#myChart3");
+    var ID2 = $("#myChart4");
+    var ID3 = $("#myChart5");
+    console.log("chart 4: ", datachart4);
+    console.log("chart 4: ", labelchart4);
+    var chart1 = cf2(ID2, labelchart4, datachart4, chart4color);
+    var chart2 = cf2(ID3, labelchart5, datachart5, chart5color);
+
+    function cf2(ID, lbl, result, color) {
+      var newchart = new Chart(ID, {
+        type: "pie", // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+        data: {
+          labels: lbl,
+          datasets: [{
+            label: head,
+            data: result,
+            //backgroundColor:'green',
+            backgroundColor: color,
+            borderWidth: 1,
+            borderColor: "#777",
+            hoverBorderWidth: 3,
+            hoverBorderColor: "#000",
+          },],
+        },
+        options: {
+          title: {
+            display: true,
+            text: 'Pie Chart',
+            fontSize: 20,
+          },
+          animations: {
+            tension: {
+              delay: 10000,
+              duration: 1000,
+              easing: 'linear',
+              from: 1,
+              to: 0,
+              loop: true
+            }
+          },
+          legend: {
+            display: true,
+            position: "right",
+            labels: {
+              fontColor: "#000",
+            },
+          },
+          layout: {
+            padding: {
+              left: 50,
+              right: 0,
+              bottom: 0,
+              top: 0,
+            },
+          },
+          tooltips: {
+            enabled: true,
+          },
+        },
+      });
+    }
+
+
+    var cf = new Chart(ID, {
+      type: "bar", // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+      data: {
+        labels: [],
+        datasets: [{
+          label: head,
+          data: [],
+          //backgroundColor:'green',
+          backgroundColor: [
+            "rgba(40, 75, 99, 0.9)",
+            "rgba(152, 193, 217, 0.9)",
+            "rgba(40, 75, 99, 0.9)",
+            "rgba(152, 193, 217, 0.9)",
+            "rgba(40, 75, 99, 0.9)",
+            "rgba(152, 193, 217, 0.9)",
+            "rgba(40, 75, 99, 0.9)",
+            "rgba(152, 193, 217, 0.9)",
+            "rgba(40, 75, 99, 0.9)",
+            "rgba(152, 193, 217, 0.9)",
+            "rgba(40, 75, 99, 0.9)",
+            "rgba(152, 193, 217, 0.9)",
+          ],
+          borderWidth: 1,
+          borderColor: "#777",
+          hoverBorderWidth: 3,
+          hoverBorderColor: "#000",
+        },],
+      },
+      options: {
+        title: {
+          display: true,
+          text: [],
+          fontSize: 20,
+        },
+        animations: {
+          tension: {
+            delay: 10000,
+            duration: 1000,
+            easing: 'linear',
+            from: 1,
+            to: 0,
+            loop: true
+          }
+        },
+        legend: {
+          display: true,
+          position: "right",
+          labels: {
+            fontColor: "#000",
+          },
+        },
+        layout: {
+          padding: {
+            left: 50,
+            right: 0,
+            bottom: 0,
+            top: 0,
+          },
+        },
+        tooltips: {
+          enabled: true,
+        },
+      },
+    });
+    $(document).ready(function () {
+      let date = new Date().getFullYear();
+      $("#year").val(`${date}`);
+      var yearDAta = $("#year").val();
+      yearAjx(yearDAta);
+      var massPopChart4;
+      $('#year').datepicker({
+        format: 'yyyy'
+      });
+      $('#year-month').datepicker({
+        format: 'yyyy-mm'
+      });
+      $("#year").on('change', function postinput() {
+        yearDAta = $(this).val();
+        yearAjx(yearDAta)
+
+      });
+      $("#year-month").on('change', function postinput() {
+        // var matchvalue = $(this).val(); // this.value
+        $.ajax({
+          url: "/chartfilter/get-year-month-data",
+          type: "post",
+          dataType: "JSON",
+          data: {
+            month: $(this).val()
+          },
+          success: function (data) {
+
+            cf.data.labels = lbl2;
+
+            cf.data.datasets[0].data = jsonConv(data); // or you can iterate for multiple datasets
+            cf.update();
+          },
+          error: function (data) {
+            console.log("month data", data);
+          },
+        });
+      });
+
+
+    });
+
+
+    function jsonConv(data) {
+      var res = [];
+      for (i in data) {
+        for (j in data[i])
+          res.push(data[i][j].total);
+      }
+      return res;
+    }
+
+    function jsonConvWithmonth(data) {
+      var res = [];
+      for (let k = 0; k < 12; k++) {
+        res[k] = 0;
+      }
+      for (i in data) {
+        for (j in data[i]) {
+          console.log(data[i][j].month);
+          console.log(data[i][j].total);
+
+          if (data[i][j].month == 1) {
+            res[0] = data[i][j].total;
+          } else if (data[i][j].month == 2) {
+            res[1] = data[i][j].total;
+          } else if (data[i][j].month == 3) {
+            res[2] = data[i][j].total;
+          } else if (data[i][j].month == 4) {
+            res[3] = data[i][j].total;
+          } else if (data[i][j].month == 5) {
+            res[4] = data[i][j].total;
+          } else if (data[i][j].month == 6) {
+            res[5] = data[i][j].total;
+          } else if (data[i][j].month == 7) {
+            res[6] = data[i][j].total;
+          } else if (data[i][j].month == 8) {
+            res[7] = data[i][j].total;
+          } else if (data[i][j].month == 9) {
+            res[8] = data[i][j].total;
+          } else if (data[i][j].month == 10) {
+            res[9] = data[i][j].total;
+          } else if (data[i][j].month == 11) {
+            res[10] = data[i][j].total;
+          } else if (data[i][j].month == 12) {
+            res[11] = data[i][j].total;
+          }
+
+        }
+
+      }
+      console.log("res", res[6]);
+      return res;
+    }
+
+
+
+    function yearAjx(year) {
+      console.log(year);
+      $.ajax({
+        url: "/chartfilter/get-year-data",
+        type: "post",
+        dataType: "JSON",
+        data: {
+          year: year
+        },
+        success: function (data) {
+
+          cf.data.labels = lbl;
+          console.log(cf.data.datasets);
+          cf.data.datasets[0].data = jsonConvWithmonth(data); // or you can iterate for multiple datasets
+          cf.update();
+        },
+        error: function (data) {
+          console.log("year data", data);
+        },
+      });
+
+    }
+
+    function generateRandomColor() {
+      var letters = '0123456789ABCDEF';
+      var color = '#';
+      for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
+    var randomColor = generateRandomColor(); //"#F10531"
+
+    console.log(randomColor);
+  </script>

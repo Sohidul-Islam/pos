@@ -1,0 +1,6 @@
+POST localhost:3000/chartfilter/get-year-data
+Content-Type: application/json
+{
+    "year" : "2021"
+}
+

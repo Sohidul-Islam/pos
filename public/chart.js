@@ -2,6 +2,7 @@
 var myChart1 = document.getElementById("myChart1").getContext("2d");
 var myChart2 = document.getElementById("myChart2").getContext("2d");
 
+
 Chart.defaults.global.defaultFontFamily = "comfortaa";
 Chart.defaults.global.defaultFontSize = 18;
 Chart.defaults.global.defaultFontColor = "#777";
@@ -14,6 +15,8 @@ result = result.map(i=>Number(i));
 var result2 = document.getElementById('mydiv2').innerText;
 result2 = result2.split(",")
 result2 = result2.map(i=>Number(i));
+
+
 
 var head = "Sales:(৳)";
 var head2 = "Profit:(৳)";
@@ -84,6 +87,8 @@ options: {
 });
 };
 
+
 var massPopChart3 = cf(myChart1, head,txt1, result, lbl);
 var massPopChart1 = cf(myChart2, head2,txt2, result2, lbl);
+
 

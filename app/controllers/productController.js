@@ -37,7 +37,7 @@ exports.allproducts = (req, res) => {
       for (let i = 0; i < due.length; i++) {
         due[i].paytime = handleDate(due[i].paytime);
 
-        console.log(due[i].paytime);
+        // console.log(due[i].paytime);
       }
       // chart 1
       for (let i = 0; i < forchart.length; i++) {
@@ -84,8 +84,8 @@ exports.allproducts = (req, res) => {
         todaysales = todaysales + totalsales[i].total;
       }
 
-      console.log("chart 1; ", salesChart);
-      console.log("chart 2; ", profitChart);
+      // console.log("chart 1; ", salesChart);
+      // console.log("chart 2; ", profitChart);
       main();
       res.render("./pages/home", {
         top: top,
@@ -181,9 +181,10 @@ function main() {
     
           day10 = data[0];
       day2 = data[1];
-      console.log("Day 2 ",day2);
-      console.log("Day 10",day10);
+      // console.log("Day 2 ",day2);
+      // console.log("Day 10",day10);
       for(let i = 0,j=0 ; i<day10.length,j<day2.length ; i++,j++){
+        console.log("Pay Time",day10[i].paytime);
         if (DayDifference(handleDate2(day10[i].paytime), curDate) <=10 && DayDifference(handleDate2(day10[i].paytime), curDate) >2) {
         let info = await transporter.sendMail({
           from: "pointofsale.system2021@gmail.com", // sender address

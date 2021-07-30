@@ -36,19 +36,13 @@ exports.paymentinfo = (req, res) => {
       curdate = new Date(curdate);
       for (let i = 0; i < data.length; i++) {
         data[i].date = new Date(data[i].date);
-        console.log(
-          diff_weeks(data[i].date, curdate),
-          " && ",
-          data[i].price,
-          " Date ",
-          data[i].date
-        );
+      
         if (
           diff_weeks(data[i].date, curdate) <= 1 &&
           data[i].t_type == "Income"
         ) {
           sum1 = sum1 + data[i].price;
-          console.log(sum1);
+        
         } else if (data[i].t_type == "Expense") {
           sum2 = sum2 + data[i].price;
         }

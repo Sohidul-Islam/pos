@@ -1,175 +1,180 @@
 <%- include('../template/head')-%>
 
-<body>
-  <!-- dividing 1 rows nad 2 columns -->
-  <div class="content-box">
-    <!-- this is for menubar -->
-    <%- include('../template/sidebar')-%>
-    <!-- this is for contents -->
-    <div class="maincontentbox d-inline-block mx-auto">
-      <%- include('../template/menubar')-%>
-      <!-- Selling overview -->
-      <div class="mx-4 overflow-hidden">
-        <div id="content-wrapper">
-          <div class="container-fluid">
-            <!-- Breadcrumbs-->
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item">
-                <a href="/">Home</a>
-              </li>
-              <li class="breadcrumb-item active">Check Sales</li>
-            </ol>
-            <!-- Page Content -->
-            <!-- DataTables Example -->
-            <div class="overflow-hidden">
-              <!-- DataTables Example -->
-              <div class="card mb-3">
-                <div class="card-header primary-background text-white">
-                  <i class="fa fa-table"></i>
-                  Recorded Sales
-                  <a
-                    href="#"
-                    class="text-white"
-                    data-bs-toggle="modal"
-                    data-bs-target="#addSaleModal"
-                  >
-                    <span class="float-end">
-                      <i class="fa fa-plus"></i>
-                      Add New Entry
-                    </span>
-                  </a>
+  <body>
+    <!-- dividing 1 rows nad 2 columns -->
+    <div class="content-box">
+      <!-- this is for menubar -->
+      <%- include('../template/sidebar')-%>
+        <!-- this is for contents -->
+        <div class="maincontentbox d-inline-block mx-auto">
+          <%- include('../template/menubar')-%>
+            <!-- Selling overview -->
+            <div class="mx-4 overflow-hidden">
+              <div id="content-wrapper">
+                <div class="container-fluid">
+                  <!-- Breadcrumbs-->
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                      <a href="/">Home</a>
+                    </li>
+                    <li class="breadcrumb-item active">Check Sales</li>
+                  </ol>
+                  <!-- Page Content -->
+                  <!-- DataTables Example -->
+                  <div class="overflow-hidden">
+                    <!-- DataTables Example -->
+                    <div class="card mb-3">
+                      <div class="card-header primary-background text-white">
+                        <i class="fa fa-table"></i>
+                        Recorded Sales
+                        <a href="#" class="text-white" data-bs-toggle="modal" data-bs-target="#addSaleModal">
+                          <span class="float-end">
+                            <i class="fa fa-plus"></i>
+                            Add New Entry
+                          </span>
+                        </a>
+                      </div>
+                      <div class="card-body">
+                        <div class="table-responsive">
+                          <table class="table table-striped table-hover" id="example" width="100%" cellspacing="0">
+                            <thead>
+                              <tr>
+                                <th>INVOICE-ID</th>
+                                <th>Product</th>
+                                <th>Product Type</th>
+                                <th>Brand</th>
+                                <th>qty</th>
+                                <th>stock</th>
+                                <th>Price/item</th>
+                                <th>Total</th>
+
+                                <th>Status</th>
+                                <th>Payment Date</th>
+                                <th>Profit</th>
+                              </tr>
+                            </thead>
+                            <tfoot>
+                              <tr>
+                                <th>INVOICE-ID</th>
+                                <th>Product</th>
+                                <th>Product Type</th>
+                                <th>Brand</th>
+                                <th>qty</th>
+                                <th>stock</th>
+                                <th>Price/item</th>
+                                <th>Total</th>
+
+                                <th>Status</th>
+                                <th>Payment Date</th>
+                                <th>Profit</th>
+                              </tr>
+                            </tfoot>
+                            <tbody>
+                              <%result.forEach(function(entry){%>
+                                <tr>
+                                  <td>
+                                    <%=entry.salesid%>
+                                  </td>
+                                  <td>
+                                    <%=entry.prod_n%>
+                                  </td>
+                                  <td class="text-danger">
+                                    <%=entry.prod_type%>
+                                  </td>
+                                  <td>
+                                    <%=entry.brand_n%>
+                                  </td>
+                                  <td>
+                                    <%=entry.qty%>
+                                  </td>
+                                  <%if(entry.stock <=10 ){%>
+                                    <td class="text-danger">
+                                      <%=entry.stock%>
+                                    </td>
+                                    <%} else if(entry.stock>10){%>
+                                      <td>
+                                        <%=entry.stock%>
+                                      </td>
+                                      <%} else{%>
+                                        <td class="text-danger">
+                                          <%=entry.stock%>
+                                        </td>
+                                        <%}%>
+                                          <td>&#2547;<%=entry.price%>
+                                          </td>
+                                          <td>&#2547;<%=entry.total%>
+                                          </td>
+
+                                          <td class="text-primary">
+                                            <%=entry.status%>
+                                          </td>
+                                          <%if(entry.status=="Payment"){%>
+                                            <td class="text-primary">
+                                              <%=entry.date%>
+                                            </td>
+                                            <%} else{%>
+                                              <td class="text-danger">
+                                                <%=entry.date%>
+                                              </td>
+                                              <%}%>
+                                                <td class="text-primary">
+                                                  <%=entry.profit%>
+                                                </td>
+                                </tr>
+                                <%});%>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                      <div class="card-footer small text-muted">
+                        Updated yesterday at 11:59 PM
+                      </div>
+                    </div>
+                  </div>
+                  <br /><br /><br />
                 </div>
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table
-                      class="table table-striped table-hover"
-                      id="example"
-                      width="100%"
-                      cellspacing="0"
-                    >
-                      <thead>
-                        <tr>
-                          <th>INVOICE-ID</th>
-                          <th>Product</th>
-                          <th>Product Type</th>
-                          <th>Brand</th>
-                          <th>qty</th>
-                          <th>stock</th>
-                          <th>Price/item</th>
-                          <th>Total</th>
+              </div>
+            </div>
+        </div>
 
-                          <th>Status</th>
-                          <th>Payment Date</th>
-                          <th>Profit</th>
-                        </tr>
-                      </thead>
-                      <tfoot>
-                        <tr>
-                          <th>INVOICE-ID</th>
-                          <th>Product</th>
-                          <th>Product Type</th>
-                          <th>Brand</th>
-                          <th>qty</th>
-                          <th>stock</th>
-                          <th>Price/item</th>
-                          <th>Total</th>
+        <!-- Floating Button -->
+        <button type="button" class="btn calendar-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <i class="fas fa-calendar-alt calendar-icon"></i>
+        </button>
 
-                          <th>Status</th>
-                          <th>Payment Date</th>
-                          <th>Profit</th>
-                        </tr>
-                      </tfoot>
-                      <tbody>
-                        <%result.forEach(function(entry){%>
-                        <tr>
-                          <td>#<%=entry.salesid%></td>
-                          <td><%=entry.prod_n%></td>
-                          <td class="text-danger"><%=entry.prod_type%></td>
-                          <td><%=entry.brand_n%></td>
-                          <td><%=entry.qty%></td>
-                          <%if(entry.stock <=10 ){%>
-                          <td class="text-danger"><%=entry.stock%></td>
-                          <%} else if(entry.stock>10){%>
-                          <td><%=entry.stock%></td>
-                          <%} else{%>
-                          <td class="text-danger"><%=entry.stock%></td>
-                          <%}%>
-                          <td>&#2547;<%=entry.price%></td>
-                          <td>&#2547;<%=entry.total%></td>
-
-                          <td class="text-primary"><%=entry.status%></td>
-                          <%if(entry.status=="Payment"){%>
-                          <td class="text-primary"><%=entry.date%></td>
-                          <%} else{%>
-                          <td class="text-danger"><%=entry.date%></td>
-                          <%}%>
-                          <td class="text-primary"><%=entry.profit%></td>
-                        </tr>
-                        <%});%>
-                      </tbody>
-                    </table>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="calendar">
+                <div class="calendar-header">
+                  <span class="month-picker" id="month-picker">February</span>
+                  <div class="year-picker">
+                    <span class="year-change" id="prev-year">
+                      <pre><</pre>
+                    </span>
+                    <span id="year">2021</span>
+                    <span class="year-change" id="next-year">
+                      <pre>></pre>
+                    </span>
                   </div>
                 </div>
-                <div class="card-footer small text-muted">
-                  Updated yesterday at 11:59 PM
+                <div class="calendar-body">
+                  <div class="calendar-week-day">
+                    <div>Sun</div>
+                    <div>Mon</div>
+                    <div>Tue</div>
+                    <div>Wed</div>
+                    <div>Thu</div>
+                    <div>Fri</div>
+                    <div>Sat</div>
+                  </div>
+                  <div class="calendar-days"></div>
                 </div>
+                <div class="month-list"></div>
               </div>
             </div>
-            <br /><br /><br />
           </div>
         </div>
-      </div>
+        <%- include('../template/footer')-%>
     </div>
-
-    <!-- Floating Button -->
-    <button
-      type="button"
-      class="btn calendar-btn"
-      data-bs-toggle="modal"
-      data-bs-target="#exampleModal"
-    >
-      <i class="fas fa-calendar-alt calendar-icon"></i>
-    </button>
-
-    <div
-      class="modal fade"
-      id="exampleModal"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="calendar">
-            <div class="calendar-header">
-              <span class="month-picker" id="month-picker">February</span>
-              <div class="year-picker">
-                <span class="year-change" id="prev-year">
-                  <pre><</pre>
-                </span>
-                <span id="year">2021</span>
-                <span class="year-change" id="next-year">
-                  <pre>></pre>
-                </span>
-              </div>
-            </div>
-            <div class="calendar-body">
-              <div class="calendar-week-day">
-                <div>Sun</div>
-                <div>Mon</div>
-                <div>Tue</div>
-                <div>Wed</div>
-                <div>Thu</div>
-                <div>Fri</div>
-                <div>Sat</div>
-              </div>
-              <div class="calendar-days"></div>
-            </div>
-            <div class="month-list"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <%- include('../template/footer')-%>
-  </div>
-</body>
+  </body>

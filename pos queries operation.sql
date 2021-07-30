@@ -121,3 +121,20 @@ where  product.brandid = brand.brandid and product.prodid = prodtype.prodid and 
 
 select pid,product.prodid,prod_type,prod_n,product.brandid,brand_n,product.vendorid,v_name,stock,cost_p,selling_p,des from product,prodtype,brand,vendors 
     where  product.brandid = brand.brandid and product.prodid = prodtype.prodid and product.vendorid = vendors.vendorid and pid = 2;
+    
+    
+    select date_format(date,"%d/%m/%y") date,prod_n,price,status from sales,product where product.pid = sales.pid and  date_format(date,"%m") = "08";
+    
+    #this is for data filtering
+    
+    select date_format(date,'%m') months,sum(sales.price) as total from sales where date_format(date,'%Y') ='2021' group by date_format(date,'%m');
+    
+ select date_format(date,'%m') months,sum(sales.price) as total from sales where date_format(date,'%Y') ='2021' and date_format(date,'%m') ='07'  group by date_format(date,'%m');
+ 
+ select month(date) as month,sum(price) from  sales  where year(date) = "2021" group by MONTH(date);
+ select WEEK(date) as week,sum(price) from  sales  where year(date) = "2021" and MONTH(date) ='7' group by WEEK(date);
+ 
+
+ select prod_type,count(prod_n) from  sales,product,prodtype  where MONTH(issuetime) = MONTH(CURDATE()) and product.pid = sales.pid and prodtype.prodid = product.prodid group by prod_n;
+ select brand_n,count(prod_n) from  sales,product,brand  where MONTH(issuetime) = MONTH(CURDATE()) and product.pid = sales.pid and brand.brandid = product.brandid group by brand_n;
+
