@@ -24,9 +24,7 @@ Products.getAll = (result) => {
     select * from due order by issuetime desc;
 
     select sales.pid as pid,prod_n,prod_type,sum(qty) as qty,selling_p,status,issuetime from sales,product,prodtype,brand 
-    where product.pid = sales.pid and product.prodid = prodtype.prodid and product.brandid = brand.brandid group by issuetime order by qty desc
-   ;
-   
+    where YEAR(issuetime) = YEAR(CURDATE()) and WEEK(issuetime) = WEEK(CURDATE()) and product.pid = sales.pid and product.prodid = prodtype.prodid and product.brandid = brand.brandid group by prod_n order by qty desc;
    select prod_n,prod_type,stock,selling_p, stock*selling_p as worth from product join prodtype join brand
    on product.prodid = prodtype.prodid and product.brandid = brand.brandid
    where product.stock <=10;

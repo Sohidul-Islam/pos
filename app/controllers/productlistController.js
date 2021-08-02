@@ -154,7 +154,7 @@ exports.createsales = (req, res) => {
           err.message || "Some error occurred while creating the Customer.",
       });
     else if (data !== null && data !== "") {
-      res.send(data);
+      res.redirect("http://localhost:3000/sales");
     }
   });
 };

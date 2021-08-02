@@ -73,12 +73,9 @@ exports.allproducts = (req, res) => {
       }
 
       for (let i = 0; i < topselling.length; i++) {
-        topselling[i].issuetime = handleDate2(topselling[i].issuetime);
-        let d1 = new Date(curDate);
-        let d2 = new Date(topselling[i].issuetime);
-        if (diff_weeks(d1, d2) <= 1) {
+      
           topsellingcounter++;
-        }
+      
       }
       for (let i = 0; i < totalsales.length; i++) {
         todaysales = todaysales + totalsales[i].total;

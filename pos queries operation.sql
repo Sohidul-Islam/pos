@@ -129,12 +129,20 @@ select pid,product.prodid,prod_type,prod_n,product.brandid,brand_n,product.vendo
     
     select date_format(date,'%m') months,sum(sales.price) as total from sales where date_format(date,'%Y') ='2021' group by date_format(date,'%m');
     
- select date_format(date,'%m') months,sum(sales.price) as total from sales where date_format(date,'%Y') ='2021' and date_format(date,'%m') ='07'  group by date_format(date,'%m');
+ select date_format(date,'%m') months,sum(sales.price) as total from sales where date_format(date,'%Y') ='2021' and date_format(date,'%m') ='05'  group by date_format(date,'%m');
  
- select month(date) as month,sum(price) from  sales  where year(date) = "2021" group by MONTH(date);
- select WEEK(date) as week,sum(price) from  sales  where year(date) = "2021" and MONTH(date) ='7' group by WEEK(date);
+ select month(issuetime) as month,sum(price) as total from  sales  where year(issuetime) = "2021" group by MONTH(issuetime);
+ 
+ select WEEK(issuetime) as week,sum(price) from  sales  where year(issuetime) = "2021" and MONTH(issuetime) ='6' group by WEEK(issuetime);
  
 
  select prod_type,count(prod_n) from  sales,product,prodtype  where MONTH(issuetime) = MONTH(CURDATE()) and product.pid = sales.pid and prodtype.prodid = product.prodid group by prod_n;
  select brand_n,count(prod_n) from  sales,product,brand  where MONTH(issuetime) = MONTH(CURDATE()) and product.pid = sales.pid and brand.brandid = product.brandid group by brand_n;
+
+
+
+INSERT INTO sales (customername,address,email,pid,qty,status,price,date,des,issuetime)
+SELECT customername,address,email,pid,qty,status,price,'2021-02-28',des,'2021-02-28'
+FROM sales
+WHERE sales.salesid = 75;
 
