@@ -23,8 +23,8 @@ exports.logininfo = (req, res) => {
 exports.checkItout = (req, res) => {
     const email = req.body.email;
     const pass = req.body.password;
-    console.log("req.email ",email);
-    console.log("req.pass ",pass);
+    // console.log("req.email ",email);
+    // console.log("req.pass ",pass);
 
     if(email && pass){
         login.checklogin(req.body,(err, data) => {
@@ -34,9 +34,11 @@ exports.checkItout = (req, res) => {
 				req.session.email = req.body.email;
                 req.flash("successMailChecker", `Successfully Loged Out`);
 				res.redirect("/home");
+                // setTimeout(function(){  res.redirect("/home"); }, 3000);
 			} else {
                 req.flash("unauthorizeUser", `Email and Password does not match`);
                 res.redirect("/");
+                
 			}
             
           });

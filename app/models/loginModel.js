@@ -16,7 +16,7 @@ const login = function (admin) {
           result(null, err);
           return;
         } else {
-          console.log("Info ", res);
+          // console.log("Info ", res);
           
         }
         result(null,res);
@@ -26,7 +26,7 @@ const login = function (admin) {
   login.checklogin = (admin,result) => {
      var email  = admin.email;
      var pass  = admin.password;
-    console.log(`SELECT * FROM admin where email = ${email} and password = ${pass};`);
+    // console.log(`SELECT * FROM admin where email = ${email} and password = ${pass};`);
      if (email && pass) {
       sql.query(
         `SELECT * FROM admin where email = ? and password = ?;`,[email,pass],
@@ -36,7 +36,7 @@ const login = function (admin) {
             result(null, err);
             return;
           } else {
-            console.log("Info ", res);
+            // console.log("Info ", res);
             
           }
           result(null,res);

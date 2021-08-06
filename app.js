@@ -105,6 +105,8 @@ app.use("/chartfilter", chart);
 
 const login = require("./app/router/loginRouter");
 app.use("/", login);
+const resetpassword = require("./app/router/reset-passwordRouter");
+app.use("/reset-password", resetpassword);
 
 
 app.use("/logout",(req,res)=>{
