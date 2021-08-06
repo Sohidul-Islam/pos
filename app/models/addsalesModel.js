@@ -31,7 +31,7 @@ addsales.getAllprodtype = (result) => {
 addsales.createsales = (newproduct, result) => {
   sql.query(`INSERT INTO sales SET ?`, newproduct, (err, res) => {
     if (err) {
-      console.log("error: ", err);
+      console.log("error: SalesTable ", err);
       result(err, null);
       return;
     } else if (res.insertId !== null && res.insertId !== "") {
@@ -41,19 +41,20 @@ addsales.createsales = (newproduct, result) => {
           WHERE product.pid = sales.pid and sales.salesid =${res.insertId} `,
         (err, res) => {
           if (err) {
-            console.log("error: ", err);
+            console.log("error: product update ", err);
             result(null, err);
             return;
           } else {
             sql.query(
               `INSERT INTO Customers (customerid,name, address, email)
-            SELECT salesid,customername,address,email FROM sales ORDER BY salesid DESC LIMIT 1;SELECT * FROM customers`,
+            SELECT salesid,customername,address,email FROM sales ORDER BY salesid DESC LIMIT 1;`,
               (err, res) => {
                 if (err) {
-                  console.log("error: ", err);
+                  console.log("error: customer table", err);
                   result(null, err);
                   return;
-                } else {
+                }
+                else if(newproduct.status=="Payment"){
                   sql.query(
                     `insert into expense(t_type,des,account,date,price)
                   select "Income",CONCAT(product.prod_n, ' sold'),customername,issuetime,qty*price
@@ -62,24 +63,26 @@ addsales.createsales = (newproduct, result) => {
                   order by salesid desc limit 1`,
                     (err, res) => {
                       if (err) {
-                        console.log("error: ", err);
+                        console.log("error: expense table", err);
                         result(null, err);
                         return;
-                      } else {
-                        sql.query(
-                          `insert into due(dueid,name,address,email,due,issuetime,paytime,product,status)
-                          select salesid,customername,address,email,price*qty,issuetime,date,sales.pid,'not_sent'
-                          from sales,product
-                          where product.pid = sales.pid and status = "Due"
-                          order by salesid desc limit 1;`,
-                          (err, res) => {
-                            if (err) {
-                              console.log("error: ", err);
-                              result(null, err);
-                              return;
-                            }
-                          }
-                        );
+                      } 
+                    }
+                  );
+                }
+                 else if(newproduct.status=="Due") {
+                   console.log(newproduct);
+                   sql.query(
+                    `insert into due(dueid,name,address,email,due,issuetime,paytime,product,status)
+                    select salesid,customername,address,email,price*qty,issuetime,date,sales.pid,'not_sent'
+                    from sales,product
+                    where product.pid = sales.pid and status = "Due"
+                    order by salesid desc limit 1;`,
+                    (err, res) => {
+                      if (err) {
+                        console.log("error: DUE table", err);
+                        result(null, err);
+                        return;
                       }
                     }
                   );

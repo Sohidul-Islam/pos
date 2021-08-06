@@ -2,6 +2,9 @@ const productType = require("../models/productTypeModel");
 const ProductType = require("../models/productTypeModel");
 
 exports.findAllproductType = (req, res) => {
+  if(req.session.loggedin!=true){
+    res.redirect("/");
+  }
   productType.gettAllType((err, data) => {
     if (err) {
       res.status(500).send({
@@ -16,6 +19,7 @@ exports.findAllproductType = (req, res) => {
       console.log(data);
       res.render("./pages/product-types", {
         data,
+        role: req.session.username
       });
     }
   });

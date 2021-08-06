@@ -1,9 +1,12 @@
 const productlist = require("../models/productlistModel");
 const Productlist = require("../models/productlistModel");
-const addsales = require("../models/addsalesModel");
+// const addsales = require("../models/addsalesModel");
 const Addsales = require("../models/addsalesModel");
 
 exports.findAllproductlist = (req, res) => {
+  if(req.session.loggedin!=true){
+    res.redirect("/");
+  }
   productlist.gettAllproduct((err, data) => {
     if (err) {
       res.status(500).send({
@@ -12,6 +15,7 @@ exports.findAllproductlist = (req, res) => {
     } else {
       res.render("./pages/products", {
         data,
+        role: req.session.username
       });
     }
   });
@@ -53,8 +57,12 @@ exports.update = (req, res) => {
     } else res.redirect("back");
   });
 };
-
+var j = 0;
 exports.findOne = (req, res) => {
+  if(req.session.loggedin!=true){
+    res.redirect("/");
+  }
+  console.log(`IN Controller PID ${req.params.pid} and ${j++}`);
   productlist.findById(req.params.pid, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
@@ -67,26 +75,42 @@ exports.findOne = (req, res) => {
         });
       }
     } else {
-      let findbyid = data[0][0];
-      let prodType = data[1];
-      let brand = data[2];
-      let vendor = data[3];
-      // console.log("length, ", prodType.length);
-      // console.log("Type, ", findbyid);
-      // console.log("find by id: ", prodType.length);
-      // console.log("find by id: ", brand);
-      // console.log("find by id: ", vendor.length);
-      res.render("./pages/editproduct", {
-        findbyid: findbyid,
-        prodType: prodType,
-        brand: brand,
-        vendor: vendor,
-      });
+
+      productlist.productInfo((err,DATA)=>{
+        if (err) {
+         
+            res.status(404).send({
+              message: `Not found product info`,
+            });
+        }else{
+
+          let findbyid = data[0];
+          let prodType = DATA[0];
+          let brand = DATA[1];
+          let vendor = DATA[2];
+          console.log("Findby id ",findbyid);
+          console.log("ProdType  ",prodType);
+          console.log("Brand  ",brand);
+          console.log("Vendor ",vendor);
+          res.render("./pages/editproduct", {
+            findbyid: findbyid,
+            prodType: prodType,
+            brand: brand,
+            vendor: vendor,
+            role: req.session.username
+          });
+        }
+      })
+   
     }
   });
 };
 exports.salesone = (req, res) => {
-  productlist.findById(req.params.pid, (err, data) => {
+  if(req.session.loggedin!=true){
+    res.redirect("/");
+  }
+  console.log(req.params,"Not fount");
+  productlist.findByIdforsales(req.params.pid, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
@@ -98,11 +122,12 @@ exports.salesone = (req, res) => {
         });
       }
     } else {
-      let findbyid = data[0][0];
-
-      console.log("findbyid ", findbyid.selling_p);
-      res.render("./pages/salesindividual", {
-        findbyid: findbyid,
+      let findbyid = data[0];
+      // ./pages/salesindividual
+      // console.log("findbyid ", findbyid.selling_p);
+      res.render(`./pages/salesindividual`,{
+        findbyid,
+        role: req.session.username
       });
     }
   });
@@ -155,8 +180,8 @@ exports.createsales = (req, res) => {
       });
     else if (data !== null && data !== "") {
       res.redirect("http://localhost:3000/sales");
+      
     }
   });
 };
-// <%for(let i = 0 ; i<prodType.length;i++)%>
-//                       <%%>
+

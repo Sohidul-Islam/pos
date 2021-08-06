@@ -1,6 +1,9 @@
 const todaysalss = require("../models/todaysalesModel");
 const todaysales = require("../models/todaysalesModel");
 exports.findTodaysales = (req, res) => {
+  if(req.session.loggedin!=true){
+    res.redirect("/");
+  }
   todaysalss.getTodaysales((err, data) => {
     if (err) {
       res.status(500).send({
@@ -14,6 +17,7 @@ exports.findTodaysales = (req, res) => {
       console.log("TodaySales: ", result);
       res.render("./pages/todaysales", {
         result: result,
+        role: req.session.username
       });
     }
   });

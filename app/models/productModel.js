@@ -10,13 +10,16 @@ const Products = function (product) {
   this.vendorid = product.vendorid;
   this.dueid = product.dueid;
 };
-//1 query : top product
+//1 query : top seles
 //2 query : sales count
 //3 query : due list
 //4 query : count top selling products
 Products.getAll = (result) => {
   sql.query(
-    `select customername,address,email,(qty*price) as total from sales where status<>'Due' order by qty*price desc; 
+    `select customername,address,email,(qty*price) as total from sales where 
+    year(issuetime) = year(curdate()) and month(issuetime) = month(curdate()) and 
+    status<>'Due' order by qty*price desc; 
+     
     
     select prod_n,prod_type,qty,qty*sales.price as total,status,issuetime from sales,product,prodtype,brand 
     where product.pid = sales.pid and product.prodid = prodtype.prodid and product.brandid = brand.brandid;
@@ -116,6 +119,7 @@ Products.updateStatusbyid2 = (dueid, result) => {
     }
   );
 };
+
 Products.updatepaymentbyid = (dueid, result) => {
   console.log(`update sales set status = 'Payment' where  = ${dueid}`);
   sql.query(

@@ -21,6 +21,9 @@ const handleDate = (dataD) => {
   return postDate;
 };
 exports.paymentinfo = (req, res) => {
+  if(req.session.loggedin!=true){
+    res.redirect("/");
+  }
   paymentinfo.paymentDetails((err, data) => {
     if (err) {
       res.status(500).send({
@@ -61,6 +64,7 @@ exports.paymentinfo = (req, res) => {
         sum2,
         sum3,
         sum4,
+        role: req.session.username
       });
     }
     // console.log("Updated data : ", data);

@@ -1,5 +1,8 @@
 const salesCount = require("../models/salescountModel");
 exports.allsalesCount = (req, res) => {
+  if(req.session.loggedin!=true){
+    res.redirect("/");
+  }
   salesCount.salesCount((err, data) => {
     if (err) {
       res.status(500).send({
@@ -29,6 +32,7 @@ exports.allsalesCount = (req, res) => {
       console.log("Temp : ", tmp);
       res.render("./pages/salescount", {
         result: tmp,
+        role: req.session.username
       });
     }
     console.log(data);

@@ -24,20 +24,56 @@ productlist.gettAllproduct = (result) => {
         result(err, null);
       } else {
         result(null, res);
-        console.log("gett all product :", res);
+        // console.log("gett all product :", res);
       }
     }
   );
 };
-
-productlist.findById = (pid, result) => {
+productlist.productInfo = (result) => {
   sql.query(
-    `select pid,product.prodid,prod_type,prod_n,product.brandid,brand_n,product.vendorid,v_name,stock,cost_p,selling_p,product.des from product,prodtype,brand,vendors 
-    where  product.brandid = brand.brandid and product.prodid = prodtype.prodid and product.vendorid = vendors.vendorid and pid = ${pid};
-    select * from prodtype;
+    ` select * from prodtype;
     select * from brand;
-    select * from vendors;
-    `,
+    select * from vendors;`,
+    (err, res) => {
+      if (err) {
+        console.log("gett all product :", err);
+        res.send(err);
+        result(err, null);
+      } else {
+        result(null, res);
+        // console.log("gett all product :", res);
+      }
+    }
+  );
+};
+var i = 0;
+productlist.findById = (pid, result) => {
+  console.log(`IN MODAL PID ${pid} and ${i++}`);
+  
+  sql.query(
+    "select pid,product.prodid,prod_type,prod_n,product.brandid,brand_n,product.vendorid,v_name,stock,cost_p,selling_p,product.des from product,prodtype,brand,vendors where  product.brandid = brand.brandid and product.prodid = prodtype.prodid and product.vendorid = vendors.vendorid and pid =?",pid,
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+
+      if (res.length) {
+        // console.log("found product: ", res);
+        result(null, res);
+        return;
+      }
+      result({ kind: "not_found" }, null);
+    }
+  );
+};
+var j = 0
+productlist.findByIdforsales = (pid, result) => {
+  console.log(`IN MODAL for sales --> PID ${pid} and ${j++}`);
+  
+  sql.query(
+    "select pid,product.prodid,prod_type,prod_n,product.brandid,brand_n,product.vendorid,v_name,stock,cost_p,selling_p,product.des from product,prodtype,brand,vendors where  product.brandid = brand.brandid and product.prodid = prodtype.prodid and product.vendorid = vendors.vendorid and pid =?",pid,
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -85,14 +121,14 @@ productlist.updateById = (product, result) => {
         return;
       }
 
-      console.log("updated product: ", { id: product.pid, ...product });
+     // console.log("updated product: ", { id: product.pid, ...product });
       result(null, { id: product.pid, ...product });
     }
   );
 };
 
 productlist.remove = (pid, result) => {
-  console.log(`DELETE FROM product WHERE pid = ${pid}`);
+  // console.log(`DELETE FROM product WHERE pid = ${pid}`);
   sql.query("DELETE FROM product WHERE pid = ?", pid, (err, res) => {
     if (err) {
       console.log("error: ", err);

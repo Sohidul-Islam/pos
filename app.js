@@ -2,14 +2,33 @@ const express = require("express");
 //call express js modules web framwork for nodejs
 
 const ejs = require("ejs");
+var session = require('express-session');
+var MySQLStore = require("express-mysql-session");
 //call ejs module which handle html/css/javascript
 const path = require("path");
+var flash = require('connect-flash');
 //path module work from which folder we should start to view our site.
 const exp = require("constants");
 
+const sql = require("./app/models/db");
+
 // creat app
+var sessionStore = new MySQLStore({ clearExpired: true, checkExpirationInterval: 3000000 }, sql);
 
 const app = express();
+app.use(
+    session({
+        secret: "cookie_secret",
+        resave: false,
+        saveUninitialized: true,
+        store: sessionStore,
+        cookie: {
+            expires: 3000000,
+        },
+    })
+);
+
+app.use(flash());
 // store express module in app constant variable
 app.use(express.json());
 //we use express.json() for use json array.
@@ -25,7 +44,7 @@ app.use(express.static("./public"));
 //here store our css/javascript and other static files.
 
 const home = require("./app/router/productRouter");
-app.use("/", home);
+app.use("/home", home);
 
 const inventory = require("./app/router/inventoryreport");
 app.use("/inventoryreport", inventory);
@@ -83,6 +102,17 @@ app.use("/product-types", productType);
 
 const chart = require("./app/router/chartfilterRouter");
 app.use("/chartfilter", chart);
+
+const login = require("./app/router/loginRouter");
+app.use("/", login);
+
+
+app.use("/logout",(req,res)=>{
+    req.session.destroy();
+    res.redirect("/");
+});
+
+
 
 // main().catch(console.error);
 

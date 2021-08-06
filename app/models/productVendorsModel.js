@@ -7,9 +7,9 @@ const vendors = function (brand) {
 vendors.allvendors = (result) => {
   sql.query(
     `select vendors.vendorid,v_name,phone,sum(stock) as products,sum(stock*selling_p) as worth
-    from product,vendors
-    where product.vendorid = vendors.vendorid
-    group by v_name`,
+    from vendors left join product
+    on product.vendorid = vendors.vendorid
+    group by v_name;`,
     (err, res) => {
       if (err) {
         console.log("error: ", err);

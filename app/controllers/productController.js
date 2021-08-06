@@ -3,6 +3,9 @@ const nodemailer = require("nodemailer");
 const Products = require("../models/productModel");
 
 exports.allproducts = (req, res) => {
+  if(req.session.loggedin!=true){
+    res.redirect("/");
+  }
   product.getAll((err, data) => {
     if (err) {
       res.status(500).send({
@@ -73,9 +76,9 @@ exports.allproducts = (req, res) => {
       }
 
       for (let i = 0; i < topselling.length; i++) {
-      
-          topsellingcounter++;
-      
+
+        topsellingcounter++;
+
       }
       for (let i = 0; i < totalsales.length; i++) {
         todaysales = todaysales + totalsales[i].total;
@@ -84,6 +87,7 @@ exports.allproducts = (req, res) => {
       // console.log("chart 1; ", salesChart);
       // console.log("chart 2; ", profitChart);
       main();
+      console.log("In home",req.session.username);
       res.render("./pages/home", {
         top: top,
         count: sellingCount,
@@ -93,6 +97,7 @@ exports.allproducts = (req, res) => {
         todaysales: todaysales,
         salesChart: salesChart,
         profitChart: profitChart,
+        role: req.session.username
       });
     }
   });
@@ -103,7 +108,7 @@ exports.updatePayment = (req, res) => {
     if (err) {
       res.status(500).send("Some error for updating payment");
     } else {
-      res.redirect("/");
+      res.redirect("/home");
     }
   });
 };
@@ -164,7 +169,7 @@ function main() {
         message: err.message || "Some error occured in allproducts function",
       });
     } else {
-      
+
       (async () => {
         let transporter = nodemailer.createTransport({
           service: "gmail",
@@ -175,20 +180,20 @@ function main() {
             pass: "shufol01866922658", // generated ethereal password
           },
         });
-    
-          day10 = data[0];
-      day2 = data[1];
-      // console.log("Day 2 ",day2);
-      // console.log("Day 10",day10);
-      for(let i = 0,j=0 ; i<day10.length,j<day2.length ; i++,j++){
-        console.log("Pay Time",day10[i].paytime);
-        if (DayDifference(handleDate2(day10[i].paytime), curDate) <=10 && DayDifference(handleDate2(day10[i].paytime), curDate) >2) {
-        let info = await transporter.sendMail({
-          from: "pointofsale.system2021@gmail.com", // sender address
-          to: `${day10[i].email}`, // list of receivers
-          subject: "POS DUE WARNING ⚠️", // Subject line
 
-          html: `<h4 style="font-size: 20px">Hey <span style="color: #007f5f;">${
+        day10 = data[0];
+        day2 = data[1];
+        // console.log("Day 2 ",day2);
+        // console.log("Day 10",day10);
+        for (let i = 0, j = 0; i < day10.length, j < day2.length; i++, j++) {
+          // console.log("Pay Time",day10[i].paytime);
+          if (DayDifference(handleDate2(day10[i].paytime), curDate) <= 10 && DayDifference(handleDate2(day10[i].paytime), curDate) > 2) {
+            let info = await transporter.sendMail({
+              from: "pointofsale.system2021@gmail.com", // sender address
+              to: `${day10[i].email}`, // list of receivers
+              subject: "POS DUE WARNING ⚠️", // Subject line
+
+              html: `<h4 style="font-size: 20px">Hey <span style="color: #007f5f;">${
             day10[i].name
           }</span></h4>
     <h4 style="font-size: 16px; color:#ee6c4d ">You Have Some Due Please Pay The Dues Within ${handleDate(
@@ -201,31 +206,29 @@ function main() {
       <li><strong>Due:</strong> &#2547;${day10[i].due}</li>
       <li><strong>Promise Date:</strong> ${handleDate(day10[i].paytime)}</li>
     </ul>`, // html body
-        });
+            });
 
-        if (info.messageId) {
-          product.updateStatusbyid(day10[i].dueid, (err, data) => {
-            if (err) {
-              res.status(500).send({
-                message:
-                  err.message ||
-                  "Some error occured in allproducts function",
+            if (info.messageId) {
+              product.updateStatusbyid(day10[i].dueid, (err, data) => {
+                if (err) {
+                  res.status(500).send({
+                    message: err.message ||
+                      "Some error occured in allproducts function",
+                  });
+                } else {
+                  console.log("Status Updated");
+                }
               });
-            } else {
-              console.log("Status Updated");
             }
-          });
-        }
- 
-        console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-      }
-      else  if (DayDifference(handleDate2(day2[j].paytime), curDate)<=2) {
-        let info = await transporter.sendMail({
-          from: "pointofsale.system2021@gmail.com", // sender address
-          to: `${day2[j].email}`, // list of receivers
-          subject: "POS DUE WARNING ⚠️", // Subject line
 
-          html: `<h4 style="font-size: 20px">Hey <span style="color: #007f5f;">${
+            console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+          } else if (DayDifference(handleDate2(day2[j].paytime), curDate) <= 2) {
+            let info = await transporter.sendMail({
+              from: "pointofsale.system2021@gmail.com", // sender address
+              to: `${day2[j].email}`, // list of receivers
+              subject: "POS DUE WARNING ⚠️", // Subject line
+
+              html: `<h4 style="font-size: 20px">Hey <span style="color: #007f5f;">${
             day2[j].name
           }</span></h4>
     <h4 style="font-size: 16px; color:#ee6c4d ">You Have Some Due Please Pay The Dues Within ${handleDate(
@@ -238,30 +241,29 @@ function main() {
       <li><strong>Due:</strong> &#2547;${day2[j].due}</li>
       <li><strong>Promise Date:</strong> ${handleDate(day2[j].paytime)}</li>
     </ul>`, // html body
-        });
+            });
 
-        if (info.messageId) {
-          product.updateStatusbyid2(day2[j].dueid, (err, data) => {
-            if (err) {
-              res.status(500).send({
-                message:
-                  err.message ||
-                  "Some error occured in allproducts function",
+            if (info.messageId) {
+              product.updateStatusbyid2(day2[j].dueid, (err, data) => {
+                if (err) {
+                  res.status(500).send({
+                    message: err.message ||
+                      "Some error occured in allproducts function",
+                  });
+                } else {
+                  console.log("Status Updated");
+                }
               });
-            } else {
-              console.log("Status Updated");
             }
-          });
-        }
-        // console.log(info);
-        // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+            // console.log(info);
+            // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
 
-        // Preview only available when sending through an Ethereal account
-        console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-      }
-    }
-         
-        
+            // Preview only available when sending through an Ethereal account
+            console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+          }
+        }
+
+
       })().catch((err) => {
         console.error(err);
       });

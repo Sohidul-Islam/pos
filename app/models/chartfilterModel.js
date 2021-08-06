@@ -50,7 +50,7 @@ const chart = function (payment) {
 
   chart.piechart = (result) => {  
     sql.query(
-      `   select prod_type,count(prod_n) as sales from  sales,product,prodtype  where MONTH(issuetime) = MONTH(CURDATE()) and product.pid = sales.pid and prodtype.prodid = product.prodid group by prod_n;
+      `   select prod_type,count(prod_n) as sales from  sales,product,prodtype  where MONTH(issuetime) = MONTH(CURDATE()) and product.pid = sales.pid and prodtype.prodid = product.prodid group by prod_type;
       select brand_n,count(prod_n) as sales from  sales,product,brand  where MONTH(issuetime) = MONTH(CURDATE()) and product.pid = sales.pid and brand.brandid = product.brandid group by brand_n;`,
     
       (err, res) => {

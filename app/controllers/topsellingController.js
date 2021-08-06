@@ -1,5 +1,8 @@
 const topSeller = require("../models/topsellingModel");
 exports.FindAlltopSelling = (req, res) => {
+  if(req.session.loggedin!=true){
+    res.redirect("/");
+  }
   topSeller.topselling((err, data) => {
     if (err) {
       res.status(500).send({
@@ -33,6 +36,7 @@ exports.FindAlltopSelling = (req, res) => {
       console.log("Temporary top sellign",tmp);
       res.render("./pages/topselling", {
         result: tmp,
+        role: req.session.username
       });
     }
   });

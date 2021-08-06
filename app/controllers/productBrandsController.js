@@ -1,6 +1,9 @@
 const productBrands = require("../models/productBrandsModel");
 
 exports.showbrands = (req, res) => {
+  if(req.session.loggedin!=true){
+    res.redirect("/");
+  }
   productBrands.allbrands((err, data) => {
     if (err) {
       res.status(500).send({
@@ -17,6 +20,7 @@ exports.showbrands = (req, res) => {
       }
       res.render("./pages/product-brands", {
         result: data,
+        role: req.session.username
       });
     }
 

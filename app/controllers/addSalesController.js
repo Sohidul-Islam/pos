@@ -2,6 +2,9 @@ const addsales = require("../models/addsalesModel");
 const Addsales = require("../models/addsalesModel");
 
 exports.addSales = (req, res) => {
+  if(req.session.loggedin!=true){
+    res.redirect("/");
+  }
   addsales.getAllprodtype((err, data) => {
     if (err) {
       res.status(500).send({
@@ -12,6 +15,7 @@ exports.addSales = (req, res) => {
       // console.log("customer ", typeof customers);
       res.render("./pages/addsales", {
         product: product,
+        role: req.session.username
       });
       // console.log("add sales", data);
     }

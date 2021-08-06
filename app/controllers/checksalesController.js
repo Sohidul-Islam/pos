@@ -1,5 +1,8 @@
 const checksales = require("../models/checksalesModel");
 exports.allsales = (req, res) => {
+  if(req.session.loggedin!=true){
+    res.redirect("/");
+  }
   checksales.checkallsales((err, data) => {
     if (err) {
       res.status(500).send({
@@ -9,13 +12,14 @@ exports.allsales = (req, res) => {
       for (let i = 0; i < data.length; i++) {
         if (data[i].stock <= 0) data[i].stock = "out of stock";
         else if (data[i].status == "Due") data[i].profit = "Pending";
-        console.log("Stock ", data[i].stock);
-        console.log("Stock ", data[i].profit);
+        // console.log("Stock ", data[i].stock);
+        // console.log("Stock ", data[i].profit);
         data[i].issuetime = handleDate(data[i].issuetime);
         data[i].date = handleDate(data[i].date);
       }
       res.render("./pages/sales", {
         result: data,
+        role: req.session.username
       });
     }
   });

@@ -5,6 +5,9 @@ const Producttype = require("../models/addproducttypeModel");
 // };
 
 exports.allproductsTypes = (req, res) => {
+  if(req.session.loggedin!=true){
+    res.redirect("/");
+  }
   producttype.getAllprodtype((err, data) => {
     if (err) {
       res.status(500).send({
@@ -13,6 +16,7 @@ exports.allproductsTypes = (req, res) => {
     } else
       res.render("./pages/addproducttype", {
         data,
+        role: req.session.username
       });
 
     console.log(data);

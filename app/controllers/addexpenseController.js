@@ -1,6 +1,9 @@
 const addexpense = require("../models/addExpenseModel");
 const Addexpense = require("../models/addExpenseModel");
 exports.addexpense = (req, res) => {
+  if(req.session.loggedin!=true){
+    res.redirect("/");
+  }
   addexpense.getAllexpense((err, data) => {
     if (err) {
       res.status(500).send({
@@ -9,6 +12,7 @@ exports.addexpense = (req, res) => {
     } else {
       res.render("./pages/addexpense", {
         data,
+        role: req.session.username
       });
 
       console.log("data View", data);

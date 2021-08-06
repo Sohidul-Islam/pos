@@ -38,6 +38,9 @@ const shortItems = require("../models/shortitemModel");
 //   return postDate;
 // };
 exports.getshortitems = (req, res) => {
+  if(req.session.loggedin!=true){
+    res.redirect("/");
+  }
   shortitems.allshortitems((err, data) => {
     if (err) {
       res.status(500).send({
@@ -53,6 +56,7 @@ exports.getshortitems = (req, res) => {
       }
       res.render("./pages/shortitems", {
         data,
+        role: req.session.username
       });
     }
     console.log("Updated data : ", data);

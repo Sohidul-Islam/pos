@@ -5,315 +5,291 @@
     <div class="content-box">
       <!-- this is for menubar -->
       <%- include('../template/sidebar')-%>
-      <!-- this is for contents -->
-      <div class="maincontentbox d-inline-block mx-auto">
-        <%- include('../template/menubar')-%>
+        <!-- this is for contents -->
+        <div class="maincontentbox d-inline-block mx-auto">
+          <%- include('../template/menubar')-%>
 
-        <!-- Selling overview -->
-        <div class="mx-4 overflow-hidden">
-          <div class="row my-3">
-            <!-- Sales Count -->
-            <div class="col-6 col-lg-3" data-aos="fade-right">
-              <div class="card">
-                <div class="card-header card-header--box">
-                  <div class="card-header--box_icon__box">
-                    <i
-                      class="fas fa-chart-line card-header--box_icon__box__icon"
-                    ></i>
+            <!-- Selling overview -->
+            <div class="mx-4 overflow-hidden">
+              <div class="row my-3">
+                <!-- Sales Count -->
+                <div class="col-6 col-lg-3" data-aos="fade-right">
+                  <div class="card">
+                    <div class="card-header card-header--box">
+                      <div class="card-header--box_icon__box">
+                        <i class="fas fa-chart-line card-header--box_icon__box__icon"></i>
+                      </div>
+                      <h2 class="d-inline-block card-header--box_text">
+                        Sales Count
+                      </h2>
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title card-duration">Last week</h5>
+                      <h6 class="card-text card-result"><strong>
+                          <%=count%>
+                        </strong></h6>
+                      <a class="btn btnprimary" href="/salescount" role="">view details</a>
+                    </div>
                   </div>
-                  <h2 class="d-inline-block card-header--box_text">
-                    Sales Count
-                  </h2>
                 </div>
-                <div class="card-body">
-                  <h5 class="card-title card-duration">Last week</h5>
-                  <h6 class="card-text card-result"><strong><%=count%></strong></h6>
-                  <a class="btn btnprimary" href="/salescount" role="">view details</a>
+                <!-- Top Selling -->
+                <div class="col-6 col-lg-3" data-aos="zoom-in">
+                  <div class="card">
+                    <div class="card-header card-header--box">
+                      <div class="card-header--box_icon__box">
+                        <i class="fa fa-flash fa-fw card-header--box_icon__box__icon"></i>
+                      </div>
+                      <h2 class="d-inline-block card-header--box_text">
+                        Top Selling
+                      </h2>
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title card-duration">Last week</h5>
+                      <h6 class="card-text card-result"><strong>
+                          <%=topselling%>
+                        </strong></h6>
+                      <a class="btn btnprimary" href="/topselling" role="button">view details</a>
+                    </div>
+                  </div>
+                </div>
+                <!-- Short Items -->
+                <div class="col-6 col-lg-3" data-aos="zoom-in">
+                  <div class="card">
+                    <div class="card-header card-header--box">
+                      <div class="card-header--box_icon__box">
+                        <i class="fa fa-tags card-header--box_icon__box__icon"></i>
+                      </div>
+                      <h2 class="d-inline-block card-header--box_text">
+                        Short Items
+                      </h2>
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title card-duration">short items</h5>
+                      <h6 class="card-text card-result"><strong>
+                          <%=stock%>
+                        </strong></h6>
+                      <a class="btn btnprimary short-btn" role="button" href="/shortitems">view details</a>
+                    </div>
+                  </div>
+                </div>
+                <!-- Total Sales -->
+                <div class="col-6 col-lg-3" data-aos="fade-left">
+                  <div class="card">
+                    <div class="card-header card-header--box">
+                      <div class="card-header--box_icon__box">
+                        <i class="fas fa-cart-plus card-header--box_icon__box__icon"></i>
+                      </div>
+                      <h2 class="d-inline-block card-header--box_text">
+                        Total Sales
+                      </h2>
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title card-duration">Today</h5>
+                      <h6 class="card-text card-result">
+                        <strong>&#2547;<%=todaysales%></strong>
+                      </h6>
+                      <a role="button" class="btn btnprimary" href="/todaysales">view details</a>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <!-- Top Selling -->
-            <div class="col-6 col-lg-3" data-aos="zoom-in">
-              <div class="card">
-                <div class="card-header card-header--box">
-                  <div class="card-header--box_icon__box">
-                    <i
-                      class="fa fa-flash fa-fw card-header--box_icon__box__icon"
-                    ></i>
-                  </div>
-                  <h2 class="d-inline-block card-header--box_text">
-                    Top Selling
-                  </h2>
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title card-duration">Last week</h5>
-                  <h6 class="card-text card-result"><strong><%=topselling%></strong></h6>
-                  <a class="btn btnprimary" href="/topselling" role="button"
-                    >view details</a
-                  >
-                </div>
-              </div>
-            </div>
-            <!-- Short Items -->
-            <div class="col-6 col-lg-3" data-aos="zoom-in">
-              <div class="card">
-                <div class="card-header card-header--box">
-                  <div class="card-header--box_icon__box">
-                    <i class="fa fa-tags card-header--box_icon__box__icon"></i>
-                  </div>
-                  <h2 class="d-inline-block card-header--box_text">
-                    Short Items
-                  </h2>
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title card-duration">short items</h5>
-                  <h6 class="card-text card-result"><strong><%=stock%></strong></h6>
-                  <a class="btn btnprimary short-btn" role="button" href="/shortitems"
-                    >view details</a
-                  >
-                </div>
-              </div>
-            </div>
-            <!-- Total Sales -->
-            <div class="col-6 col-lg-3" data-aos="fade-left">
-              <div class="card">
-                <div class="card-header card-header--box">
-                  <div class="card-header--box_icon__box">
-                    <i
-                      class="fas fa-cart-plus card-header--box_icon__box__icon"
-                    ></i>
-                  </div>
-                  <h2 class="d-inline-block card-header--box_text">
-                    Total Sales
-                  </h2>
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title card-duration">Today</h5>
-                  <h6 class="card-text card-result">
-                    <strong>&#2547;<%=todaysales%></strong>
-                  </h6>
-                  <a role="button" class="btn btnprimary" href="/todaysales"
-                    >view details</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
 
 
-          <div class="row my-3">
-            <!-- Top Customers -->
-            <div class="col-6" data-aos="fade-down-right">
-              <div class="card">
-                <div class="card-header primary-background">
-                  <h4 class="text-light">Top Customers</h4>
-                </div>
-                <%if(top.length==0){%>
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-2">
-                        <div class="customers--profile-imgbox">
-                          <div class="customers--profile-imgbox_container">
-                            <img
-                              class="customers--profile-imgbox_container_content"
-                              src="/assets/profile.png"
-                              alt=""
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-10">
-                        <div class="customer-infobox">
-                          <div class="customer-name">
-                            <h4>Lorem Ipsum</h4>
-                           
-                          </div>
-                          <div class="customer-loc">
-                            <strong
-                              ><i class="fas fa-location-arrow"></i
-                              >Location</strong
-                            >
-                          </div>
-                        </div>
-                        <div class="customer-saling-info">
-                          <p>&#2547;####</p>
-                        </div>
-                      </div>
+              <div class="row my-3">
+                <!-- Top Customers -->
+                <div class="col-6" data-aos="fade-down-right">
+                  <div class="card">
+                    <div class="card-header primary-background">
+                      <h4 class="text-light">Top Customers</h4>
                     </div>
-                  </div>
-                  <%} else{%>
-                <%for(let i = 0 ; i< top.length ; i++){%>
-                  <%if(i<5){%>
-                  <div class="card-body">
-                  <div class="row">
-                    <div class="col-2">
-                      <div class="customers--profile-imgbox">
-                        <div class="customers--profile-imgbox_container">
-                          <img
-                            class="customers--profile-imgbox_container_content"
-                            src="/assets/profile.png"
-                            alt=""
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-10">
-                      <div class="customer-infobox">
-                        <div class="customer-name">
-                          <h4><%=top[i].customername%></h4>
-                         
-                        </div>
-                        <div class="customer-loc">
-                          <strong
-                            ><i class="fas fa-location-arrow"></i
-                            ><%=top[i].address%></strong
-                          >
-                        </div>
-                      </div>
-                      <div class="customer-saling-info">
-                        <p>&#2547;<%=top[i].total%></p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="customer-divider"></div>
-                <%}%>
-                <%}%>
-                <%}%>
-      
-              </div>
-            </div>
-            <!--  Customers Due-->
-            <div class="col-6" data-aos="fade-down-left">
-              <div class="card customercard">
-                <div class="card-header primary-background">
-                  <h4 class="text-white">Customers Dues</h4>
-                </div>
-                <%if(due.length==0){%>
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-2">
-                        <div class="customers--profile-imgbox">
-                          <div class="customers--profile-imgbox_container">
-                            <img
-                              class="customers--profile-imgbox_container_content"
-                              src="/assets/profile.png"
-                              alt=""
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-10">
-                        <div class="customer-infobox">
-                          <div class="customer-name">
-                            <h4>Lorem Ipsum</h4>
-                          </div>
-                          <div class="customer-loc">
-                            <strong
-                              ><i class="fas fa-location-arrow"></i
-                              >Location</strong
-                            >
-                          </div>
-                        </div>
-                        <div class="customer-saling-info">
-                          <p>&#2547;####</p>
-                          <h6 class="payment-date">day-month-year</h6>
-                        </div>
-                        <div class="btnbox btn-due">
-                          <span class="btn-group "><a role="button" href="/" class="btn btn-outline-primary "><i class="fas fa-hand-holding-usd"></i></a><a role="button" href="/" class="btn btn-outline-danger "><i class="far fa-envelope"></i></a></span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <%} else{%>
-                      <%for(let i = 0 ; i< due.length ; i++){%>
-                        <div class="customer-divider"></div>
-                        <div class="card-body due-card">
-                          <div class="row">
-                            <div class="col-2">
-                              <div class="customers--profile-imgbox">
-                                <div class="customers--profile-imgbox_container">
-                                  <img
-                                    class="customers--profile-imgbox_container_content"
-                                    src="/assets/profile.png"
-                                    alt=""
-                                  />
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-10">
-                              <div class="customer-infobox">
-                                <div class="customer-name">
-                                  <h4><%=due[i].name%></h4>
-                                </div>
-                                <div class="customer-loc">
-                                  <strong
-                                    ><i class="fas fa-location-arrow"></i
-                                    ><%=due[i].address%></strong
-                                  >
-                                </div>
-                              </div>
-                              
-                              <div class="customer-saling-info">
-                                
-                                <p>&#2547;<%=due[i].due%></p>
-                                <h6 class="payment-date"><%=due[i].paytime%></h6>
-                                
-                              </div>
-                              <div class="btnbox btn-due">
-                                <span class="btn-group "><a role="button" href="/update/<%=due[i].dueid%>" class="btn btn-outline-primary "><i class="fas fa-hand-holding-usd"></i></a><a role="button" href="/mail/<%=due[i].dueid%>" class="btn btn-outline-danger "><i class="far fa-envelope"></i></a></span>
+                    <%if(top.length==0){%>
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-2">
+                            <div class="customers--profile-imgbox">
+                              <div class="customers--profile-imgbox_container">
+                                <img class="customers--profile-imgbox_container_content" src="/assets/profile.png"
+                                  alt="" />
                               </div>
                             </div>
                           </div>
+                          <div class="col-10">
+                            <div class="customer-infobox">
+                              <div class="customer-name">
+                                <h4>Lorem Ipsum</h4>
+
+                              </div>
+                              <div class="customer-loc">
+                                <strong><i class="fas fa-location-arrow"></i>Location</strong>
+                              </div>
+                            </div>
+                            <div class="customer-saling-info">
+                              <p>&#2547;####</p>
+                            </div>
+                          </div>
                         </div>
-                        <div class="customer-divider"></div>
-                        <%}%>
-                      
-               <%}%>
-         
-                
-                
+                      </div>
+                      <%} else{%>
+                        <%for(let i=0 ; i< top.length ; i++){%>
+                          <%if(i<5){%>
+                            <div class="card-body">
+                              <div class="row">
+                                <div class="col-2">
+                                  <div class="customers--profile-imgbox">
+                                    <div class="customers--profile-imgbox_container">
+                                      <img class="customers--profile-imgbox_container_content" src="/assets/profile.png"
+                                        alt="" />
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-10">
+                                  <div class="customer-infobox">
+                                    <div class="customer-name">
+                                      <h4>
+                                        <%=top[i].customername%>
+                                      </h4>
+
+                                    </div>
+                                    <div class="customer-loc">
+                                      <strong><i class="fas fa-location-arrow"></i>
+                                        <%=top[i].address%>
+                                      </strong>
+                                    </div>
+                                  </div>
+                                  <div class="customer-saling-info">
+                                    <p>&#2547;<%=top[i].total%>
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="customer-divider"></div>
+                            <%}%>
+                              <%}%>
+                                <%}%>
+
+                  </div>
+                </div>
+                <!--  Customers Due-->
+                <div class="col-6" data-aos="fade-down-left">
+                  <div class="card customercard">
+                    <div class="card-header primary-background">
+                      <h4 class="text-white">Customers Dues</h4>
+                    </div>
+                    <%if(due.length==0){%>
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-2">
+                            <div class="customers--profile-imgbox">
+                              <div class="customers--profile-imgbox_container">
+                                <img class="customers--profile-imgbox_container_content" src="/assets/profile.png"
+                                  alt="" />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-10">
+                            <div class="customer-infobox">
+                              <div class="customer-name">
+                                <h4>Lorem Ipsum</h4>
+                              </div>
+                              <div class="customer-loc">
+                                <strong><i class="fas fa-location-arrow"></i>Location</strong>
+                              </div>
+                            </div>
+                            <div class="customer-saling-info">
+                              <p>&#2547;####</p>
+                              <h6 class="payment-date">day-month-year</h6>
+                            </div>
+                            <div class="btnbox btn-due">
+                              <span class="btn-group "><a role="button" href="/" class="btn btn-outline-primary "><i
+                                    class="fas fa-hand-holding-usd"></i></a><a role="button" href="/"
+                                  class="btn btn-outline-danger "><i class="far fa-envelope"></i></a></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <%} else{%>
+                        <%for(let i=0 ; i< due.length ; i++){%>
+                          <div class="customer-divider"></div>
+                          <div class="card-body due-card">
+                            <div class="row">
+                              <div class="col-2">
+                                <div class="customers--profile-imgbox">
+                                  <div class="customers--profile-imgbox_container">
+                                    <img class="customers--profile-imgbox_container_content" src="/assets/profile.png"
+                                      alt="" />
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-10">
+                                <div class="customer-infobox">
+                                  <div class="customer-name">
+                                    <h4>
+                                      <%=due[i].name%>
+                                    </h4>
+                                  </div>
+                                  <div class="customer-loc">
+                                    <strong><i class="fas fa-location-arrow"></i>
+                                      <%=due[i].address%>
+                                    </strong>
+                                  </div>
+                                </div>
+
+                                <div class="customer-saling-info">
+
+                                  <p>&#2547;<%=due[i].due%>
+                                  </p>
+                                  <h6 class="payment-date">
+                                    <%=due[i].paytime%>
+                                  </h6>
+
+                                </div>
+                                <div class="btnbox btn-due">
+                                  <span class="btn-group "><a role="button" href="home/update/<%=due[i].dueid%>"
+                                      class="btn btn-outline-primary "><i class="fas fa-hand-holding-usd"></i></a><a
+                                      role="button" href="home/mail/<%=due[i].dueid%>"
+                                      class="btn btn-outline-danger "><i class="far fa-envelope"></i></a></span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="customer-divider"></div>
+                          <%}%>
+
+                            <%}%>
+
+
+
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
 
-        <!-- Graph -->
-        <div class="row">
-          <div class="col-6" data-aos="fade-right">
-            <div class="container">
-              <canvas id="myChart1"></canvas>
-            </div>
-            </div>
+            <!-- Graph -->
+            <div class="row">
+              <div class="col-6" data-aos="fade-right">
+                <div class="container">
+                  <canvas id="myChart1"></canvas>
+                </div>
+              </div>
 
-            <div class="col-6">
-              <div class="container" data-aos="fade-left">
-                <canvas id="myChart2"></canvas>
+              <div class="col-6">
+                <div class="container" data-aos="fade-left">
+                  <canvas id="myChart2"></canvas>
+                </div>
               </div>
             </div>
-          </div>
 
-         
+
         </div>
-      </div>
+    </div>
     </div>
     <!-- Floating Button -->
-    <button
-      type="button"
-      class="btn calendar-btn"
-      data-bs-toggle="modal"
-      data-bs-target="#exampleModal"
-    >
+    <button type="button" class="btn calendar-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
       <i class="fas fa-calendar-alt calendar-icon"></i>
     </button>
 
-    <div
-      class="modal fade"
-      id="exampleModal"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="calendar">
@@ -354,10 +330,13 @@
         </div>
       </div>
 
-      
+
     </div>
-    <div id="mydiv" style="display: none;"><%= salesChart %></div>
-    <div id="mydiv2" style="display: none;"><%= profitChart %></div>
- 
+    <div id="mydiv" style="display: none;">
+      <%= salesChart %>
+    </div>
+    <div id="mydiv2" style="display: none;">
+      <%= profitChart %>
+    </div>
+
     <%- include('../template/footer')-%>
-  

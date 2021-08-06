@@ -3,6 +3,9 @@ const Addproducts = require("../models/addproductModel");
 // const addproductBrand = require("../models/addproductbrandModel");
 
 exports.addProductType = (req, res) => {
+  if(req.session.loggedin!=true){
+    res.redirect("/");
+  }
   addproducts.getAllprodtype((err, data) => {
     if (err) {
       res.status(500).send({
@@ -19,6 +22,7 @@ exports.addProductType = (req, res) => {
         brand: brand,
         prodtype: prodtype,
         vendor: vendor,
+        role: req.session.username
       });
 
       console.log("data View", data);

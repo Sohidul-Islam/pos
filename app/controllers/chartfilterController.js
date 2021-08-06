@@ -1,6 +1,9 @@
 const chart = require("../models/chartfilterModel");
 
 exports.chartFilter = (req, res) => {
+        if(req.session.loggedin!=true){
+                res.redirect("/");
+              }
         chart.piechart((err, data) => {
                 if (err)
                         res.status(500).send({
@@ -10,9 +13,9 @@ exports.chartFilter = (req, res) => {
                         // console.log("chart data : ",data);
                         var chart1 = data[0];
                         var chart2 = data[1];
-                        // console.log("chart 2",chart2);
-                        // console.log("chart 1",chart1);
-
+                  
+                        console.log("chart 1 ",chart1);
+                        console.log("chart 2 ",chart2);
                         var chartdata =[];
                         var chartdata2 =[];
                         var chartlabel =[];
@@ -31,7 +34,8 @@ exports.chartFilter = (req, res) => {
                                 chartdata,
                                 chartlabel,
                                 chartdata2,
-                                chartlabel2
+                                chartlabel2,
+                                role: req.session.username
                         });
        
                      }

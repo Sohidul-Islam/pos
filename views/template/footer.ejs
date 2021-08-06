@@ -8,13 +8,38 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 
-<script src="datepicker.min.js"></script>
+
 <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="datepicker.min.js"></script>
 
 <script>
+  // $(document).ready(function () {
+  //   $('#example').DataTable();
+  // });
   $(document).ready(function () {
-    $('#example').DataTable();
+    var table = $('#example').DataTable({
+      "order": [[0, "desc"]]
+    });
+
+    // $("tr:first").addClass('selected');
+    $('.salesTable').children("tbody").children('tr:nth-child(1)').addClass('selected');
+
+    $('#example tbody').on('click', 'tr', function () {
+      if ($(this).hasClass('selected')) {
+        $(this).removeClass('selected');
+
+      }
+      else {
+        table.$('tr.selected').removeClass('selected');
+        $(this).addClass('selected');
+        console.log(table.row(this).data());
+      }
+    });
+
+    $('#button').click(function () {
+      table.row('.selected').remove().draw(false);
+    });
   });
 </script>
 <script>

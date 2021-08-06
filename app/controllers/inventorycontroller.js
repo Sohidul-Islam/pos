@@ -1,6 +1,9 @@
 const product = require("../models/inventorymodel");
 
 exports.allinventory = (req, res) => {
+  if(req.session.loggedin!=true){
+    res.redirect("/");
+  }
   product.inventoryReport((err, data) => {
     if (err) {
       res.status(500).send({
@@ -16,6 +19,7 @@ exports.allinventory = (req, res) => {
       }
       res.render("./pages/inventory-reports", {
         data,
+        role: req.session.username
       });
     }
 

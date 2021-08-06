@@ -6,6 +6,9 @@ const Brand = require("../models/addproductbrandModel");
 // };
 
 exports.allBrand = (req, res) => {
+  if(req.session.loggedin!=true){
+    res.redirect("/");
+  }
   brand.getAllbrand((err, data) => {
     if (err) {
       res.status(500).send({
@@ -14,6 +17,7 @@ exports.allBrand = (req, res) => {
     } else
       res.render("./pages/addbrands", {
         result: data,
+        role: req.session.username
       });
 
     console.log("Brand: ", data);

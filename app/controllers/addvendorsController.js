@@ -1,6 +1,9 @@
 const vendors = require("../models/addvendorsModel");
 const Vendors = require("../models/addvendorsModel");
 exports.addvendors = (req, res) => {
+  if(req.session.loggedin!=true){
+    res.redirect("/");
+  }
   Vendors.allvendors((err, data) => {
     if (err) {
       res.status(500).send({
@@ -9,6 +12,7 @@ exports.addvendors = (req, res) => {
     } else {
       res.render("./pages/addvendors", {
         data,
+        role: req.session.username
       });
 
       console.log("data View", data);
