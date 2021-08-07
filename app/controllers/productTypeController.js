@@ -1,3 +1,4 @@
+const session = require("express-session");
 const productType = require("../models/productTypeModel");
 const ProductType = require("../models/productTypeModel");
 
@@ -16,7 +17,7 @@ exports.findAllproductType = (req, res) => {
           data[i].stock = 0;
         }
       }
-      console.log(data);
+      // console.log(data);
       res.render("./pages/product-types", {
         data,
         role: req.session.username
@@ -50,7 +51,7 @@ exports.update = (req, res) => {
           message: "Error updating Customer with id " + req.params.prodid,
         });
       }
-    } else res.send(data);
+    } else res.redirect("/product-types");
   });
 };
 
@@ -67,8 +68,10 @@ exports.findOne = (req, res) => {
         });
       }
     } else {
+      console.log("Find Product Type: ",data);
       res.render("./pages/editprodtype", {
         data,
+        role: req.session.username
       });
     }
   });
@@ -86,8 +89,6 @@ exports.delete = (req, res) => {
           message: "Could not delete prodtype with id " + req.params.prodid,
         });
       }
-    } else res.send({ message: `product Type was deleted successfully!` });
+    } else res.redirect("/product-types");
   });
 };
-// <%for(let i = 0 ; i<prodType.length;i++)%>
-//                       <%%>

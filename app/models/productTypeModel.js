@@ -24,13 +24,14 @@ productType.gettAllType = (result) => {
         result(err, null);
       } else {
         result(null, res);
-        console.log("gett all product :", res);
+        // console.log("gett all product :", res);
       }
     }
   );
 };
 
 productType.findById = (prodid, result) => {
+  // console.log(`select * from prodtype where prodid = ${prodid}`);
   // console.log(`select * from prodtype where prodid = ${prodid}`);
   sql.query(`select * from prodtype where prodid = ${prodid}`, (err, res) => {
     if (err) {
@@ -49,11 +50,13 @@ productType.findById = (prodid, result) => {
 };
 
 productType.updateById = (product, result) => {
-  console.log(
-    `UPDATE product SET prod_type = ${product.prod_type},des = ${product.des} WHERE pid = ${product.prodid}`
-  );
+  var prodid = product.prodid;
+  // console.log('prodid ',prodid);
+  // console.log(
+  //   `UPDATE prodtype SET prod_type = ${product.prod_type},des = ${product.des} WHERE prodid = ${product.prodid}`
+  // );
   sql.query(
-    "UPDATE product SET prod_type = ?,des = ? WHERE prodid = ?",
+    "UPDATE prodtype SET prod_type = ?,des = ? WHERE prodid = ?",
     [product.prod_type, product.des, product.prodid],
     (err, res) => {
       if (err) {
@@ -68,15 +71,15 @@ productType.updateById = (product, result) => {
         return;
       }
 
-      console.log("updated product: ", { id: product.pid, ...product });
-      result(null, { id: product.pid, ...product });
+      // console.log("updated product: ", { id: product.prodid, ...product });
+      result(null, { id: product.prodid, ...product });
     }
   );
 };
 
-productType.remove = (pid, result) => {
-  console.log(`DELETE FROM product WHERE pid = ${pid}`);
-  sql.query("DELETE FROM product WHERE pid = ?", pid, (err, res) => {
+productType.remove = (prodid, result) => {
+  // console.log(`DELETE FROM prodtype WHERE prodid = ${prodid}`);
+  sql.query("DELETE FROM prodtype WHERE prodid = ?", prodid, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
@@ -89,7 +92,7 @@ productType.remove = (pid, result) => {
       return;
     }
 
-    console.log("deleted customer with id: ", pid);
+    // console.log("deleted customer with id: ", prodid);
     result(null, res);
   });
 };

@@ -15,8 +15,8 @@ exports.addProductType = (req, res) => {
       var prodtype = data[0];
       var brand = data[1];
       var vendor = data[2];
-      console.log("Prodtyep ", typeof prodtype);
-      console.log("Prodtyep", prodtype.prod_type);
+      // console.log("Prodtyep ", typeof prodtype);
+      // console.log("Prodtyep", prodtype.prod_type);
 
       res.render("./pages/addproduct", {
         brand: brand,
@@ -25,7 +25,7 @@ exports.addProductType = (req, res) => {
         role: req.session.username
       });
 
-      console.log("data View", data);
+      // console.log("data View", data);
     }
   });
 };
@@ -50,7 +50,7 @@ exports.createProduct = (req, res) => {
     des: req.body.des,
   });
 
-  console.log("Added Product : ", addproducts);
+  // console.log("Added Product : ", addproducts);
   //Save Customer in the database
   Addproducts.createProduct(addproducts, (err, data) => {
     if (err)

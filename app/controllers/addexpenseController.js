@@ -35,7 +35,7 @@ exports.addnewexpense = (req, res) => {
     date: req.body.date,
     price: req.body.price,
   });
-  console.log("vendors added: ", addexpense);
+  // console.log("vendors added: ", addexpense);
   // Save Customer in the database
   Addexpense.newexpense(addexpense, (err, data) => {
     if (err)

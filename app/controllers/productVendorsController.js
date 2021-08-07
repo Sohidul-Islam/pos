@@ -14,6 +14,7 @@ exports.showVendors = (req, res) => {
       for (let i = 0; i < data.length; i++) {
         if (data[i].products==null) {
           data[i].products = 0;
+          data[i].worth = 0;
         }
       
         
@@ -25,7 +26,7 @@ exports.showVendors = (req, res) => {
     }
       
 
-    console.log(data);
+    // console.log(data);
   });
   // res.render("./pages/inventory-reports");
 };

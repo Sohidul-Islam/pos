@@ -13,7 +13,7 @@ const exp = require("constants");
 const sql = require("./app/models/db");
 
 // creat app
-var sessionStore = new MySQLStore({ clearExpired: true, checkExpirationInterval: 3000000 }, sql);
+var sessionStore = new MySQLStore({ clearExpired: true, checkExpirationInterval: 3600000 }, sql);
 
 const app = express();
 app.use(
@@ -23,7 +23,7 @@ app.use(
         saveUninitialized: true,
         store: sessionStore,
         cookie: {
-            expires: 3000000,
+            expires: 3600000,
         },
     })
 );

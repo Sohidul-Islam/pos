@@ -19,7 +19,7 @@ exports.allproductsTypes = (req, res) => {
         role: req.session.username
       });
 
-    console.log(data);
+    // console.log(data);
   });
 };
 
@@ -36,7 +36,7 @@ exports.createProdtype = (req, res) => {
     des: req.body.des,
   });
 
-  console.log("Added product type : ", producttype);
+  // console.log("Added product type : ", producttype);
   //Save Customer in the database
   Producttype.createprodtype(producttype, (err, data) => {
     if (err)

@@ -20,7 +20,7 @@ exports.allBrand = (req, res) => {
         role: req.session.username
       });
 
-    console.log("Brand: ", data);
+    // console.log("Brand: ", data);
   });
 };
 
@@ -37,7 +37,7 @@ exports.createBrand = (req, res) => {
     des: req.body.des,
   });
 
-  console.log("Added Product : ", brand);
+  // console.log("Added Product : ", brand);
   //Save Customer in the database
   Brand.createbrand(brand, (err, data) => {
     if (err)
