@@ -4,6 +4,8 @@ const express = require("express");
 const ejs = require("ejs");
 var session = require('express-session');
 var MySQLStore = require("express-mysql-session");
+
+var fs = require('fs');
 //call ejs module which handle html/css/javascript
 const path = require("path");
 var flash = require('connect-flash');
@@ -13,7 +15,14 @@ const exp = require("constants");
 const sql = require("./app/models/db");
 
 // creat app
-var sessionStore = new MySQLStore({ clearExpired: true, checkExpirationInterval: 3600000 }, sql);
+
+
+
+
+var sessionStore = new MySQLStore({
+    clearExpired: true,
+    checkExpirationInterval: 3600000
+}, sql);
 
 const app = express();
 app.use(
@@ -32,7 +41,9 @@ app.use(flash());
 // store express module in app constant variable
 app.use(express.json());
 //we use express.json() for use json array.
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({
+    extended: false
+}));
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -107,9 +118,11 @@ const login = require("./app/router/loginRouter");
 app.use("/", login);
 const resetpassword = require("./app/router/reset-passwordRouter");
 app.use("/reset-password", resetpassword);
+const multertesting = require("./app/router/multerTestingRouter");
+app.use("/multer", multertesting);
 
 
-app.use("/logout",(req,res)=>{
+app.use("/logout", (req, res) => {
     req.session.destroy();
     res.redirect("/");
 });

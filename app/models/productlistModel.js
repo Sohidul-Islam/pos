@@ -10,11 +10,12 @@ const productlist = function (product) {
   this.selling_p = product.selling_p;
   this.stock = product.stock;
   this.des = product.des;
+  this.img = product.img;
 };
 
 productlist.gettAllproduct = (result) => {
   sql.query(
-    `select pid,prod_n,prod_type,brand_n,stock,cost_p,selling_p,stock*selling_p as worth,v_name
+    `select pid,img,prod_n,prod_type,brand_n,stock,cost_p,selling_p,stock*selling_p as worth,v_name
     from product,prodtype,brand,vendors
     where product.prodid = prodtype.prodid and product.brandid = brand.brandid and product.vendorid = vendors.vendorid;`,
     (err, res) => {
@@ -49,9 +50,9 @@ productlist.productInfo = (result) => {
 var i = 0;
 productlist.findById = (pid, result) => {
   console.log(`IN MODAL PID ${pid} and ${i++}`);
-  
+
   sql.query(
-    "select pid,product.prodid,prod_type,prod_n,product.brandid,brand_n,product.vendorid,v_name,stock,cost_p,selling_p,product.des from product,prodtype,brand,vendors where  product.brandid = brand.brandid and product.prodid = prodtype.prodid and product.vendorid = vendors.vendorid and pid =?",pid,
+    "select pid,product.prodid,prod_type,prod_n,product.brandid,brand_n,product.vendorid,v_name,stock,cost_p,selling_p,product.des,product.img from product,prodtype,brand,vendors where  product.brandid = brand.brandid and product.prodid = prodtype.prodid and product.vendorid = vendors.vendorid and pid =?", pid,
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -64,16 +65,18 @@ productlist.findById = (pid, result) => {
         result(null, res);
         return;
       }
-      result({ kind: "not_found" }, null);
+      result({
+        kind: "not_found"
+      }, null);
     }
   );
 };
 var j = 0
 productlist.findByIdforsales = (pid, result) => {
   console.log(`IN MODAL for sales --> PID ${pid} and ${j++}`);
-  
+
   sql.query(
-    "select pid,product.prodid,prod_type,prod_n,product.brandid,brand_n,product.vendorid,v_name,stock,cost_p,selling_p,product.des from product,prodtype,brand,vendors where  product.brandid = brand.brandid and product.prodid = prodtype.prodid and product.vendorid = vendors.vendorid and pid =?",pid,
+    "select pid,product.prodid,prod_type,prod_n,product.brandid,brand_n,product.vendorid,v_name,stock,cost_p,selling_p,product.des from product,prodtype,brand,vendors where  product.brandid = brand.brandid and product.prodid = prodtype.prodid and product.vendorid = vendors.vendorid and pid =?", pid,
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -86,7 +89,9 @@ productlist.findByIdforsales = (pid, result) => {
         result(null, res);
         return;
       }
-      result({ kind: "not_found" }, null);
+      result({
+        kind: "not_found"
+      }, null);
     }
   );
 };
@@ -96,7 +101,7 @@ productlist.updateById = (product, result) => {
     `UPDATE product SET prod_n = ${product.prod_n} , prodid = ${product.prodid},brandid =${product.brandid} ,vendorid =${product.vendorid} ,des =${product.des},stock = ${product.stock},cost_p =${product.cost_p},selling_p = ${product.selling_p}  WHERE pid = ${product.pid}`
   );
   sql.query(
-    "UPDATE product SET prod_n = ?, prodid = ?,brandid = ?,vendorid = ?,des = ?,stock = ?,cost_p = ?,selling_p = ? WHERE pid = ?",
+    "UPDATE product SET prod_n = ?, prodid = ?,brandid = ?,vendorid = ?,des = ?,stock = ?,cost_p = ?,selling_p = ?,img = ? WHERE pid = ?",
     [
       product.prod_n,
       product.prodid,
@@ -106,6 +111,7 @@ productlist.updateById = (product, result) => {
       product.stock,
       product.cost_p,
       product.selling_p,
+      product.img,
       product.pid,
     ],
     (err, res) => {
@@ -117,12 +123,17 @@ productlist.updateById = (product, result) => {
 
       if (res.affectedRows == 0) {
         // not found product with the id
-        result({ kind: "not_found" }, null);
+        result({
+          kind: "not_found"
+        }, null);
         return;
       }
 
-     // console.log("updated product: ", { id: product.pid, ...product });
-      result(null, { id: product.pid, ...product });
+      // console.log("updated product: ", { id: product.pid, ...product });
+      result(null, {
+        id: product.pid,
+        ...product
+      });
     }
   );
 };
@@ -138,11 +149,13 @@ productlist.remove = (pid, result) => {
 
     if (res.affectedRows == 0) {
       // not found Customer with the id
-      result({ kind: "not_found" }, null);
+      result({
+        kind: "not_found"
+      }, null);
       return;
     }
 
-    console.log("deleted customer with id: ", pid);
+    console.log("deleted product with id: ", pid);
     result(null, res);
   });
 };

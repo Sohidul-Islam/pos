@@ -28,7 +28,7 @@ CREATE TABLE `vendors` (
   `phone` varchar(100) DEFAULT NULL,
   `des` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`vendorid`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +37,7 @@ CREATE TABLE `vendors` (
 
 LOCK TABLES `vendors` WRITE;
 /*!40000 ALTER TABLE `vendors` DISABLE KEYS */;
-INSERT INTO `vendors` VALUES (1,'Haidar Abbas','01854107684',NULL),(7,'Kaium Uddin','01795707699','great vendors'),(8,'Azmaul Hossain','01795707699','Bad Seller'),(10,'Rahim Uddin','01866922658','');
+INSERT INTO `vendors` VALUES (1,'Haidar Abbas','01854107684',NULL),(7,'Kaium Uddin','01795707699','great vendors'),(8,'Azmaul Hossain','01795707699','Bad Seller'),(10,'Rahim Uddin','01866922658',''),(11,'Sohidul Islam','01854107699','');
 /*!40000 ALTER TABLE `vendors` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-08-03 22:36:27
+-- Dump completed on 2021-08-23  2:39:59

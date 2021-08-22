@@ -1,7 +1,7 @@
 const vendors = require("../models/addvendorsModel");
 const Vendors = require("../models/addvendorsModel");
 exports.addvendors = (req, res) => {
-  if(req.session.loggedin!=true){
+  if (req.session.loggedin != true) {
     res.redirect("/");
   }
   Vendors.allvendors((err, data) => {
@@ -39,8 +39,7 @@ exports.addnewvendors = (req, res) => {
   Vendors.createvendor(vendors, (err, data) => {
     if (err)
       res.status(500).send({
-        message:
-          err.message || "Some error occurred while creating the Customer.",
+        message: err.message || "Some error occurred while creating the Customer.",
       });
     else {
       res.redirect("back");

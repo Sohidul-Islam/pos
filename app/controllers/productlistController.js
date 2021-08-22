@@ -2,9 +2,10 @@ const productlist = require("../models/productlistModel");
 const Productlist = require("../models/productlistModel");
 // const addsales = require("../models/addsalesModel");
 const Addsales = require("../models/addsalesModel");
+const fs = require("fs");
 
 exports.findAllproductlist = (req, res) => {
-  if(req.session.loggedin!=true){
+  if (req.session.loggedin != true) {
     res.redirect("/");
   }
   productlist.gettAllproduct((err, data) => {
@@ -39,6 +40,7 @@ exports.update = (req, res) => {
     cost_p: req.body.cost_p,
     selling_p: req.body.selling_p,
     des: req.body.des,
+    img: req.file.filename,
   });
   // console.log("productlist: ", productlist);
   // console.log("description: ", req.body.des);
@@ -59,7 +61,7 @@ exports.update = (req, res) => {
 };
 var j = 0;
 exports.findOne = (req, res) => {
-  if(req.session.loggedin!=true){
+  if (req.session.loggedin != true) {
     res.redirect("/");
   }
   console.log(`IN Controller PID ${req.params.pid} and ${j++}`);
@@ -76,22 +78,22 @@ exports.findOne = (req, res) => {
       }
     } else {
 
-      productlist.productInfo((err,DATA)=>{
+      productlist.productInfo((err, DATA) => {
         if (err) {
-         
-            res.status(404).send({
-              message: `Not found product info`,
-            });
-        }else{
+
+          res.status(404).send({
+            message: `Not found product info`,
+          });
+        } else {
 
           let findbyid = data[0];
           let prodType = DATA[0];
           let brand = DATA[1];
           let vendor = DATA[2];
-          console.log("Findby id ",findbyid);
-          console.log("ProdType  ",prodType);
-          console.log("Brand  ",brand);
-          console.log("Vendor ",vendor);
+          console.log("Findby id ", findbyid);
+          console.log("ProdType  ", prodType);
+          console.log("Brand  ", brand);
+          console.log("Vendor ", vendor);
           res.render("./pages/editproduct", {
             findbyid: findbyid,
             prodType: prodType,
@@ -101,15 +103,15 @@ exports.findOne = (req, res) => {
           });
         }
       })
-   
+
     }
   });
 };
 exports.salesone = (req, res) => {
-  if(req.session.loggedin!=true){
+  if (req.session.loggedin != true) {
     res.redirect("/");
   }
-  console.log(req.params,"Not fount");
+  console.log(req.params, "Not fount");
   productlist.findByIdforsales(req.params.pid, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
@@ -125,7 +127,7 @@ exports.salesone = (req, res) => {
       let findbyid = data[0];
       // ./pages/salesindividual
       // console.log("findbyid ", findbyid.selling_p);
-      res.render(`./pages/salesindividual`,{
+      res.render(`./pages/salesindividual`, {
         findbyid,
         role: req.session.username
       });
@@ -134,7 +136,36 @@ exports.salesone = (req, res) => {
 };
 
 exports.delete = (req, res) => {
+  // fs.unlink('mynewfile2.txt', function (err) {
+  //   if (err) throw err;
+  //   console.log('File deleted!');
+  // });
+  productlist.findById(req.params.pid, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Not found Customer with id ${req.params.pid}.`,
+        });
+      } else {
+        res.status(500).send({
+          message: "Error retrieving Customer with pid " + req.params.pid,
+        });
+      }
+    } else {
+      console.log("Deleted data", data[0].img);
+      let fileLoc = `\public\\assets\\${data[0].img}`;
+      console.log(fileLoc);
+      fs.unlink(fileLoc, function (err) {
+        if (err) throw err;
+        console.log('File deleted!');
+      });
+    }
+  })
+
   productlist.remove(req.params.pid, (err, data) => {
+    console.log("delete-->", data);
+    // console.log("res delete-->", res);
+    // console.log("res delete-->", req);
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
@@ -175,13 +206,11 @@ exports.createsales = (req, res) => {
   Addsales.createsales(addsales, (err, data) => {
     if (err)
       res.status(500).send({
-        message:
-          err.message || "Some error occurred while creating the Customer.",
+        message: err.message || "Some error occurred while creating the Customer.",
       });
     else if (data !== null && data !== "") {
       res.redirect("http://localhost:3000/sales");
-      
+
     }
   });
 };
-

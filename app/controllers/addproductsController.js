@@ -3,7 +3,7 @@ const Addproducts = require("../models/addproductModel");
 // const addproductBrand = require("../models/addproductbrandModel");
 
 exports.addProductType = (req, res) => {
-  if(req.session.loggedin!=true){
+  if (req.session.loggedin != true) {
     res.redirect("/");
   }
   addproducts.getAllprodtype((err, data) => {
@@ -39,6 +39,7 @@ exports.createProduct = (req, res) => {
   }
 
   // Create a product
+  console.log(req.file);
   const addproducts = new Addproducts({
     prod_n: req.body.prod_n,
     prodid: req.body.prodid,
@@ -48,6 +49,7 @@ exports.createProduct = (req, res) => {
     selling_p: req.body.selling_p,
     vendorid: req.body.vendorid,
     des: req.body.des,
+    img: req.file.filename,
   });
 
   // console.log("Added Product : ", addproducts);
@@ -55,8 +57,7 @@ exports.createProduct = (req, res) => {
   Addproducts.createProduct(addproducts, (err, data) => {
     if (err)
       res.status(500).send({
-        message:
-          err.message || "Some error occurred while creating the Customer.",
+        message: err.message || "Some error occurred while creating the Customer.",
       });
     else {
       res.redirect("back");

@@ -9,6 +9,7 @@ const addproduct = function (product) {
   this.selling_p = product.selling_p;
   this.stock = product.stock;
   this.des = product.des;
+  this.img = product.img;
   // this.brandid = product.brandid;
   // this.brand_n = product.brand_n;
 };
@@ -36,8 +37,14 @@ addproduct.createProduct = (newproduct, result) => {
       return;
     }
 
-    console.log("created product: ", { id: res.insertId, ...newproduct });
-    result(null, { id: res.insertId, ...newproduct });
+    console.log("created product: ", {
+      id: res.insertId,
+      ...newproduct
+    });
+    result(null, {
+      id: res.insertId,
+      ...newproduct
+    });
   });
 };
 module.exports = addproduct;

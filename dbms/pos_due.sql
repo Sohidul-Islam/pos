@@ -33,7 +33,7 @@ CREATE TABLE `due` (
   `product` int DEFAULT NULL,
   `status` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`dueid`)
-) ENGINE=InnoDB AUTO_INCREMENT=110 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=134 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +42,6 @@ CREATE TABLE `due` (
 
 LOCK TABLES `due` WRITE;
 /*!40000 ALTER TABLE `due` DISABLE KEYS */;
-INSERT INTO `due` VALUES (99,'Kaium Uddin','Chattogram','sishufol.sim@gmail.com',44500,'2021-08-03 00:00:00','2021-07-31 00:00:00',6,'sent'),(100,'Nusrat Jahan','Dhaka','sishufol.sim@gmail.com',2150,'2021-08-03 00:00:00','2021-07-31 00:00:00',4,'sent'),(109,'Esrath Jahan','Dhaka','sishufol.sim@gmail.com',44500,'2021-08-11 00:00:00','2021-08-03 00:00:00',5,'sent');
 /*!40000 ALTER TABLE `due` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-08-03 22:36:27
+-- Dump completed on 2021-08-23  2:39:59

@@ -36,7 +36,7 @@ CREATE TABLE `prodtype` (
 
 LOCK TABLES `prodtype` WRITE;
 /*!40000 ALTER TABLE `prodtype` DISABLE KEYS */;
-INSERT INTO `prodtype` VALUES (1,'Speakers',NULL),(2,'Mouse',NULL),(3,'Mousepad',NULL),(4,'Display Monitors',NULL),(5,'Keyboard',NULL),(6,'Cable Chargers',NULL),(7,'Power supplies',NULL),(8,'smartphone','smartphone (any branded phone)'),(10,'Laptop',''),(11,'Headphone','');
+INSERT INTO `prodtype` VALUES (1,'Speakers',NULL),(2,'Mouse',NULL),(4,'Display Monitors',NULL),(7,'Power supplies',NULL),(8,'smartphone','smartphone (any branded phone)'),(10,'Laptop',''),(11,'Headphone','');
 /*!40000 ALTER TABLE `prodtype` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-08-03 22:36:27
+-- Dump completed on 2021-08-23  2:39:59
